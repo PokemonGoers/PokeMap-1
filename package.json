@@ -4,6 +4,7 @@
   "description": "Project D Group 7, JavaScript Seminar WS16, Rostlab",
   "main": "app.js",
   "scripts": {
+    "test": "mocha",
     "start": "beefy app.js:bundles/bundle.js --live",
     "bundle": "browserify app.js -o bundles/bundle.js"
   },
