@@ -36,44 +36,48 @@ layer.addTo(map);
 //// 2nd Milestone - POKEMON PAST LOCATION
 //// 3rd Milestone - POKEMON INFO
 
-// custom icons
+//-- Pokemon location - info
+// custom icon
 var LeafIcon = L.Icon.extend({
     options: {
-        iconSize:     [50, 46],
-        popupAnchor:  [-7, -20]
+        iconSize: [45, 41],
+        popupAnchor: [-7, -20]
     }
 });
 
-// mark Pokemons
-L.marker([48.262299, 11.669776], {icon: new LeafIcon({iconUrl: 'map/css/images/pokemon/pikachu.gif'})})
-    .addTo(map).bindPopup('Pokemon: <b>Pikachu</b><br/> <br/>' +
-    'Type: <b>Electric</b> <br/>' +
-    'Species: <b>Mouse Pokemon</b> <br/>' +
-    'Evolution: Pichu &rarr; (Hapiness) &rarr; Pikachu &rarr; (Thunderstone) &rarr;  Raichu<br/>');
+// popup with Pokemon info
+var popup = L.popup()
+    .setContent(
+        'Pokemon: <b>Pikachu</b><br/> <br/>' +
+        'Type: <b>Electric</b> <br/>' +
+        'Species: <b>Mouse Pokemon</b> <br/>' +
+        'Evolution: Pichu &rarr; (Hapiness) &rarr; Pikachu &rarr; (Thunderstone) &rarr;  Raichu<br/>'
+    );
 
 
+// mark Pokemon, bind popup info, and add to map
+L.marker([48.262299, 11.669776],
+    {icon: new LeafIcon({iconUrl: 'map/css/images/pokemon/pikachu.gif'})})
+    .bindPopup(popup)
+    .addTo(map);
+
+//-- Pokemon location - info
 var LeafIcon = L.Icon.extend({
     options: {
-        iconSize:     [47, 42],
-        popupAnchor:  [-7, -20]
+        iconSize: [43, 38],
+        popupAnchor: [-7, -20]
     }
 });
 
-L.marker([48.264507, 11.669311], {icon: new LeafIcon({iconUrl: 'map/css/images/pokemon/bulbasaur.gif'})})
-    .addTo(map).bindPopup('Pokemon: <b>Bulbasaur</b><br/> <br/>' +
-    'Type: <b>Grass, Poison</b> <br/>' +
-    'Species: <b>Seed Pokémon</b> <br/>' +
-    'Evolution: Bulbasaur &rarr; (Level 16) &rarr; Ivysaur &rarr; (Level 32) &rarr;  Venusaur<br/>');
+var popup = L.popup()
+    .setContent(
+        'Pokemon: <b>Bulbasaur</b><br/> <br/>' +
+        'Type: <b>Grass, Poison</b> <br/>' +
+        'Species: <b>Seed Pokémon</b> <br/>' +
+        'Evolution: Bulbasaur &rarr; (Level 16) &rarr; Ivysaur &rarr; (Level 32) &rarr;  Venusaur<br/>'
+    );
 
-var LeafIcon = L.Icon.extend({
-    options: {
-        iconSize:     [75, 54],
-        popupAnchor:  [-7, -20]
-    }
-});
-
-L.marker([48.265027, 11.673105], {icon: new LeafIcon({iconUrl: 'map/css/images/pokemon/mewtwo.gif'})})
-    .addTo(map).bindPopup('Pokemon: <b>Mewtwo</b><br/> <br/>' +
-    'Type: <b>Psychic</b> <br/>' +
-    'Species: <b>Genetic Pokemon</b> <br/>' +
-    'Evolution: Mewtwo does not evolve');
+L.marker([48.264507, 11.669311], 
+    {icon: new LeafIcon({iconUrl: 'map/css/images/pokemon/bulbasaur.gif'})})
+    .bindPopup(popup)
+    .addTo(map);
