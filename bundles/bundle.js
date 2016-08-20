@@ -2,6 +2,8 @@
 /// 1st Milestone - POKEMON MAP
 // require leaflet.js
 var L = require('leaflet');
+// require leaflet-sidebar.js
+require('./map/js/leaflet-sidebar.js');
 
 // specify the path to the leaflet images folder
 L.Icon.Default.imagePath = 'node_modules/leaflet/dist/images/';
@@ -34,13 +36,17 @@ var layer = L.tileLayer(tiles, {
 // add the tile layer to the map
 layer.addTo(map);
 
+// add a sidebar
+var sidebar = L.control.sidebar('sidebar').addTo(map);
+
 //// 2nd Milestone - POKEMON PAST LOCATION
 //// 3rd Milestone - POKEMON INFO
 
-// custom icons
+//-- Pokemon location - info
+// custom icon
 var LeafIcon = L.Icon.extend({
     options: {
-        iconSize: [50, 46],
+        iconSize: [45, 41],
         popupAnchor: [-7, -20]
     }
 });
@@ -53,40 +59,249 @@ var popup = L.popup()
         'Species: <b>Mouse Pokemon</b> <br/>' +
         'Evolution: Pichu &rarr; (Hapiness) &rarr; Pikachu &rarr; (Thunderstone) &rarr;  Raichu<br/>'
     );
-    
+
 
 // mark Pokemon, bind popup info, and add to map
-L.marker([48.262299, 11.669776], {icon: new LeafIcon({iconUrl: 'map/css/images/pokemon/pikachu.gif'})})
+L.marker([48.262299, 11.669776],
+    {icon: new LeafIcon({iconUrl: 'map/img/pokemon/pikachu.gif'})})
     .bindPopup(popup)
     .addTo(map);
 
-/*var LeafIcon = L.Icon.extend({
-    options: {
-        iconSize: [47, 42],
-        popupAnchor: [-7, -20]
-    }
-});
-
-L.marker([48.264507, 11.669311], {icon: new LeafIcon({iconUrl: 'map/css/images/pokemon/bulbasaur.gif'})})
-    .addTo(map).bindPopup('Pokemon: <b>Bulbasaur</b><br/> <br/>' +
-    'Type: <b>Grass, Poison</b> <br/>' +
-    'Species: <b>Seed Pokémon</b> <br/>' +
-    'Evolution: Bulbasaur &rarr; (Level 16) &rarr; Ivysaur &rarr; (Level 32) &rarr;  Venusaur<br/>');
-
+//-- Pokemon location - info
 var LeafIcon = L.Icon.extend({
     options: {
-        iconSize: [75, 54],
+        iconSize: [43, 38],
         popupAnchor: [-7, -20]
     }
 });
 
-L.marker([48.265027, 11.673105], {icon: new LeafIcon({iconUrl: 'map/css/images/pokemon/mewtwo.gif'})})
-    .addTo(map).bindPopup('Pokemon: <b>Mewtwo</b><br/> <br/>' +
-    'Type: <b>Psychic</b> <br/>' +
-    'Species: <b>Genetic Pokemon</b> <br/>' +
-    'Evolution: Mewtwo does not evolve');*/
+var popup = L.popup()
+    .setContent(
+        'Pokemon: <b>Bulbasaur</b><br/> <br/>' +
+        'Type: <b>Grass, Poison</b> <br/>' +
+        'Species: <b>Seed Pokémon</b> <br/>' +
+        'Evolution: Bulbasaur &rarr; (Level 16) &rarr; Ivysaur &rarr; (Level 32) &rarr;  Venusaur<br/>'
+    );
 
-},{"leaflet":2}],2:[function(require,module,exports){
+L.marker([48.264507, 11.669311], 
+    {icon: new LeafIcon({iconUrl: 'map/img/pokemon/bulbasaur.gif'})})
+    .bindPopup(popup)
+    .addTo(map);
+
+},{"./map/js/leaflet-sidebar.js":2,"leaflet":3}],2:[function(require,module,exports){
+/**
+ * @name Sidebar
+ * @class L.Control.Sidebar
+ * @extends L.Control
+ * @param {string} id - The id of the sidebar element (without the # character)
+ * @param {Object} [options] - Optional options object
+ * @param {string} [options.position=left] - Position of the sidebar: 'left' or 'right'
+ * @see L.control.sidebar
+ */
+L.Control.Sidebar = L.Control.extend(/** @lends L.Control.Sidebar.prototype */ {
+    includes: L.Mixin.Events,
+
+    options: {
+        position: 'right'
+    },
+
+    initialize: function (id, options) {
+        var i, child;
+
+        L.setOptions(this, options);
+
+        // Find sidebar HTMLElement
+        this._sidebar = L.DomUtil.get(id);
+
+        // Attach .sidebar-left/right class
+        L.DomUtil.addClass(this._sidebar, 'sidebar-' + this.options.position);
+
+        // Attach touch styling if necessary
+        if (L.Browser.touch)
+            L.DomUtil.addClass(this._sidebar, 'leaflet-touch');
+
+        // Find sidebar > div.sidebar-content
+        for (i = this._sidebar.children.length - 1; i >= 0; i--) {
+            child = this._sidebar.children[i];
+            if (child.tagName == 'DIV' &&
+                L.DomUtil.hasClass(child, 'sidebar-content'))
+                this._container = child;
+        }
+
+        // Find sidebar ul.sidebar-tabs > li, sidebar .sidebar-tabs > ul > li
+        this._tabitems = this._sidebar.querySelectorAll('ul.sidebar-tabs > li, .sidebar-tabs > ul > li');
+        for (i = this._tabitems.length - 1; i >= 0; i--) {
+            this._tabitems[i]._sidebar = this;
+        }
+
+        // Find sidebar > div.sidebar-content > div.sidebar-pane
+        this._panes = [];
+        this._closeButtons = [];
+        for (i = this._container.children.length - 1; i >= 0; i--) {
+            child = this._container.children[i];
+            if (child.tagName == 'DIV' &&
+                L.DomUtil.hasClass(child, 'sidebar-pane')) {
+                this._panes.push(child);
+
+                var closeButtons = child.querySelectorAll('.sidebar-close');
+                for (var j = 0, len = closeButtons.length; j < len; j++)
+                    this._closeButtons.push(closeButtons[j]);
+            }
+        }
+    },
+
+    /**
+     * Add this sidebar to the specified map.
+     *
+     * @param {L.Map} map
+     * @returns {Sidebar}
+     */
+    addTo: function (map) {
+        var i, child;
+
+        this._map = map;
+
+        for (i = this._tabitems.length - 1; i >= 0; i--) {
+            child = this._tabitems[i];
+            L.DomEvent
+                .on(child.querySelector('a'), 'click', L.DomEvent.preventDefault)
+                .on(child.querySelector('a'), 'click', this._onClick, child);
+        }
+
+        for (i = this._closeButtons.length - 1; i >= 0; i--) {
+            child = this._closeButtons[i];
+            L.DomEvent.on(child, 'click', this._onCloseClick, this);
+        }
+
+        return this;
+    },
+
+    /**
+     * @deprecated - Please use remove() instead of removeFrom(), as of Leaflet 0.8-dev, the removeFrom() has been replaced with remove()
+     * Removes this sidebar from the map.
+     * @param {L.Map} map
+     * @returns {Sidebar}
+     */
+    removeFrom: function (map) {
+        console.log('removeFrom() has been deprecated, please use remove() instead as support for this function will be ending soon.');
+        this.remove(map);
+    },
+
+    /**
+     * Remove this sidebar from the map.
+     *
+     * @param {L.Map} map
+     * @returns {Sidebar}
+     */
+    remove: function (map) {
+        var i, child;
+
+        this._map = null;
+
+        for (i = this._tabitems.length - 1; i >= 0; i--) {
+            child = this._tabitems[i];
+            L.DomEvent.off(child.querySelector('a'), 'click', this._onClick);
+        }
+
+        for (i = this._closeButtons.length - 1; i >= 0; i--) {
+            child = this._closeButtons[i];
+            L.DomEvent.off(child, 'click', this._onCloseClick, this);
+        }
+
+        return this;
+    },
+
+    /**
+     * Open sidebar (if necessary) and show the specified tab.
+     *
+     * @param {string} id - The id of the tab to show (without the # character)
+     */
+    open: function (id) {
+        var i, child;
+
+        // hide old active contents and show new content
+        for (i = this._panes.length - 1; i >= 0; i--) {
+            child = this._panes[i];
+            if (child.id == id)
+                L.DomUtil.addClass(child, 'active');
+            else if (L.DomUtil.hasClass(child, 'active'))
+                L.DomUtil.removeClass(child, 'active');
+        }
+
+        // remove old active highlights and set new highlight
+        for (i = this._tabitems.length - 1; i >= 0; i--) {
+            child = this._tabitems[i];
+            if (child.querySelector('a').hash == '#' + id)
+                L.DomUtil.addClass(child, 'active');
+            else if (L.DomUtil.hasClass(child, 'active'))
+                L.DomUtil.removeClass(child, 'active');
+        }
+
+        this.fire('content', {id: id});
+
+        // open sidebar (if necessary)
+        if (L.DomUtil.hasClass(this._sidebar, 'collapsed')) {
+            this.fire('opening');
+            L.DomUtil.removeClass(this._sidebar, 'collapsed');
+        }
+
+        return this;
+    },
+
+    /**
+     * Close the sidebar (if necessary).
+     */
+    close: function () {
+        // remove old active highlights
+        for (var i = this._tabitems.length - 1; i >= 0; i--) {
+            var child = this._tabitems[i];
+            if (L.DomUtil.hasClass(child, 'active'))
+                L.DomUtil.removeClass(child, 'active');
+        }
+
+        // close sidebar
+        if (!L.DomUtil.hasClass(this._sidebar, 'collapsed')) {
+            this.fire('closing');
+            L.DomUtil.addClass(this._sidebar, 'collapsed');
+        }
+
+        return this;
+    },
+
+    /**
+     * @private
+     */
+    _onClick: function () {
+        if (L.DomUtil.hasClass(this, 'active'))
+            this._sidebar.close();
+        else if (!L.DomUtil.hasClass(this, 'disabled'))
+            this._sidebar.open(this.querySelector('a').hash.slice(1));
+    },
+
+    /**
+     * @private
+     */
+    _onCloseClick: function () {
+        this.close();
+    }
+});
+
+/**
+ * Creates a new sidebar.
+ *
+ * @example
+ * var sidebar = L.control.sidebar('sidebar').addTo(map);
+ *
+ * @param {string} id - The id of the sidebar element (without the # character)
+ * @param {Object} [options] - Optional options object
+ * @param {string} [options.position=left] - Position of the sidebar: 'left' or 'right'
+ * @returns {Sidebar} A new sidebar instance
+ */
+L.control.sidebar = function (id, options) {
+    return new L.Control.Sidebar(id, options);
+};
+
+},{}],3:[function(require,module,exports){
 /*
  Leaflet, a JavaScript library for mobile-friendly interactive maps. http://leafletjs.com
  (c) 2010-2013, Vladimir Agafonkin

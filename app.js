@@ -1,6 +1,8 @@
 /// 1st Milestone - POKEMON MAP
 // require leaflet.js
 var L = require('leaflet');
+// require leaflet-sidebar.js
+require('./map/js/leaflet-sidebar.js');
 
 // specify the path to the leaflet images folder
 L.Icon.Default.imagePath = 'node_modules/leaflet/dist/images/';
@@ -33,6 +35,9 @@ var layer = L.tileLayer(tiles, {
 // add the tile layer to the map
 layer.addTo(map);
 
+// add a sidebar
+var sidebar = L.control.sidebar('sidebar').addTo(map);
+
 //// 2nd Milestone - POKEMON PAST LOCATION
 //// 3rd Milestone - POKEMON INFO
 
@@ -57,7 +62,7 @@ var popup = L.popup()
 
 // mark Pokemon, bind popup info, and add to map
 L.marker([48.262299, 11.669776],
-    {icon: new LeafIcon({iconUrl: 'map/css/images/pokemon/pikachu.gif'})})
+    {icon: new LeafIcon({iconUrl: 'map/img/pokemon/pikachu.gif'})})
     .bindPopup(popup)
     .addTo(map);
 
@@ -78,6 +83,6 @@ var popup = L.popup()
     );
 
 L.marker([48.264507, 11.669311], 
-    {icon: new LeafIcon({iconUrl: 'map/css/images/pokemon/bulbasaur.gif'})})
+    {icon: new LeafIcon({iconUrl: 'map/img/pokemon/bulbasaur.gif'})})
     .bindPopup(popup)
     .addTo(map);
