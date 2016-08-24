@@ -1,6 +1,8 @@
 /// 1st Milestone - POKEMON MAP
 // require leaflet.js
 var L = require('leaflet');
+// require leaflet plugin for geolocation
+require('./map/js/L.Control.Locate.min.js');
 // require leaflet-sidebar.js
 require('./map/js/leaflet-sidebar.js');
 
@@ -86,3 +88,6 @@ L.marker([48.264507, 11.669311],
     {icon: new LeafIcon({iconUrl: 'map/img/pokemon/bulbasaur.gif'})})
     .bindPopup(popup)
     .addTo(map);
+
+//// 4th Milestone -  POKEMON FORECASTING (Geolocation)
+L.control.locate().addTo(map);
