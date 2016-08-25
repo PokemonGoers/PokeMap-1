@@ -1,13 +1,18 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+/// 1st Milestone - POKEMON MAP
 // require leaflet.js
 var L = require('leaflet');
+// require leaflet plugin for geolocation
+require('./map/js/L.Control.Locate.min.js');
+// require leaflet-sidebar.js
+require('./map/js/leaflet-sidebar.js');
 
 // specify the path to the leaflet images folder
 L.Icon.Default.imagePath = 'node_modules/leaflet/dist/images/';
 
 // initialize the map using index.html #map id
 var map = L.map('map', {
-    scrollWheelZoom: true 
+    scrollWheelZoom: true
 });
 
 // set the position (latitude, longitude) and zoom level of the map
@@ -15,9 +20,11 @@ var map = L.map('map', {
 map.setView([48.262299, 11.669776], 16);
 
 // set an attribution string
-var attribution = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> ' +
+var attribution = ' JS16 <a href="https://github.com/PokemonGoers/PokeMap-1">PokeMap</a>, ' +
+    'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> ' +
     'contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-    'Imagery © <a href="http://thunderforest.com">Thunderforest/OpenCycleMap</a>';
+    'Imagery © <a href="http://thunderforest.com">Thunderforest/OpenCycleMap</a>, ' +
+    'Pokemon Images © <a href="http://pokemondb.net/">Pokémon Database</a>';
 
 // set the tiles the map will use (Thunderforest/OpenCycleMap)
 var tiles = 'http://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png';
@@ -30,7 +37,282 @@ var layer = L.tileLayer(tiles, {
 
 // add the tile layer to the map
 layer.addTo(map);
-},{"leaflet":2}],2:[function(require,module,exports){
+
+// add a sidebar
+var sidebar = L.control.sidebar('sidebar').addTo(map);
+
+//// 2nd Milestone - POKEMON PAST LOCATION
+//// 3rd Milestone - POKEMON INFO
+
+//-- Pokemon location - info
+// custom icon
+var LeafIcon = L.Icon.extend({
+    options: {
+        iconSize: [45, 41],
+        popupAnchor: [-7, -20]
+    }
+});
+
+// popup with Pokemon info
+var popup = L.popup()
+    .setContent(
+        'Pokemon: <b>Pikachu</b><br/> <br/>' +
+        'Type: <b>Electric</b> <br/>' +
+        'Species: <b>Mouse Pokemon</b> <br/>' +
+        'Evolution: Pichu &rarr; (Hapiness) &rarr; Pikachu &rarr; (Thunderstone) &rarr;  Raichu<br/>'
+    );
+
+
+// mark Pokemon, bind popup info, and add to map
+L.marker([48.262299, 11.669776],
+    {icon: new LeafIcon({iconUrl: 'map/img/pokemon/pikachu.gif'})})
+    .bindPopup(popup)
+    .addTo(map);
+
+//-- Pokemon location - info
+var LeafIcon = L.Icon.extend({
+    options: {
+        iconSize: [43, 38],
+        popupAnchor: [-7, -20]
+    }
+});
+
+var popup = L.popup()
+    .setContent(
+        'Pokemon: <b>Bulbasaur</b><br/> <br/>' +
+        'Type: <b>Grass, Poison</b> <br/>' +
+        'Species: <b>Seed Pokémon</b> <br/>' +
+        'Evolution: Bulbasaur &rarr; (Level 16) &rarr; Ivysaur &rarr; (Level 32) &rarr;  Venusaur<br/>'
+    );
+
+L.marker([48.264507, 11.669311], 
+    {icon: new LeafIcon({iconUrl: 'map/img/pokemon/bulbasaur.gif'})})
+    .bindPopup(popup)
+    .addTo(map);
+
+//// 4th Milestone -  POKEMON FORECASTING (Geolocation)
+L.control.locate().addTo(map);
+
+},{"./map/js/L.Control.Locate.min.js":2,"./map/js/leaflet-sidebar.js":3,"leaflet":4}],2:[function(require,module,exports){
+/*! Version: 0.52.0
+Copyright (c) 2016 Dominik Moritz */
+
+!function(a,b){"function"==typeof define&&define.amd?define(["leaflet"],a):"object"==typeof exports&&("undefined"!=typeof b&&b.L?module.exports=a(L):module.exports=a(require("leaflet"))),"undefined"!=typeof b&&b.L&&(b.L.Control.Locate=a(L))}(function(a){var b=a.Control.extend({options:{position:"topleft",layer:void 0,setView:"untilPan",keepCurrentZoomLevel:!1,clickBehavior:{inView:"stop",outOfView:"setView"},drawCircle:!0,drawMarker:!0,markerClass:a.CircleMarker,circleStyle:{color:"#136AEC",fillColor:"#136AEC",fillOpacity:.15,weight:2,opacity:.5},markerStyle:{color:"#136AEC",fillColor:"#2A93EE",fillOpacity:.7,weight:2,opacity:.9,radius:5},followCircleStyle:{},followMarkerStyle:{},icon:"fa fa-map-marker",iconLoading:"fa fa-spinner fa-spin",iconElementTag:"span",circlePadding:[0,0],metric:!0,onLocationError:function(a,b){alert(a.message)},onLocationOutsideMapBounds:function(a){a.stop(),alert(a.options.strings.outsideMapBoundsMsg)},showPopup:!0,strings:{title:"Show me where I am",metersUnit:"meters",feetUnit:"feet",popup:"You are within {distance} {unit} from this point",outsideMapBoundsMsg:"You seem located outside the boundaries of the map"},locateOptions:{maxZoom:1/0,watch:!0,setView:!1}},initialize:function(b){for(var c in b)"object"==typeof this.options[c]?a.extend(this.options[c],b[c]):this.options[c]=b[c];this.options.followMarkerStyle=a.extend({},this.options.markerStyle,this.options.followMarkerStyle),this.options.followCircleStyle=a.extend({},this.options.circleStyle,this.options.followCircleStyle)},onAdd:function(b){var c=a.DomUtil.create("div","leaflet-control-locate leaflet-bar leaflet-control");return this._layer=this.options.layer||new a.LayerGroup,this._layer.addTo(b),this._event=void 0,this._link=a.DomUtil.create("a","leaflet-bar-part leaflet-bar-part-single",c),this._link.href="#",this._link.title=this.options.strings.title,this._icon=a.DomUtil.create(this.options.iconElementTag,this.options.icon,this._link),a.DomEvent.on(this._link,"click",a.DomEvent.stopPropagation).on(this._link,"click",a.DomEvent.preventDefault).on(this._link,"click",this._onClick,this).on(this._link,"dblclick",a.DomEvent.stopPropagation),this._resetVariables(),this._map.on("unload",this._unload,this),c},_onClick:function(){if(this._justClicked=!0,this._userPanned=!1,this._active&&!this._event)this.stop();else if(this._active&&void 0!==this._event){var a=this._map.getBounds().contains(this._event.latlng)?this.options.clickBehavior.inView:this.options.clickBehavior.outOfView;switch(a){case"setView":this.setView();break;case"stop":this.stop()}}else this.start();this._updateContainerStyle()},start:function(){this._activate(),this._event&&(this._drawMarker(this._map),this.options.setView&&this.setView()),this._updateContainerStyle()},stop:function(){this._deactivate(),this._cleanClasses(),this._resetVariables(),this._removeMarker()},_activate:function(){this._active||(this._map.locate(this.options.locateOptions),this._active=!0,this._map.on("locationfound",this._onLocationFound,this),this._map.on("locationerror",this._onLocationError,this),this._map.on("dragstart",this._onDrag,this))},_deactivate:function(){this._map.stopLocate(),this._active=!1,this._map.off("locationfound",this._onLocationFound,this),this._map.off("locationerror",this._onLocationError,this),this._map.off("dragstart",this._onDrag,this)},setView:function(){this._isOutsideMapBounds()?this.options.onLocationOutsideMapBounds(this):this.options.keepCurrentZoomLevel?this._map.panTo([this._event.latitude,this._event.longitude]):this._map.fitBounds(this._event.bounds,{padding:this.options.circlePadding,maxZoom:this.options.locateOptions.maxZoom}),this._drawMarker()},_drawMarker:function(){void 0===this._event.accuracy&&(this._event.accuracy=0);var b=this._event.accuracy,c=this._event.latlng;if(this.options.drawCircle){var d=this._isFollowing()?this.options.followCircleStyle:this.options.circleStyle;this._circle?this._circle.setLatLng(c).setRadius(b).setStyle(d):this._circle=a.circle(c,b,d).addTo(this._layer)}var e,f;if(this.options.metric?(e=b.toFixed(0),f=this.options.strings.metersUnit):(e=(3.2808399*b).toFixed(0),f=this.options.strings.feetUnit),this.options.drawMarker){var g=this._isFollowing()?this.options.followMarkerStyle:this.options.markerStyle;this._marker?this._marker.setLatLng(c).setStyle(g):this._marker=new this.options.markerClass(c,g).addTo(this._layer)}var h=this.options.strings.popup;this.options.showPopup&&h&&this._marker&&this._marker.bindPopup(a.Util.template(h,{distance:e,unit:f}))._popup.setLatLng(c)},_removeMarker:function(){this._layer.clearLayers(),this._marker=void 0,this._circle=void 0},_unload:function(){this.stop(),this._map.off("unload",this._unload,this)},_onLocationError:function(a){3==a.code&&this.options.locateOptions.watch||(this.stop(),this.options.onLocationError(a,this))},_onLocationFound:function(a){if((!this._event||this._event.latlng.lat!==a.latlng.lat||this._event.latlng.lng!==a.latlng.lng||this._event.accuracy!==a.accuracy)&&this._active){switch(this._event=a,this._drawMarker(),this._updateContainerStyle(),this.options.setView){case"once":this._justClicked&&this.setView();break;case"untilPan":this._userPanned||this.setView();break;case"always":this.setView();break;case!1:}this._justClicked=!1}},_onDrag:function(){this._event&&(this._userPanned=!0,this._updateContainerStyle(),this._drawMarker())},_isFollowing:function(){return this._active?"always"===this.options.setView?!0:"untilPan"===this.options.setView?!this._userPanned:void 0:!1},_isOutsideMapBounds:function(){return void 0===this._event?!1:this._map.options.maxBounds&&!this._map.options.maxBounds.contains(this._event.latlng)},_updateContainerStyle:function(){this._container&&(this._active&&!this._event?this._setClasses("requesting"):this._isFollowing()?this._setClasses("following"):this._active?this._setClasses("active"):this._cleanClasses())},_setClasses:function(b){"requesting"==b?(a.DomUtil.removeClasses(this._container,"active following"),a.DomUtil.addClasses(this._container,"requesting"),a.DomUtil.removeClasses(this._icon,this.options.icon),a.DomUtil.addClasses(this._icon,this.options.iconLoading)):"active"==b?(a.DomUtil.removeClasses(this._container,"requesting following"),a.DomUtil.addClasses(this._container,"active"),a.DomUtil.removeClasses(this._icon,this.options.iconLoading),a.DomUtil.addClasses(this._icon,this.options.icon)):"following"==b&&(a.DomUtil.removeClasses(this._container,"requesting"),a.DomUtil.addClasses(this._container,"active following"),a.DomUtil.removeClasses(this._icon,this.options.iconLoading),a.DomUtil.addClasses(this._icon,this.options.icon))},_cleanClasses:function(){a.DomUtil.removeClass(this._container,"requesting"),a.DomUtil.removeClass(this._container,"active"),a.DomUtil.removeClass(this._container,"following"),a.DomUtil.removeClasses(this._icon,this.options.iconLoading),a.DomUtil.addClasses(this._icon,this.options.icon)},_resetVariables:function(){this._active=!1,this._justClicked=!1,this._userPanned=!1}});return a.control.locate=function(b){return new a.Control.Locate(b)},function(){var b=function(b,c,d){d=d.split(" "),d.forEach(function(d){a.DomUtil[b].call(this,c,d)})};a.DomUtil.addClasses=function(a,c){b("addClass",a,c)},a.DomUtil.removeClasses=function(a,c){b("removeClass",a,c)}}(),b},window);
+
+},{"leaflet":4}],3:[function(require,module,exports){
+/**
+ * @name Sidebar
+ * @class L.Control.Sidebar
+ * @extends L.Control
+ * @param {string} id - The id of the sidebar element (without the # character)
+ * @param {Object} [options] - Optional options object
+ * @param {string} [options.position=left] - Position of the sidebar: 'left' or 'right'
+ * @see L.control.sidebar
+ */
+L.Control.Sidebar = L.Control.extend(/** @lends L.Control.Sidebar.prototype */ {
+    includes: L.Mixin.Events,
+
+    options: {
+        position: 'right'
+    },
+
+    initialize: function (id, options) {
+        var i, child;
+
+        L.setOptions(this, options);
+
+        // Find sidebar HTMLElement
+        this._sidebar = L.DomUtil.get(id);
+
+        // Attach .sidebar-left/right class
+        L.DomUtil.addClass(this._sidebar, 'sidebar-' + this.options.position);
+
+        // Attach touch styling if necessary
+        if (L.Browser.touch)
+            L.DomUtil.addClass(this._sidebar, 'leaflet-touch');
+
+        // Find sidebar > div.sidebar-content
+        for (i = this._sidebar.children.length - 1; i >= 0; i--) {
+            child = this._sidebar.children[i];
+            if (child.tagName == 'DIV' &&
+                L.DomUtil.hasClass(child, 'sidebar-content'))
+                this._container = child;
+        }
+
+        // Find sidebar ul.sidebar-tabs > li, sidebar .sidebar-tabs > ul > li
+        this._tabitems = this._sidebar.querySelectorAll('ul.sidebar-tabs > li, .sidebar-tabs > ul > li');
+        for (i = this._tabitems.length - 1; i >= 0; i--) {
+            this._tabitems[i]._sidebar = this;
+        }
+
+        // Find sidebar > div.sidebar-content > div.sidebar-pane
+        this._panes = [];
+        this._closeButtons = [];
+        for (i = this._container.children.length - 1; i >= 0; i--) {
+            child = this._container.children[i];
+            if (child.tagName == 'DIV' &&
+                L.DomUtil.hasClass(child, 'sidebar-pane')) {
+                this._panes.push(child);
+
+                var closeButtons = child.querySelectorAll('.sidebar-close');
+                for (var j = 0, len = closeButtons.length; j < len; j++)
+                    this._closeButtons.push(closeButtons[j]);
+            }
+        }
+    },
+
+    /**
+     * Add this sidebar to the specified map.
+     *
+     * @param {L.Map} map
+     * @returns {Sidebar}
+     */
+    addTo: function (map) {
+        var i, child;
+
+        this._map = map;
+
+        for (i = this._tabitems.length - 1; i >= 0; i--) {
+            child = this._tabitems[i];
+            L.DomEvent
+                .on(child.querySelector('a'), 'click', L.DomEvent.preventDefault)
+                .on(child.querySelector('a'), 'click', this._onClick, child);
+        }
+
+        for (i = this._closeButtons.length - 1; i >= 0; i--) {
+            child = this._closeButtons[i];
+            L.DomEvent.on(child, 'click', this._onCloseClick, this);
+        }
+
+        return this;
+    },
+
+    /**
+     * @deprecated - Please use remove() instead of removeFrom(), as of Leaflet 0.8-dev, the removeFrom() has been replaced with remove()
+     * Removes this sidebar from the map.
+     * @param {L.Map} map
+     * @returns {Sidebar}
+     */
+    removeFrom: function (map) {
+        console.log('removeFrom() has been deprecated, please use remove() instead as support for this function will be ending soon.');
+        this.remove(map);
+    },
+
+    /**
+     * Remove this sidebar from the map.
+     *
+     * @param {L.Map} map
+     * @returns {Sidebar}
+     */
+    remove: function (map) {
+        var i, child;
+
+        this._map = null;
+
+        for (i = this._tabitems.length - 1; i >= 0; i--) {
+            child = this._tabitems[i];
+            L.DomEvent.off(child.querySelector('a'), 'click', this._onClick);
+        }
+
+        for (i = this._closeButtons.length - 1; i >= 0; i--) {
+            child = this._closeButtons[i];
+            L.DomEvent.off(child, 'click', this._onCloseClick, this);
+        }
+
+        return this;
+    },
+
+    /**
+     * Open sidebar (if necessary) and show the specified tab.
+     *
+     * @param {string} id - The id of the tab to show (without the # character)
+     */
+    open: function (id) {
+        var i, child;
+
+        // hide old active contents and show new content
+        for (i = this._panes.length - 1; i >= 0; i--) {
+            child = this._panes[i];
+            if (child.id == id)
+                L.DomUtil.addClass(child, 'active');
+            else if (L.DomUtil.hasClass(child, 'active'))
+                L.DomUtil.removeClass(child, 'active');
+        }
+
+        // remove old active highlights and set new highlight
+        for (i = this._tabitems.length - 1; i >= 0; i--) {
+            child = this._tabitems[i];
+            if (child.querySelector('a').hash == '#' + id)
+                L.DomUtil.addClass(child, 'active');
+            else if (L.DomUtil.hasClass(child, 'active'))
+                L.DomUtil.removeClass(child, 'active');
+        }
+
+        this.fire('content', {id: id});
+
+        // open sidebar (if necessary)
+        if (L.DomUtil.hasClass(this._sidebar, 'collapsed')) {
+            this.fire('opening');
+            L.DomUtil.removeClass(this._sidebar, 'collapsed');
+        }
+
+        return this;
+    },
+
+    /**
+     * Close the sidebar (if necessary).
+     */
+    close: function () {
+        // remove old active highlights
+        for (var i = this._tabitems.length - 1; i >= 0; i--) {
+            var child = this._tabitems[i];
+            if (L.DomUtil.hasClass(child, 'active'))
+                L.DomUtil.removeClass(child, 'active');
+        }
+
+        // close sidebar
+        if (!L.DomUtil.hasClass(this._sidebar, 'collapsed')) {
+            this.fire('closing');
+            L.DomUtil.addClass(this._sidebar, 'collapsed');
+        }
+
+        return this;
+    },
+
+    /**
+     * @private
+     */
+    _onClick: function () {
+        if (L.DomUtil.hasClass(this, 'active'))
+            this._sidebar.close();
+        else if (!L.DomUtil.hasClass(this, 'disabled'))
+            this._sidebar.open(this.querySelector('a').hash.slice(1));
+    },
+
+    /**
+     * @private
+     */
+    _onCloseClick: function () {
+        this.close();
+    }
+});
+
+/**
+ * Creates a new sidebar.
+ *
+ * @example
+ * var sidebar = L.control.sidebar('sidebar').addTo(map);
+ *
+ * @param {string} id - The id of the sidebar element (without the # character)
+ * @param {Object} [options] - Optional options object
+ * @param {string} [options.position=left] - Position of the sidebar: 'left' or 'right'
+ * @returns {Sidebar} A new sidebar instance
+ */
+L.control.sidebar = function (id, options) {
+    return new L.Control.Sidebar(id, options);
+};
+
+},{}],4:[function(require,module,exports){
 /*
  Leaflet, a JavaScript library for mobile-friendly interactive maps. http://leafletjs.com
  (c) 2010-2013, Vladimir Agafonkin
