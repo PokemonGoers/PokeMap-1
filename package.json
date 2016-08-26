@@ -7,7 +7,7 @@
     "pokemap"
   ],
   "author": "Group 7: Oleksandr Fedotov <email@tum.de>, Paul Gualotuna <paul.gualotuna@tum.de>, Gani Qinami <email@tum.de>",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/PokemonGoers/PokeMap-1/issues"
   },
