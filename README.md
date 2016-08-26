@@ -20,14 +20,14 @@ Update node dependencies
 npm update 
 ```
  
-## Browserify bundles
-Bundle node modules for the browser
+## Browserify angular app
+Bundle angular modules for the browser
 ```shell
-npm run bundle
+gulp
 ```
 
-## Run map component with beefy (as development server)
-Serves bundles/bundle.js  
+## Run browserif'ied' angular app 
+Serves dist/app/dev app http://localhost:5000
 ```shell
-npm run start 
+gulp browsersync 
 ```
