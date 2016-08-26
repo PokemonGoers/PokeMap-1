@@ -23,8 +23,7 @@ before_script:
   - npm install -g bower
   - npm install -g gulp
   - bower install
-  - gulp > /dev/null & # start server
-  - sleep 10 # give server time to start
+  - npm install
 
 after_success:
 #  - mv coverage/cobertura-coverage.xml shippable/codecoverage/coverage.xml
