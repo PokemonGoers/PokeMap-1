@@ -1,4 +1,5 @@
 'use strict';
+var angular = require('angular');
 var controllername = 'uiLeaflet';
 
 module.exports = function (app) {
@@ -20,7 +21,7 @@ module.exports = function (app) {
         var pokemon_icons = {
             default_icon: {},
             pikachu: {
-                iconUrl: '../../images/app/pokemon/pikachu.gif',
+                iconUrl: 'images/app/pokemon/pikachu.gif',
                 iconSize: [43, 38], // size of the icon
                 popupAnchor: [-7, -20] // point from which the popup should open relative to the iconAnchor
             }
@@ -46,7 +47,7 @@ module.exports = function (app) {
                     'Pokemon: <b>Pikachu</b><br/> <br/>' +
                     'Type: <b>Electric</b> <br/>' +
                     'Species: <b>Mouse Pokemon</b> <br/>' +
-                    'Evolution: Pichu &rarr; (Hapiness) &rarr; Pikachu &rarr; (Thunderstone) &rarr;  Raichu<br/>',
+                    'Evolution: Pichu &rarr; (Hapiness) &rarr; Pikachu &rarr; (Thunderstone) &rarr;  Raichu<br/>'
                 }
             },
             defaults: {

@@ -1,6 +1,6 @@
 {
   "name": "pokemap",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -9,8 +9,6 @@
     "tests"
   ],
   "dependencies": {
-    "marked":"0.3.3"
-  },
-  "resolutions": {
+    "marked": "0.3.3"
   }
 }
