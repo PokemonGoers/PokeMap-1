@@ -1,3 +1,31 @@
 language: node_js
+sudo: false
 node_js:
-- stable
+  - 0.12
+
+cache:
+   directories:
+     - node_modules
+     - bower_components
+
+before_script:
+  - npm install -g bower
+  - npm install -g gulp
+  - bower install
+
+after_success:
+#  - mv coverage/cobertura-coverage.xml shippable/codecoverage/coverage.xml
+#  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js --verbose
+#  - cat ./coverage/lcov.info | codeclimate
+  - CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN codeclimate-test-reporter < ./coverage/**/lcov.info
+
+
+#deploy:
+#  provider: npm
+#  email: paul.gualotuna@tum.de
+#  api_key: $NPM_API_KEY
+#  on:
+#    tags: true
+#    all_branches: true
+#    node: '0.12' # this should be quoted; otherwise, 0.10 would not work
+#    repo: poulzinho/pokemap_1
