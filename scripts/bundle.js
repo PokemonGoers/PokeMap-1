@@ -65,7 +65,7 @@ module.exports = function (app) {
         var pokemon_icons = {
             default_icon: {},
             pikachu: {
-                iconUrl: '../../images/app/pokemon/pikachu.gif',
+                iconUrl: 'images/app/pokemon/pikachu.gif',
                 iconSize: [43, 38], // size of the icon
                 popupAnchor: [-7, -20] // point from which the popup should open relative to the iconAnchor
             }
@@ -75,7 +75,7 @@ module.exports = function (app) {
             icons: pokemon_icons
         });
 
-        // custom parameters
+        // custom map parameters
         angular.extend(scope, {
             center: {
                 lat: 48.262299,
