@@ -124,7 +124,7 @@
     "node-jsxml": "0.7.0",
     "node-sass": "3.4.2",
     "phantomjs-prebuilt": "2.1.7",
-    "protractor": "3.2.2",
+    "protractor": "4.0.4",
     "protractor-istanbul-plugin": "2.0.0",
     "protractor-jasmine2-screenshot-reporter": "0.3.0",
     "require-dir": "0.3.0",

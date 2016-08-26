@@ -22,6 +22,8 @@ before_script:
   - sleep 3 # give xvfb some time to start
   - npm install -g bower
   - npm install -g gulp
+  - npm install -g protractor
+  - webdriver-manager update
   - bower install
   - npm install
 
