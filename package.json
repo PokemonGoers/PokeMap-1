@@ -88,7 +88,7 @@
     "gulp-mux": "0.2.27",
     "gulp-order": "1.1.1",
     "gulp-plumber": "1.1.0",
-    "gulp-protractor": "2.2.0",
+    "gulp-protractor": "2.5.0",
     "gulp-rename": "1.2.2",
     "gulp-replace": "0.5.4",
     "gulp-sass": "2.2.0",
