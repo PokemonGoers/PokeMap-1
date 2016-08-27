@@ -4,11 +4,9 @@ var controllername = 'uiLeaflet';
 
 module.exports = function (app) {
     var fullname = app.name + '.' + controllername;
-    /*jshint validthis: true */
 
-    var deps = ['$scope'];
+    app.controller(fullname, ['$scope', function ($scope) {
 
-    function controller(scope) {
         var vm = this;
         vm.controllername = fullname;
 
@@ -27,12 +25,12 @@ module.exports = function (app) {
             }
         };
 
-        angular.extend(scope, {
+        angular.extend($scope, {
             icons: pokemon_icons
         });
 
         // custom map parameters
-        angular.extend(scope, {
+        angular.extend($scope, {
             center: {
                 lat: 48.262299,
                 lng: 11.669776,
@@ -69,12 +67,9 @@ module.exports = function (app) {
                 }
             }
 
-        })
-        ;
+        });
 
-    }
+    }]);
 
-    controller.$inject = deps;
-    app.controller(fullname, controller);
 };
 
