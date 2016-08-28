@@ -1,42 +1,4 @@
 {
-  "name": "pokemap-1",
-  "version": "0.1.0",
-  "description": "Project D Group 7, JavaScript Seminar WS16, Rostlab",
-  "main": "app.js",
-  "keywords": [
-    "pokemap"
-  ],
-  "author": "Group 7: Oleksandr Fedotov <email@tum.de>, Paul Gualotuna <paul.gualotuna@tum.de>, Gani Qinami <email@tum.de>",
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/PokemonGoers/PokeMap-1/issues"
-  },
-  "homepage": "https://github.com/PokemonGoers/PokeMap-1#readme",
-  "scripts": {
-    "test": "gulp test",
-    "karma": "karma start --single-run",
-    "jsbeautify": "js-beautify client/**/*.js client/*.js -r",
-    "protractor_debug_1": "./node_modules/protractor/bin/webdriver-manager start",
-    "protractor_debug_2": "./node_modules/protractor/bin/elementexplorer.js http://localhost:5000"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/PokemonGoers/PokeMap-1.git"
-  },
-  "dependencies": {
-    "angular": "^1.5.2",
-    "angular-animate": "^1.5.2",
-    "angular-mocks": "^1.5.2",
-    "angular-resource": "^1.5.2",
-    "angular-sanitize": "^1.5.2",
-    "angular-simple-logger": "^0.1.7",
-    "angular-ui-bootstrap": "^0.14.3",
-    "angular-ui-router": "^0.2.18",
-    "bootstrap": "3.3.5",
-    "font-awesome": "^4.5.0",
-    "leaflet": "^0.7.7",
-    "ui-leaflet": "^1.0.1"
-  },
   "devDependencies": {
     "babel": "6.5.2",
     "babel-core": "6.7.4",
@@ -56,7 +18,7 @@
     "bundle-collapser": "1.2.1",
     "chai": "3.5.0",
     "chalk": "1.1.1",
-    "codeclimate-test-reporter": "0.3.3",
+    "codeclimate-test-reporter": "latest",
     "conventional-changelog": "1.1.0",
     "cssify": "1.0.2",
     "deamdify": "0.2.0",
@@ -64,7 +26,7 @@
     "envify": "3.4.0",
     "eslint": "2.5.1",
     "eslint-plugin-nodeca": "1.0.3",
-    "esprima": "2.7.3",
+    "esprima": "^2.4.1",
     "event-stream": "3.3.2",
     "exorcist": "0.4.0",
     "fast-csv": "1.0.0",
@@ -85,10 +47,10 @@
     "gulp-istanbul": "0.10.3",
     "gulp-less": "3.0.5",
     "gulp-mocha": "2.2.0",
-    "gulp-mux": "0.2.27",
+    "gulp-mux": "",
     "gulp-order": "1.1.1",
     "gulp-plumber": "1.1.0",
-    "gulp-protractor": "2.5.0",
+    "gulp-protractor": "2.2.0",
     "gulp-rename": "1.2.2",
     "gulp-replace": "0.5.4",
     "gulp-sass": "2.2.0",
@@ -124,7 +86,7 @@
     "node-jsxml": "0.7.0",
     "node-sass": "3.4.2",
     "phantomjs-prebuilt": "2.1.7",
-    "protractor": "4.0.4",
+    "protractor": "3.2.2",
     "protractor-istanbul-plugin": "2.0.0",
     "protractor-jasmine2-screenshot-reporter": "0.3.0",
     "require-dir": "0.3.0",
@@ -142,37 +104,5 @@
     "webpack": "1.12.14",
     "webpack-dev-server": "1.14.1",
     "yargs": "4.3.2"
-  },
-  "engines": {
-    "node": ">=0.10.0"
-  },
-  "browser": {
-    "unitHelper": "./test/unit/unitHelper.js",
-    "lbServices": "./client/scripts/lbServices.js"
-  },
-  "browserify": {
-    "transform": [
-      [
-        "babelify",
-        {
-          "presets": "es2015",
-          "ignore": [
-            "./node_modules",
-            "./bower_components"
-          ]
-        }
-      ],
-      "html2js-browserify",
-      "cssify",
-      "browserify-shim",
-      "brfs"
-    ]
-  },
-  "browserify-shim": {
-    "lbServices": {
-      "depends": [
-        "angular-resource"
-      ]
-    }
   }
-}
+} 

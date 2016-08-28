@@ -1,0 +1,13 @@
+{
+  "generator-mcfly": {
+    "filenameCase": "camel",
+    "filenameSuffix": false,
+    "appname": "pokemap",
+    "clientFolder": "client",
+    "ionic": false,
+    "ngCordova": false,
+    "fontawesome": true,
+    "bootstrap": true,
+    "material": false
+  }
+}
