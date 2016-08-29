@@ -26,8 +26,8 @@ module.exports = function (namespace) {
         $stateProvider.state('index', {
             url: '/',
             views: {
-                "viewA": {template: require('../location/views/location.html')},
-                "viewB": {template: require('./views/map.html')}
+                'viewA': {template: require('../location/views/location.html')},
+                'viewB': {template: require('./views/map.html')}
             }
         });
     };

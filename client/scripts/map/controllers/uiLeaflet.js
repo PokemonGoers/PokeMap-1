@@ -12,30 +12,28 @@ module.exports = function (app) {
             var vm = this;
             vm.controllername = fullname;
             $scope.markers = datalocationservice.getPokemonLocations();
-            
-            console.log('first: ' + $scope.markers);
 
             var activate = function () {
             };
             activate();
-            
-/*            // custom icons
-            var pokemon_icons = {
-                default_icon: {
-                    iconUrl: 'images/app/pokemon/pikachu.gif',
-                    iconSize: [43, 38], // size of the icon
-                    popupAnchor: [-7, -20] 
-                },
-                pikachu: {
-                    iconUrl: 'images/app/pokemon/pikachu.gif',
-                    iconSize: [43, 38], // size of the icon
-                    popupAnchor: [-7, -20] // point from which the popup should open relative to the iconAnchor
-                }
-            };
 
-            angular.extend($scope, {
-                icons: pokemon_icons
-            });*/
+            /*            // custom icons
+             var pokemon_icons = {
+             default_icon: {
+             iconUrl: 'images/app/pokemon/pikachu.gif',
+             iconSize: [43, 38], // size of the icon
+             popupAnchor: [-7, -20]
+             },
+             pikachu: {
+             iconUrl: 'images/app/pokemon/pikachu.gif',
+             iconSize: [43, 38], // size of the icon
+             popupAnchor: [-7, -20] // point from which the popup should open relative to the iconAnchor
+             }
+             };
+
+             angular.extend($scope, {
+             icons: pokemon_icons
+             });*/
 
             // custom map parameters
             angular.extend($scope, {

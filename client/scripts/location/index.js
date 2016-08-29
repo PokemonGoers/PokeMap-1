@@ -9,7 +9,7 @@ module.exports = function (namespace) {
 
     var fullname = namespace + '.' + modulename;
 
-    var app = angular.module(fullname, ['ui.router',]);
+    var app = angular.module(fullname, ['ui.router']);
     // inject:folders start
     require('./controllers')(app);
     require('./services')(app);
@@ -22,8 +22,8 @@ module.exports = function (namespace) {
         $stateProvider.state('location', {
             url: '/location',
             views: {
-                "viewA": {template: require('./views/location.html')},
-                "viewB": {template: require('../map/views/map.html')}
+                'viewA': {template: require('./views/location.html')},
+                'viewB': {template: require('../map/views/map.html')}
             }
         });
     };
