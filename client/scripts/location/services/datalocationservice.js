@@ -5,20 +5,22 @@ module.exports = function (app) {
 
     var fullname = app.name + '.' + servicename;
 
-    app.factory(fullname, ['$q', function service($q) {
+    app.factory(fullname, ['$http', function service($http) {
 
         var pokemonLocations = [];
 
         // this must be replaced with a $http.get call
         function getPokemonLocations() {
+            $http.get('images/app/mockup/dataSource-location.json')
+                .then(function (response) {
+                    response.data.forEach(function (location) {
+                        pokemonLocations.push(location);
+                    });
+                });
             return pokemonLocations;
         }
 
         function setPokemonLocations() {
-            pokemonLocations.push({
-                lat: 48.262299,
-                lng: 11.669776
-            });
         }
 
         function getPokemonLocationsAtTime() {

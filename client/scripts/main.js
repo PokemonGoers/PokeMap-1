@@ -13,7 +13,8 @@ require('angular-ui-bootstrap');
 var app = angular.module(namespace, [ 'ui.bootstrap',
     // inject:modules start
     require('./location')(namespace).name,
-    require('./map')(namespace).name
+    require('./map')(namespace).name,
+    require('./pokemon')(namespace).name
     // inject:modules end
 ]);
 

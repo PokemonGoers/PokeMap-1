@@ -16,7 +16,7 @@ module.exports = function (app) {
             activate();
 
             $scope.addMarkers = function () {
-                datalocationservice.setPokemonLocations();
+                datalocationservice.getPokemonLocations();
             };
 
             $scope.removeMarkers = function () {
