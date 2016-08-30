@@ -1,93 +1,109 @@
 require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\controllers\\index.js":[function(require,module,exports){
-"use strict";
+'use strict';
 
-var __cov_cwjIBRuYCC1JUCmDqGUSfw = Function('return this')();
-if (!__cov_cwjIBRuYCC1JUCmDqGUSfw.__coverage__) {
-   __cov_cwjIBRuYCC1JUCmDqGUSfw.__coverage__ = {};
-}
-__cov_cwjIBRuYCC1JUCmDqGUSfw = __cov_cwjIBRuYCC1JUCmDqGUSfw.__coverage__;
-if (!__cov_cwjIBRuYCC1JUCmDqGUSfw['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\controllers\\index.js']) {
-   __cov_cwjIBRuYCC1JUCmDqGUSfw['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\controllers\\index.js'] = { "path": 'C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\controllers\\index.js', "s": { "1": 0, "2": 0 }, "b": {}, "f": { "1": 0 }, "fnMap": { "1": { "name": "(anonymous_1)", "line": 3, "loc": { "start": { "line": 3, "column": 17 }, "end": { "line": 3, "column": 31 } } } }, "statementMap": { "1": { "start": { "line": 3, "column": 0 }, "end": { "line": 3, "column": 0 } }, "2": { "start": { "line": 5, "column": 4 }, "end": { "line": 5, "column": 4 } } }, "branchMap": {} };
-}
-__cov_cwjIBRuYCC1JUCmDqGUSfw = __cov_cwjIBRuYCC1JUCmDqGUSfw['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\controllers\\index.js'];
-__cov_cwjIBRuYCC1JUCmDqGUSfw.s['1']++;module.exports = function (app) {
-   __cov_cwjIBRuYCC1JUCmDqGUSfw.f['1']++;__cov_cwjIBRuYCC1JUCmDqGUSfw.s['2']++;require('./pokemonLocation')(app);
+module.exports = function (app) {
+    // inject:start
+    require('./pokemonLocation')(app);
+    // inject:end
 };
 
 },{"./pokemonLocation":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\controllers\\pokemonLocation.js"}],"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\controllers\\pokemonLocation.js":[function(require,module,exports){
-"use strict";
+'use strict';
 
-var __cov_reSHmps61XLTGJOSYcsCxA = Function('return this')();
-if (!__cov_reSHmps61XLTGJOSYcsCxA.__coverage__) {
-   __cov_reSHmps61XLTGJOSYcsCxA.__coverage__ = {};
-}
-__cov_reSHmps61XLTGJOSYcsCxA = __cov_reSHmps61XLTGJOSYcsCxA.__coverage__;
-if (!__cov_reSHmps61XLTGJOSYcsCxA['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\controllers\\pokemonLocation.js']) {
-   __cov_reSHmps61XLTGJOSYcsCxA['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\controllers\\pokemonLocation.js'] = { "path": 'C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\controllers\\pokemonLocation.js', "s": { "1": 0, "2": 0, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0, "9": 0 }, "b": {}, "f": { "1": 0, "2": 0, "3": 0 }, "fnMap": { "1": { "name": "(anonymous_1)", "line": 5, "loc": { "start": { "line": 4, "column": 17 }, "end": { "line": 4, "column": 32 } } }, "2": { "name": "controller", "line": 9, "loc": { "start": { "line": 9, "column": 8 }, "end": { "line": 9, "column": 57 } } }, "3": { "name": "(anonymous_3)", "line": 13, "loc": { "start": { "line": 13, "column": 27 }, "end": { "line": 13, "column": 39 } } } }, "statementMap": { "1": { "start": { "line": 2, "column": 0 }, "end": { "line": 2, "column": 0 } }, "2": { "start": { "line": 4, "column": 0 }, "end": { "line": 4, "column": 0 } }, "3": { "start": { "line": 5, "column": 4 }, "end": { "line": 5, "column": 4 } }, "4": { "start": { "line": 6, "column": 4 }, "end": { "line": 6, "column": 4 } }, "5": { "start": { "line": 8, "column": 4 }, "end": { "line": 8, "column": 4 } }, "6": { "start": { "line": 10, "column": 12 }, "end": { "line": 10, "column": 12 } }, "7": { "start": { "line": 11, "column": 12 }, "end": { "line": 11, "column": 12 } }, "8": { "start": { "line": 13, "column": 12 }, "end": { "line": 13, "column": 12 } }, "9": { "start": { "line": 15, "column": 12 }, "end": { "line": 15, "column": 12 } } }, "branchMap": {} };
-}
-__cov_reSHmps61XLTGJOSYcsCxA = __cov_reSHmps61XLTGJOSYcsCxA['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\controllers\\pokemonLocation.js'];
-__cov_reSHmps61XLTGJOSYcsCxA.s['1']++;var controllername = 'pokemonLocation';__cov_reSHmps61XLTGJOSYcsCxA.s['2']++;module.exports = function (app) {
-   __cov_reSHmps61XLTGJOSYcsCxA.f['1']++;__cov_reSHmps61XLTGJOSYcsCxA.s['3']++;var fullname = app.name + '.' + controllername;__cov_reSHmps61XLTGJOSYcsCxA.s['4']++;var datalocationservice = app.name + '.' + 'datalocationservice';__cov_reSHmps61XLTGJOSYcsCxA.s['5']++;app.controller(fullname, ['$scope', datalocationservice, function controller($scope, datalocationservice) {
-      __cov_reSHmps61XLTGJOSYcsCxA.f['2']++;__cov_reSHmps61XLTGJOSYcsCxA.s['6']++;var vm = this;__cov_reSHmps61XLTGJOSYcsCxA.s['7']++;vm.controllername = fullname;__cov_reSHmps61XLTGJOSYcsCxA.s['8']++;var activate = function activate() {
-         __cov_reSHmps61XLTGJOSYcsCxA.f['3']++;
-      };__cov_reSHmps61XLTGJOSYcsCxA.s['9']++;activate();
-   }]);
+var controllername = 'pokemonLocation';
+
+module.exports = function (app) {
+    var fullname = app.name + '.' + controllername;
+    var datalocationservice = app.name + '.' + 'datalocationservice';
+
+    app.controller(fullname, ['$scope', datalocationservice, function controller($scope, datalocationservice) {
+        var vm = this;
+        vm.controllername = fullname;
+
+        var activate = function activate() {};
+        activate();
+    }]);
 };
 
 },{}],"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\index.js":[function(require,module,exports){
-"use strict";
+'use strict';
 
-var __cov_$dTKd8xxlOVrUIF$htHgXg = Function('return this')();
-if (!__cov_$dTKd8xxlOVrUIF$htHgXg.__coverage__) {
-   __cov_$dTKd8xxlOVrUIF$htHgXg.__coverage__ = {};
-}
-__cov_$dTKd8xxlOVrUIF$htHgXg = __cov_$dTKd8xxlOVrUIF$htHgXg.__coverage__;
-if (!__cov_$dTKd8xxlOVrUIF$htHgXg['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\index.js']) {
-   __cov_$dTKd8xxlOVrUIF$htHgXg['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\index.js'] = { "path": 'C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\index.js', "s": { "1": 0, "2": 0, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0, "9": 0, "10": 0, "11": 0, "12": 0, "13": 0, "14": 0, "15": 0, "16": 0, "17": 0 }, "b": { "1": [0, 0] }, "f": { "1": 0, "2": 0 }, "fnMap": { "1": { "name": "(anonymous_1)", "line": 9, "loc": { "start": { "line": 8, "column": 17 }, "end": { "line": 8, "column": 38 } } }, "2": { "name": "(anonymous_2)", "line": 21, "loc": { "start": { "line": 20, "column": 23 }, "end": { "line": 20, "column": 69 } } } }, "statementMap": { "1": { "start": { "line": 2, "column": 0 }, "end": { "line": 2, "column": 0 } }, "2": { "start": { "line": 3, "column": 0 }, "end": { "line": 3, "column": 0 } }, "3": { "start": { "line": 4, "column": 0 }, "end": { "line": 4, "column": 0 } }, "4": { "start": { "line": 6, "column": 0 }, "end": { "line": 6, "column": 0 } }, "5": { "start": { "line": 8, "column": 0 }, "end": { "line": 8, "column": 0 } }, "6": { "start": { "line": 10, "column": 4 }, "end": { "line": 10, "column": 4 } }, "7": { "start": { "line": 12, "column": 4 }, "end": { "line": 12, "column": 4 } }, "8": { "start": { "line": 14, "column": 4 }, "end": { "line": 14, "column": 4 } }, "9": { "start": { "line": 15, "column": 4 }, "end": { "line": 15, "column": 4 } }, "10": { "start": { "line": 17, "column": 4 }, "end": { "line": 17, "column": 4 } }, "11": { "start": { "line": 19, "column": 4 }, "end": { "line": 19, "column": 4 } }, "12": { "start": { "line": 20, "column": 4 }, "end": { "line": 20, "column": 4 } }, "13": { "start": { "line": 21, "column": 8 }, "end": { "line": 21, "column": 8 } }, "14": { "start": { "line": 22, "column": 8 }, "end": { "line": 22, "column": 8 } }, "15": { "start": { "line": 30, "column": 4 }, "end": { "line": 30, "column": 4 } }, "16": { "start": { "line": 31, "column": 4 }, "end": { "line": 31, "column": 4 } }, "17": { "start": { "line": 33, "column": 4 }, "end": { "line": 33, "column": 4 } } }, "branchMap": { "1": { "line": 18, "type": "binary-expr", "locations": [{ "start": { "line": 17, "column": 20 }, "end": { "line": 17, "column": 20 } }, { "start": { "line": 17, "column": 37 }, "end": { "line": 17, "column": 4 } }] } } };
-}
-__cov_$dTKd8xxlOVrUIF$htHgXg = __cov_$dTKd8xxlOVrUIF$htHgXg['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\index.js'];
-__cov_$dTKd8xxlOVrUIF$htHgXg.s['1']++;var angular = require('angular');__cov_$dTKd8xxlOVrUIF$htHgXg.s['2']++;require('angular-ui-router');__cov_$dTKd8xxlOVrUIF$htHgXg.s['3']++;require('angular-ui-bootstrap');__cov_$dTKd8xxlOVrUIF$htHgXg.s['4']++;var modulename = 'location';__cov_$dTKd8xxlOVrUIF$htHgXg.s['5']++;module.exports = function (namespace) {
-   __cov_$dTKd8xxlOVrUIF$htHgXg.f['1']++;__cov_$dTKd8xxlOVrUIF$htHgXg.s['6']++;var fullname = namespace + '.' + modulename;__cov_$dTKd8xxlOVrUIF$htHgXg.s['7']++;var app = angular.module(fullname, ['ui.router']);__cov_$dTKd8xxlOVrUIF$htHgXg.s['8']++;require('./controllers')(app);__cov_$dTKd8xxlOVrUIF$htHgXg.s['9']++;require('./services')(app);__cov_$dTKd8xxlOVrUIF$htHgXg.s['10']++;app.namespace = (__cov_$dTKd8xxlOVrUIF$htHgXg.b['1'][0]++, app.namespace) || (__cov_$dTKd8xxlOVrUIF$htHgXg.b['1'][1]++, {});__cov_$dTKd8xxlOVrUIF$htHgXg.s['11']++;var configRoutesDeps = ['$stateProvider', '$urlRouterProvider'];__cov_$dTKd8xxlOVrUIF$htHgXg.s['12']++;var configRoutes = function configRoutes($stateProvider, $urlRouterProvider) {
-      __cov_$dTKd8xxlOVrUIF$htHgXg.f['2']++;__cov_$dTKd8xxlOVrUIF$htHgXg.s['13']++;$urlRouterProvider.otherwise('/');__cov_$dTKd8xxlOVrUIF$htHgXg.s['14']++;$stateProvider.state('location', { url: '/location', views: { 'viewA': { template: require('./views/location.html') }, 'viewB': { template: require('../map/views/map.html') } } });
-   };__cov_$dTKd8xxlOVrUIF$htHgXg.s['15']++;configRoutes.$inject = configRoutesDeps;__cov_$dTKd8xxlOVrUIF$htHgXg.s['16']++;app.config(configRoutes);__cov_$dTKd8xxlOVrUIF$htHgXg.s['17']++;return app;
+var angular = require('angular');
+require('angular-ui-router');
+require('angular-ui-bootstrap');
+
+var modulename = 'location';
+
+module.exports = function (namespace) {
+
+    var fullname = namespace + '.' + modulename;
+
+    var app = angular.module(fullname, ['ui.router']);
+    // inject:folders start
+    require('./controllers')(app);
+    require('./services')(app);
+    // inject:folders end
+    app.namespace = app.namespace || {};
+
+    var configRoutesDeps = ['$stateProvider', '$urlRouterProvider'];
+    var configRoutes = function configRoutes($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise('/');
+        $stateProvider.state('location', {
+            url: '/location',
+            views: {
+                'viewA': { template: require('./views/location.html') },
+                'viewB': { template: require('../map/views/map.html') }
+            }
+        });
+    };
+    configRoutes.$inject = configRoutesDeps;
+    app.config(configRoutes);
+
+    return app;
 };
 
 },{"../map/views/map.html":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\views\\map.html","./controllers":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\controllers\\index.js","./services":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\services\\index.js","./views/location.html":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\views\\location.html","angular":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\node_modules\\angular\\index.js","angular-ui-bootstrap":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\node_modules\\angular-ui-bootstrap\\index.js","angular-ui-router":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\node_modules\\angular-ui-router\\release\\angular-ui-router.js"}],"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\services\\datalocationservice.js":[function(require,module,exports){
-"use strict";
+'use strict';
 
-var __cov_71_UgDrbYt6EFLwTUkUmWw = Function('return this')();
-if (!__cov_71_UgDrbYt6EFLwTUkUmWw.__coverage__) {
-   __cov_71_UgDrbYt6EFLwTUkUmWw.__coverage__ = {};
-}
-__cov_71_UgDrbYt6EFLwTUkUmWw = __cov_71_UgDrbYt6EFLwTUkUmWw.__coverage__;
-if (!__cov_71_UgDrbYt6EFLwTUkUmWw['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\services\\datalocationservice.js']) {
-   __cov_71_UgDrbYt6EFLwTUkUmWw['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\services\\datalocationservice.js'] = { "path": 'C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\services\\datalocationservice.js', "s": { "1": 0, "2": 0, "3": 0, "4": 0, "5": 1, "6": 0, "7": 0, "8": 0, "9": 0 }, "b": {}, "f": { "1": 0, "2": 0, "3": 0, "4": 0 }, "fnMap": { "1": { "name": "(anonymous_1)", "line": 5, "loc": { "start": { "line": 4, "column": 17 }, "end": { "line": 4, "column": 32 } } }, "2": { "name": "service", "line": 9, "loc": { "start": { "line": 8, "column": 36 }, "end": { "line": 8, "column": 60 } } }, "3": { "name": "getPokemonLocations", "line": 11, "loc": { "start": { "line": 10, "column": 8 }, "end": { "line": 10, "column": 39 } } }, "4": { "name": "(anonymous_4)", "line": 22, "loc": { "start": { "line": 21, "column": 20 }, "end": { "line": 21, "column": 40 } } } }, "statementMap": { "1": { "start": { "line": 2, "column": 0 }, "end": { "line": 2, "column": 0 } }, "2": { "start": { "line": 4, "column": 0 }, "end": { "line": 4, "column": 0 } }, "3": { "start": { "line": 6, "column": 4 }, "end": { "line": 6, "column": 4 } }, "4": { "start": { "line": 8, "column": 4 }, "end": { "line": 8, "column": 4 } }, "5": { "start": { "line": 10, "column": 8 }, "end": { "line": 24, "column": 9 } }, "6": { "start": { "line": 11, "column": 12 }, "end": { "line": 11, "column": 12 } }, "7": { "start": { "line": 22, "column": 16 }, "end": { "line": 22, "column": 16 } }, "8": { "start": { "line": 26, "column": 8 }, "end": { "line": 26, "column": 8 } }, "9": { "start": { "line": 30, "column": 8 }, "end": { "line": 30, "column": 8 } } }, "branchMap": {} };
-}
-__cov_71_UgDrbYt6EFLwTUkUmWw = __cov_71_UgDrbYt6EFLwTUkUmWw['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\services\\datalocationservice.js'];
-__cov_71_UgDrbYt6EFLwTUkUmWw.s['1']++;var servicename = 'datalocationservice';__cov_71_UgDrbYt6EFLwTUkUmWw.s['2']++;module.exports = function (app) {
-   __cov_71_UgDrbYt6EFLwTUkUmWw.f['1']++;__cov_71_UgDrbYt6EFLwTUkUmWw.s['3']++;var fullname = app.name + '.' + servicename;__cov_71_UgDrbYt6EFLwTUkUmWw.s['4']++;app.factory(fullname, ['$http', function service($http) {
-      __cov_71_UgDrbYt6EFLwTUkUmWw.f['2']++;function getPokemonLocations() {
-         __cov_71_UgDrbYt6EFLwTUkUmWw.f['3']++;__cov_71_UgDrbYt6EFLwTUkUmWw.s['6']++;return $http({ url: 'http://jsonstub.com/locations', method: 'GET', dataType: 'json', data: '', headers: { 'Content-Type': 'application/json', 'JsonStub-User-Key': 'e593d8da-8b04-4ed2-9976-aaf8e1343e5f', 'JsonStub-Project-Key': '7a3005e5-72c7-4ea1-bd70-ccc0d737106c' } }).then(function (response) {
-            __cov_71_UgDrbYt6EFLwTUkUmWw.f['4']++;__cov_71_UgDrbYt6EFLwTUkUmWw.s['7']++;return response.data;
-         });
-      }__cov_71_UgDrbYt6EFLwTUkUmWw.s['8']++;var service = { getPokemonLocations: getPokemonLocations };__cov_71_UgDrbYt6EFLwTUkUmWw.s['9']++;return service;
-   }]);
+var servicename = 'datalocationservice';
+
+module.exports = function (app) {
+
+    var fullname = app.name + '.' + servicename;
+
+    app.factory(fullname, ['$http', function service($http) {
+
+        function getPokemonLocations() {
+            return $http({
+                url: 'https://jsonstub.com/locations',
+                method: 'GET',
+                dataType: 'json',
+                data: '',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'JsonStub-User-Key': 'e593d8da-8b04-4ed2-9976-aaf8e1343e5f',
+                    'JsonStub-Project-Key': '7a3005e5-72c7-4ea1-bd70-ccc0d737106c'
+                }
+            }).then(function (response) {
+                return response.data;
+            });
+        }
+
+        var service = {
+            getPokemonLocations: getPokemonLocations
+        };
+
+        return service;
+    }]);
 };
 
 },{}],"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\services\\index.js":[function(require,module,exports){
-"use strict";
+'use strict';
 
-var __cov_lDdYZ71tmbmcNwRyBl3LDA = Function('return this')();
-if (!__cov_lDdYZ71tmbmcNwRyBl3LDA.__coverage__) {
-   __cov_lDdYZ71tmbmcNwRyBl3LDA.__coverage__ = {};
-}
-__cov_lDdYZ71tmbmcNwRyBl3LDA = __cov_lDdYZ71tmbmcNwRyBl3LDA.__coverage__;
-if (!__cov_lDdYZ71tmbmcNwRyBl3LDA['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\services\\index.js']) {
-   __cov_lDdYZ71tmbmcNwRyBl3LDA['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\services\\index.js'] = { "path": 'C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\services\\index.js', "s": { "1": 0, "2": 0 }, "b": {}, "f": { "1": 0 }, "fnMap": { "1": { "name": "(anonymous_1)", "line": 3, "loc": { "start": { "line": 3, "column": 17 }, "end": { "line": 3, "column": 31 } } } }, "statementMap": { "1": { "start": { "line": 3, "column": 0 }, "end": { "line": 3, "column": 0 } }, "2": { "start": { "line": 5, "column": 4 }, "end": { "line": 5, "column": 4 } } }, "branchMap": {} };
-}
-__cov_lDdYZ71tmbmcNwRyBl3LDA = __cov_lDdYZ71tmbmcNwRyBl3LDA['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\services\\index.js'];
-__cov_lDdYZ71tmbmcNwRyBl3LDA.s['1']++;module.exports = function (app) {
-   __cov_lDdYZ71tmbmcNwRyBl3LDA.f['1']++;__cov_lDdYZ71tmbmcNwRyBl3LDA.s['2']++;require('./datalocationservice')(app);
+module.exports = function (app) {
+    // inject:start
+    require('./datalocationservice')(app);
+    // inject:end
 };
 
 },{"./datalocationservice":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\services\\datalocationservice.js"}],"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\views\\location.html":[function(require,module,exports){
@@ -129,107 +145,165 @@ app.run(run);
 module.exports = app;
 
 },{"./location":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\index.js","./map":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\index.js","./pokemon":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\index.js","angular":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\node_modules\\angular\\index.js","angular-ui-bootstrap":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\node_modules\\angular-ui-bootstrap\\index.js","angular-ui-router":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\node_modules\\angular-ui-router\\release\\angular-ui-router.js"}],"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\controllers\\index.js":[function(require,module,exports){
-"use strict";
+'use strict';
 
-var __cov_bvYzC6ixAFFxOkT0FXRMqA = Function('return this')();
-if (!__cov_bvYzC6ixAFFxOkT0FXRMqA.__coverage__) {
-   __cov_bvYzC6ixAFFxOkT0FXRMqA.__coverage__ = {};
-}
-__cov_bvYzC6ixAFFxOkT0FXRMqA = __cov_bvYzC6ixAFFxOkT0FXRMqA.__coverage__;
-if (!__cov_bvYzC6ixAFFxOkT0FXRMqA['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\controllers\\index.js']) {
-   __cov_bvYzC6ixAFFxOkT0FXRMqA['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\controllers\\index.js'] = { "path": 'C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\controllers\\index.js', "s": { "1": 0, "2": 0 }, "b": {}, "f": { "1": 0 }, "fnMap": { "1": { "name": "(anonymous_1)", "line": 3, "loc": { "start": { "line": 3, "column": 17 }, "end": { "line": 3, "column": 31 } } } }, "statementMap": { "1": { "start": { "line": 3, "column": 0 }, "end": { "line": 3, "column": 0 } }, "2": { "start": { "line": 5, "column": 4 }, "end": { "line": 5, "column": 4 } } }, "branchMap": {} };
-}
-__cov_bvYzC6ixAFFxOkT0FXRMqA = __cov_bvYzC6ixAFFxOkT0FXRMqA['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\controllers\\index.js'];
-__cov_bvYzC6ixAFFxOkT0FXRMqA.s['1']++;module.exports = function (app) {
-   __cov_bvYzC6ixAFFxOkT0FXRMqA.f['1']++;__cov_bvYzC6ixAFFxOkT0FXRMqA.s['2']++;require('./uiLeaflet')(app);
+module.exports = function (app) {
+    // inject:start
+    require('./uiLeaflet')(app);
+    // inject:end
 };
 
 },{"./uiLeaflet":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\controllers\\uiLeaflet.js"}],"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\controllers\\uiLeaflet.js":[function(require,module,exports){
-"use strict";
+'use strict';
 
-var __cov_JyTfgg0YW1sKbM1JQHWrrw = Function('return this')();
-if (!__cov_JyTfgg0YW1sKbM1JQHWrrw.__coverage__) {
-   __cov_JyTfgg0YW1sKbM1JQHWrrw.__coverage__ = {};
-}
-__cov_JyTfgg0YW1sKbM1JQHWrrw = __cov_JyTfgg0YW1sKbM1JQHWrrw.__coverage__;
-if (!__cov_JyTfgg0YW1sKbM1JQHWrrw['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\controllers\\uiLeaflet.js']) {
-   __cov_JyTfgg0YW1sKbM1JQHWrrw['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\controllers\\uiLeaflet.js'] = { "path": 'C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\controllers\\uiLeaflet.js', "s": { "1": 0, "2": 0, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0, "9": 0, "10": 0, "11": 0, "12": 0, "13": 0, "14": 0, "15": 0 }, "b": {}, "f": { "1": 0, "2": 0, "3": 0, "4": 0 }, "fnMap": { "1": { "name": "(anonymous_1)", "line": 6, "loc": { "start": { "line": 5, "column": 17 }, "end": { "line": 5, "column": 32 } } }, "2": { "name": "(anonymous_2)", "line": 10, "loc": { "start": { "line": 10, "column": 8 }, "end": { "line": 10, "column": 46 } } }, "3": { "name": "(anonymous_3)", "line": 17, "loc": { "start": { "line": 17, "column": 32 }, "end": { "line": 17, "column": 44 } } }, "4": { "name": "(anonymous_4)", "line": 21, "loc": { "start": { "line": 21, "column": 32 }, "end": { "line": 21, "column": 44 } } } }, "statementMap": { "1": { "start": { "line": 2, "column": 0 }, "end": { "line": 2, "column": 0 } }, "2": { "start": { "line": 3, "column": 0 }, "end": { "line": 3, "column": 0 } }, "3": { "start": { "line": 5, "column": 0 }, "end": { "line": 5, "column": 0 } }, "4": { "start": { "line": 6, "column": 4 }, "end": { "line": 6, "column": 4 } }, "5": { "start": { "line": 7, "column": 4 }, "end": { "line": 7, "column": 4 } }, "6": { "start": { "line": 9, "column": 4 }, "end": { "line": 9, "column": 4 } }, "7": { "start": { "line": 12, "column": 12 }, "end": { "line": 12, "column": 12 } }, "8": { "start": { "line": 13, "column": 12 }, "end": { "line": 13, "column": 12 } }, "9": { "start": { "line": 14, "column": 12 }, "end": { "line": 14, "column": 12 } }, "10": { "start": { "line": 15, "column": 12 }, "end": { "line": 15, "column": 12 } }, "11": { "start": { "line": 17, "column": 12 }, "end": { "line": 17, "column": 12 } }, "12": { "start": { "line": 18, "column": 16 }, "end": { "line": 18, "column": 16 } }, "13": { "start": { "line": 21, "column": 12 }, "end": { "line": 21, "column": 12 } }, "14": { "start": { "line": 22, "column": 16 }, "end": { "line": 22, "column": 16 } }, "15": { "start": { "line": 26, "column": 12 }, "end": { "line": 26, "column": 12 } } }, "branchMap": {} };
-}
-__cov_JyTfgg0YW1sKbM1JQHWrrw = __cov_JyTfgg0YW1sKbM1JQHWrrw['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\controllers\\uiLeaflet.js'];
-__cov_JyTfgg0YW1sKbM1JQHWrrw.s['1']++;var angular = require('angular');__cov_JyTfgg0YW1sKbM1JQHWrrw.s['2']++;var controllername = 'uiLeaflet';__cov_JyTfgg0YW1sKbM1JQHWrrw.s['3']++;module.exports = function (app) {
-   __cov_JyTfgg0YW1sKbM1JQHWrrw.f['1']++;__cov_JyTfgg0YW1sKbM1JQHWrrw.s['4']++;var fullname = app.name + '.' + controllername;__cov_JyTfgg0YW1sKbM1JQHWrrw.s['5']++;var dataleafletservice = app.name + '.' + 'dataleafletservice';__cov_JyTfgg0YW1sKbM1JQHWrrw.s['6']++;app.controller(fullname, ['$scope', dataleafletservice, function ($scope, dataleafletservice) {
-      __cov_JyTfgg0YW1sKbM1JQHWrrw.f['2']++;__cov_JyTfgg0YW1sKbM1JQHWrrw.s['7']++;var vm = this;__cov_JyTfgg0YW1sKbM1JQHWrrw.s['8']++;vm.controllername = fullname;__cov_JyTfgg0YW1sKbM1JQHWrrw.s['9']++;$scope.icons = dataleafletservice.getIcons();__cov_JyTfgg0YW1sKbM1JQHWrrw.s['10']++;$scope.markers = dataleafletservice.getMarkers();__cov_JyTfgg0YW1sKbM1JQHWrrw.s['11']++;$scope.addMarkers = function () {
-         __cov_JyTfgg0YW1sKbM1JQHWrrw.f['3']++;__cov_JyTfgg0YW1sKbM1JQHWrrw.s['12']++;dataleafletservice.getMarkers();
-      };__cov_JyTfgg0YW1sKbM1JQHWrrw.s['13']++;$scope.delMarkers = function () {
-         __cov_JyTfgg0YW1sKbM1JQHWrrw.f['4']++;__cov_JyTfgg0YW1sKbM1JQHWrrw.s['14']++;dataleafletservice.deleteMarkers();
-      };__cov_JyTfgg0YW1sKbM1JQHWrrw.s['15']++;angular.extend($scope, { center: { lat: 48.262299, lng: 11.669776, zoom: 16 }, defaults: { tileLayer: 'http://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png', tileLayerOptions: { attribution: '' + 'JS16 <a href="https://github.com/PokemonGoers/PokeMap-1">PokeMap</a>, ' + 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> ' + 'contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' + 'Imagery \xA9 <a href="http://thunderforest.com">Thunderforest/OpenCycleMap</a>, ' + 'Pokemon Images \xA9 <a href="http://pokemondb.net/">Pokémon Database</a>' }, maxZoom: 18, path: { weight: 10, color: '#800000', opacity: 1 } } });
-   }]);
+var angular = require('angular');
+var controllername = 'uiLeaflet';
+
+module.exports = function (app) {
+    var fullname = app.name + '.' + controllername;
+    var dataleafletservice = app.name + '.' + 'dataleafletservice';
+
+    app.controller(fullname, ['$scope', dataleafletservice, function ($scope, dataleafletservice) {
+
+        var vm = this;
+        vm.controllername = fullname;
+        $scope.icons = dataleafletservice.getIcons();
+        $scope.markers = dataleafletservice.getMarkers();
+
+        $scope.addMarkers = function () {
+            dataleafletservice.getMarkers();
+        };
+
+        $scope.delMarkers = function () {
+            dataleafletservice.deleteMarkers();
+        };
+
+        // custom map parameters
+        angular.extend($scope, {
+            center: {
+                lat: 48.262299,
+                lng: 11.669776,
+                zoom: 16
+            },
+            defaults: {
+                tileLayer: 'http://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png',
+                tileLayerOptions: {
+                    attribution: '' + 'JS16 <a href="https://github.com/PokemonGoers/PokeMap-1">PokeMap</a>, ' + 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> ' + 'contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' + 'Imagery © <a href="http://thunderforest.com">Thunderforest/OpenCycleMap</a>, ' + 'Pokemon Images © <a href="http://pokemondb.net/">Pokémon Database</a>'
+                },
+
+                maxZoom: 18,
+                path: {
+                    weight: 10,
+                    color: '#800000',
+                    opacity: 1
+                }
+            }
+
+        });
+    }]);
 };
 
 },{"angular":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\node_modules\\angular\\index.js"}],"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\index.js":[function(require,module,exports){
-"use strict";
+'use strict';
 
-var __cov_NSBlqe3UmFgf0a9mtsg1xA = Function('return this')();
-if (!__cov_NSBlqe3UmFgf0a9mtsg1xA.__coverage__) {
-   __cov_NSBlqe3UmFgf0a9mtsg1xA.__coverage__ = {};
-}
-__cov_NSBlqe3UmFgf0a9mtsg1xA = __cov_NSBlqe3UmFgf0a9mtsg1xA.__coverage__;
-if (!__cov_NSBlqe3UmFgf0a9mtsg1xA['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\index.js']) {
-   __cov_NSBlqe3UmFgf0a9mtsg1xA['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\index.js'] = { "path": 'C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\index.js', "s": { "1": 0, "2": 0, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0, "9": 0, "10": 0, "11": 0, "12": 0, "13": 0, "14": 0, "15": 0, "16": 0, "17": 0, "18": 0, "19": 0, "20": 0, "21": 0 }, "b": { "1": [0, 0] }, "f": { "1": 0, "2": 0 }, "fnMap": { "1": { "name": "(anonymous_1)", "line": 12, "loc": { "start": { "line": 11, "column": 17 }, "end": { "line": 11, "column": 38 } } }, "2": { "name": "(anonymous_2)", "line": 25, "loc": { "start": { "line": 25, "column": 23 }, "end": { "line": 25, "column": 69 } } } }, "statementMap": { "1": { "start": { "line": 2, "column": 0 }, "end": { "line": 2, "column": 0 } }, "2": { "start": { "line": 3, "column": 0 }, "end": { "line": 3, "column": 0 } }, "3": { "start": { "line": 4, "column": 0 }, "end": { "line": 4, "column": 0 } }, "4": { "start": { "line": 5, "column": 0 }, "end": { "line": 5, "column": 0 } }, "5": { "start": { "line": 6, "column": 0 }, "end": { "line": 6, "column": 0 } }, "6": { "start": { "line": 7, "column": 0 }, "end": { "line": 7, "column": 0 } }, "7": { "start": { "line": 9, "column": 0 }, "end": { "line": 9, "column": 0 } }, "8": { "start": { "line": 11, "column": 0 }, "end": { "line": 11, "column": 0 } }, "9": { "start": { "line": 13, "column": 4 }, "end": { "line": 13, "column": 4 } }, "10": { "start": { "line": 14, "column": 4 }, "end": { "line": 14, "column": 4 } }, "11": { "start": { "line": 16, "column": 4 }, "end": { "line": 16, "column": 4 } }, "12": { "start": { "line": 19, "column": 4 }, "end": { "line": 19, "column": 4 } }, "13": { "start": { "line": 20, "column": 4 }, "end": { "line": 20, "column": 4 } }, "14": { "start": { "line": 22, "column": 4 }, "end": { "line": 22, "column": 4 } }, "15": { "start": { "line": 24, "column": 4 }, "end": { "line": 24, "column": 4 } }, "16": { "start": { "line": 25, "column": 4 }, "end": { "line": 25, "column": 4 } }, "17": { "start": { "line": 26, "column": 8 }, "end": { "line": 26, "column": 8 } }, "18": { "start": { "line": 27, "column": 8 }, "end": { "line": 27, "column": 8 } }, "19": { "start": { "line": 35, "column": 4 }, "end": { "line": 35, "column": 4 } }, "20": { "start": { "line": 36, "column": 4 }, "end": { "line": 36, "column": 4 } }, "21": { "start": { "line": 38, "column": 4 }, "end": { "line": 38, "column": 4 } } }, "branchMap": { "1": { "line": 22, "type": "binary-expr", "locations": [{ "start": { "line": 22, "column": 20 }, "end": { "line": 22, "column": 20 } }, { "start": { "line": 22, "column": 37 }, "end": { "line": 22, "column": 4 } }] } } };
-}
-__cov_NSBlqe3UmFgf0a9mtsg1xA = __cov_NSBlqe3UmFgf0a9mtsg1xA['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\index.js'];
-__cov_NSBlqe3UmFgf0a9mtsg1xA.s['1']++;var angular = require('angular');__cov_NSBlqe3UmFgf0a9mtsg1xA.s['2']++;require('angular-ui-router');__cov_NSBlqe3UmFgf0a9mtsg1xA.s['3']++;require('angular-ui-bootstrap');__cov_NSBlqe3UmFgf0a9mtsg1xA.s['4']++;require('angular-simple-logger');__cov_NSBlqe3UmFgf0a9mtsg1xA.s['5']++;require('leaflet');__cov_NSBlqe3UmFgf0a9mtsg1xA.s['6']++;require('ui-leaflet');__cov_NSBlqe3UmFgf0a9mtsg1xA.s['7']++;var modulename = 'map';__cov_NSBlqe3UmFgf0a9mtsg1xA.s['8']++;module.exports = function (namespace) {
-   __cov_NSBlqe3UmFgf0a9mtsg1xA.f['1']++;__cov_NSBlqe3UmFgf0a9mtsg1xA.s['9']++;var fullname = namespace + '.' + modulename;__cov_NSBlqe3UmFgf0a9mtsg1xA.s['10']++;var locationmodule = namespace + '.' + 'location';__cov_NSBlqe3UmFgf0a9mtsg1xA.s['11']++;var app = angular.module(fullname, ['ui.router', 'nemLogging', 'ui-leaflet', locationmodule]);__cov_NSBlqe3UmFgf0a9mtsg1xA.s['12']++;require('./controllers')(app);__cov_NSBlqe3UmFgf0a9mtsg1xA.s['13']++;require('./services')(app);__cov_NSBlqe3UmFgf0a9mtsg1xA.s['14']++;app.namespace = (__cov_NSBlqe3UmFgf0a9mtsg1xA.b['1'][0]++, app.namespace) || (__cov_NSBlqe3UmFgf0a9mtsg1xA.b['1'][1]++, {});__cov_NSBlqe3UmFgf0a9mtsg1xA.s['15']++;var configRoutesDeps = ['$stateProvider', '$urlRouterProvider'];__cov_NSBlqe3UmFgf0a9mtsg1xA.s['16']++;var configRoutes = function configRoutes($stateProvider, $urlRouterProvider) {
-      __cov_NSBlqe3UmFgf0a9mtsg1xA.f['2']++;__cov_NSBlqe3UmFgf0a9mtsg1xA.s['17']++;$urlRouterProvider.otherwise('/');__cov_NSBlqe3UmFgf0a9mtsg1xA.s['18']++;$stateProvider.state('index', { url: '/', views: { 'viewA': { template: require('../location/views/location.html') }, 'viewB': { template: require('./views/map.html') } } });
-   };__cov_NSBlqe3UmFgf0a9mtsg1xA.s['19']++;configRoutes.$inject = configRoutesDeps;__cov_NSBlqe3UmFgf0a9mtsg1xA.s['20']++;app.config(configRoutes);__cov_NSBlqe3UmFgf0a9mtsg1xA.s['21']++;return app;
+var angular = require('angular');
+require('angular-ui-router');
+require('angular-ui-bootstrap');
+require('angular-simple-logger');
+require('leaflet');
+require('ui-leaflet');
+
+var modulename = 'map';
+
+module.exports = function (namespace) {
+
+    var fullname = namespace + '.' + modulename;
+    var locationmodule = namespace + '.' + 'location';
+
+    var app = angular.module(fullname, ['ui.router', 'nemLogging', 'ui-leaflet', locationmodule]);
+    // inject:folders start
+    require('./controllers')(app);
+    require('./services')(app);
+    // inject:folders end
+    app.namespace = app.namespace || {};
+
+    var configRoutesDeps = ['$stateProvider', '$urlRouterProvider'];
+    var configRoutes = function configRoutes($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise('/');
+        $stateProvider.state('index', {
+            url: '/',
+            views: {
+                'viewA': { template: require('../location/views/location.html') },
+                'viewB': { template: require('./views/map.html') }
+            }
+        });
+    };
+    configRoutes.$inject = configRoutesDeps;
+    app.config(configRoutes);
+
+    return app;
 };
 
 },{"../location/views/location.html":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\location\\views\\location.html","./controllers":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\controllers\\index.js","./services":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\services\\index.js","./views/map.html":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\views\\map.html","angular":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\node_modules\\angular\\index.js","angular-simple-logger":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\node_modules\\angular-simple-logger\\dist\\index.js","angular-ui-bootstrap":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\node_modules\\angular-ui-bootstrap\\index.js","angular-ui-router":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\node_modules\\angular-ui-router\\release\\angular-ui-router.js","leaflet":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\node_modules\\leaflet\\dist\\leaflet-src.js","ui-leaflet":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\node_modules\\ui-leaflet\\dist\\ui-leaflet.js"}],"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\services\\dataleafletservice.js":[function(require,module,exports){
-"use strict";
+'use strict';
 
-var __cov_ycgkBi$U18faIDbZWunDmA = Function('return this')();
-if (!__cov_ycgkBi$U18faIDbZWunDmA.__coverage__) {
-   __cov_ycgkBi$U18faIDbZWunDmA.__coverage__ = {};
-}
-__cov_ycgkBi$U18faIDbZWunDmA = __cov_ycgkBi$U18faIDbZWunDmA.__coverage__;
-if (!__cov_ycgkBi$U18faIDbZWunDmA['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\services\\dataleafletservice.js']) {
-   __cov_ycgkBi$U18faIDbZWunDmA['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\services\\dataleafletservice.js'] = { "path": 'C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\services\\dataleafletservice.js', "s": { "1": 0, "2": 0, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0, "9": 1, "10": 0, "11": 0, "12": 0, "13": 1, "14": 0, "15": 1, "16": 0, "17": 0, "18": 0, "19": 0, "20": 0, "21": 0, "22": 0, "23": 0, "24": 0, "25": 0, "26": 0 }, "b": {}, "f": { "1": 0, "2": 0, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0, "9": 0 }, "fnMap": { "1": { "name": "(anonymous_1)", "line": 5, "loc": { "start": { "line": 4, "column": 17 }, "end": { "line": 4, "column": 32 } } }, "2": { "name": "service", "line": 11, "loc": { "start": { "line": 11, "column": 8 }, "end": { "line": 11, "column": 66 } } }, "3": { "name": "getIcons", "line": 16, "loc": { "start": { "line": 16, "column": 12 }, "end": { "line": 16, "column": 32 } } }, "4": { "name": "(anonymous_4)", "line": 17, "loc": { "start": { "line": 18, "column": 26 }, "end": { "line": 18, "column": 47 } } }, "5": { "name": "deleteMarkers", "line": 23, "loc": { "start": { "line": 24, "column": 12 }, "end": { "line": 24, "column": 37 } } }, "6": { "name": "getMarkers", "line": 27, "loc": { "start": { "line": 28, "column": 12 }, "end": { "line": 28, "column": 34 } } }, "7": { "name": "(anonymous_7)", "line": 29, "loc": { "start": { "line": 31, "column": 26 }, "end": { "line": 31, "column": 47 } } }, "8": { "name": "(anonymous_8)", "line": 30, "loc": { "start": { "line": 32, "column": 42 }, "end": { "line": 32, "column": 60 } } }, "9": { "name": "(anonymous_9)", "line": 33, "loc": { "start": { "line": 36, "column": 38 }, "end": { "line": 36, "column": 57 } } } }, "statementMap": { "1": { "start": { "line": 2, "column": 0 }, "end": { "line": 2, "column": 0 } }, "2": { "start": { "line": 4, "column": 0 }, "end": { "line": 4, "column": 0 } }, "3": { "start": { "line": 6, "column": 4 }, "end": { "line": 6, "column": 4 } }, "4": { "start": { "line": 7, "column": 4 }, "end": { "line": 7, "column": 4 } }, "5": { "start": { "line": 8, "column": 4 }, "end": { "line": 8, "column": 4 } }, "6": { "start": { "line": 10, "column": 4 }, "end": { "line": 10, "column": 4 } }, "7": { "start": { "line": 13, "column": 12 }, "end": { "line": 13, "column": 12 } }, "8": { "start": { "line": 14, "column": 12 }, "end": { "line": 14, "column": 12 } }, "9": { "start": { "line": 16, "column": 12 }, "end": { "line": 22, "column": 13 } }, "10": { "start": { "line": 17, "column": 16 }, "end": { "line": 17, "column": 16 } }, "11": { "start": { "line": 19, "column": 24 }, "end": { "line": 19, "column": 24 } }, "12": { "start": { "line": 21, "column": 16 }, "end": { "line": 21, "column": 16 } }, "13": { "start": { "line": 24, "column": 12 }, "end": { "line": 26, "column": 13 } }, "14": { "start": { "line": 25, "column": 16 }, "end": { "line": 25, "column": 16 } }, "15": { "start": { "line": 28, "column": 12 }, "end": { "line": 44, "column": 13 } }, "16": { "start": { "line": 29, "column": 16 }, "end": { "line": 29, "column": 16 } }, "17": { "start": { "line": 30, "column": 16 }, "end": { "line": 30, "column": 16 } }, "18": { "start": { "line": 32, "column": 24 }, "end": { "line": 32, "column": 24 } }, "19": { "start": { "line": 33, "column": 28 }, "end": { "line": 33, "column": 28 } }, "20": { "start": { "line": 34, "column": 28 }, "end": { "line": 34, "column": 28 } }, "21": { "start": { "line": 35, "column": 28 }, "end": { "line": 35, "column": 28 } }, "22": { "start": { "line": 37, "column": 36 }, "end": { "line": 37, "column": 36 } }, "23": { "start": { "line": 40, "column": 28 }, "end": { "line": 40, "column": 28 } }, "24": { "start": { "line": 43, "column": 16 }, "end": { "line": 43, "column": 16 } }, "25": { "start": { "line": 46, "column": 12 }, "end": { "line": 46, "column": 12 } }, "26": { "start": { "line": 52, "column": 12 }, "end": { "line": 52, "column": 12 } } }, "branchMap": {} };
-}
-__cov_ycgkBi$U18faIDbZWunDmA = __cov_ycgkBi$U18faIDbZWunDmA['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\services\\dataleafletservice.js'];
-__cov_ycgkBi$U18faIDbZWunDmA.s['1']++;var servicename = 'dataleafletservice';__cov_ycgkBi$U18faIDbZWunDmA.s['2']++;module.exports = function (app) {
-   __cov_ycgkBi$U18faIDbZWunDmA.f['1']++;__cov_ycgkBi$U18faIDbZWunDmA.s['3']++;var fullname = app.name + '.' + servicename;__cov_ycgkBi$U18faIDbZWunDmA.s['4']++;var datalocationservice = 'main.location.datalocationservice';__cov_ycgkBi$U18faIDbZWunDmA.s['5']++;var datapokemonservice = 'main.pokemon.datapokemonservice';__cov_ycgkBi$U18faIDbZWunDmA.s['6']++;app.factory(fullname, [datalocationservice, datapokemonservice, function service(datalocationservice, datapokemonservice) {
-      __cov_ycgkBi$U18faIDbZWunDmA.f['2']++;__cov_ycgkBi$U18faIDbZWunDmA.s['7']++;var icons = {};__cov_ycgkBi$U18faIDbZWunDmA.s['8']++;var markers = [];function getIcons() {
-         __cov_ycgkBi$U18faIDbZWunDmA.f['3']++;__cov_ycgkBi$U18faIDbZWunDmA.s['10']++;datapokemonservice.getPokemonIcons().then(function (pokeIcons) {
-            __cov_ycgkBi$U18faIDbZWunDmA.f['4']++;__cov_ycgkBi$U18faIDbZWunDmA.s['11']++;Object.assign(icons, pokeIcons);
-         });__cov_ycgkBi$U18faIDbZWunDmA.s['12']++;return icons;
-      }function deleteMarkers() {
-         __cov_ycgkBi$U18faIDbZWunDmA.f['5']++;__cov_ycgkBi$U18faIDbZWunDmA.s['14']++;markers.length = 0;
-      }function getMarkers() {
-         __cov_ycgkBi$U18faIDbZWunDmA.f['6']++;__cov_ycgkBi$U18faIDbZWunDmA.s['16']++;deleteMarkers();__cov_ycgkBi$U18faIDbZWunDmA.s['17']++;datalocationservice.getPokemonLocations().then(function (locations) {
-            __cov_ycgkBi$U18faIDbZWunDmA.f['7']++;__cov_ycgkBi$U18faIDbZWunDmA.s['18']++;locations.forEach(function (marker) {
-               __cov_ycgkBi$U18faIDbZWunDmA.f['8']++;__cov_ycgkBi$U18faIDbZWunDmA.s['19']++;var pokemonName = marker.pokemon;__cov_ycgkBi$U18faIDbZWunDmA.s['20']++;marker.icon = icons[pokemonName];__cov_ycgkBi$U18faIDbZWunDmA.s['21']++;datapokemonservice.getPokemon(pokemonName).then(function (pokemon) {
-                  __cov_ycgkBi$U18faIDbZWunDmA.f['9']++;__cov_ycgkBi$U18faIDbZWunDmA.s['22']++;marker.message = pokemon.info;
-               });__cov_ycgkBi$U18faIDbZWunDmA.s['23']++;markers.push(marker);
+var servicename = 'dataleafletservice';
+
+module.exports = function (app) {
+
+    var fullname = app.name + '.' + servicename;
+    var datalocationservice = 'main.location.datalocationservice';
+    var datapokemonservice = 'main.pokemon.datapokemonservice';
+
+    app.factory(fullname, [datalocationservice, datapokemonservice, function service(datalocationservice, datapokemonservice) {
+
+        var icons = {};
+        var markers = [];
+
+        function getIcons() {
+            datapokemonservice.getPokemonIcons().then(function (pokeIcons) {
+                Object.assign(icons, pokeIcons);
             });
-         });__cov_ycgkBi$U18faIDbZWunDmA.s['24']++;return markers;
-      }__cov_ycgkBi$U18faIDbZWunDmA.s['25']++;var service = { getMarkers: getMarkers, getIcons: getIcons, deleteMarkers: deleteMarkers };__cov_ycgkBi$U18faIDbZWunDmA.s['26']++;return service;
-   }]);
+            return icons;
+        }
+
+        function deleteMarkers() {
+            markers.length = 0;
+        }
+
+        function getMarkers() {
+            deleteMarkers();
+            datalocationservice.getPokemonLocations().then(function (locations) {
+                locations.forEach(function (marker) {
+                    var pokemonName = marker.pokemon;
+                    marker.icon = icons[pokemonName];
+                    datapokemonservice.getPokemon(pokemonName).then(function (pokemon) {
+                        marker.message = pokemon.info;
+                    });
+
+                    markers.push(marker);
+                });
+            });
+            return markers;
+        }
+
+        var service = {
+            getMarkers: getMarkers,
+            getIcons: getIcons,
+            deleteMarkers: deleteMarkers
+        };
+
+        return service;
+    }]);
 };
 
 },{}],"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\services\\index.js":[function(require,module,exports){
-"use strict";
+'use strict';
 
-var __cov_7xDG$Xh5T$Jv9Vyt3cHi2w = Function('return this')();
-if (!__cov_7xDG$Xh5T$Jv9Vyt3cHi2w.__coverage__) {
-   __cov_7xDG$Xh5T$Jv9Vyt3cHi2w.__coverage__ = {};
-}
-__cov_7xDG$Xh5T$Jv9Vyt3cHi2w = __cov_7xDG$Xh5T$Jv9Vyt3cHi2w.__coverage__;
-if (!__cov_7xDG$Xh5T$Jv9Vyt3cHi2w['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\services\\index.js']) {
-   __cov_7xDG$Xh5T$Jv9Vyt3cHi2w['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\services\\index.js'] = { "path": 'C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\services\\index.js', "s": { "1": 0, "2": 0 }, "b": {}, "f": { "1": 0 }, "fnMap": { "1": { "name": "(anonymous_1)", "line": 3, "loc": { "start": { "line": 3, "column": 17 }, "end": { "line": 3, "column": 31 } } } }, "statementMap": { "1": { "start": { "line": 3, "column": 0 }, "end": { "line": 3, "column": 0 } }, "2": { "start": { "line": 5, "column": 4 }, "end": { "line": 5, "column": 4 } } }, "branchMap": {} };
-}
-__cov_7xDG$Xh5T$Jv9Vyt3cHi2w = __cov_7xDG$Xh5T$Jv9Vyt3cHi2w['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\services\\index.js'];
-__cov_7xDG$Xh5T$Jv9Vyt3cHi2w.s['1']++;module.exports = function (app) {
-   __cov_7xDG$Xh5T$Jv9Vyt3cHi2w.f['1']++;__cov_7xDG$Xh5T$Jv9Vyt3cHi2w.s['2']++;require('./dataleafletservice')(app);
+module.exports = function (app) {
+    // inject:start
+    require('./dataleafletservice')(app);
+    // inject:end
 };
 
 },{"./dataleafletservice":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\services\\dataleafletservice.js"}],"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\map\\views\\map.html":[function(require,module,exports){
@@ -247,99 +321,133 @@ module.exports = '<div ng-controller="main.map.uiLeaflet as uiLeafletCtrl">\n' +
     '\n' +
     '';
 },{}],"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\controllers\\index.js":[function(require,module,exports){
-"use strict";
+'use strict';
 
-var __cov_TiN9HNN6t2y85VOYEOVy$A = Function('return this')();
-if (!__cov_TiN9HNN6t2y85VOYEOVy$A.__coverage__) {
-   __cov_TiN9HNN6t2y85VOYEOVy$A.__coverage__ = {};
-}
-__cov_TiN9HNN6t2y85VOYEOVy$A = __cov_TiN9HNN6t2y85VOYEOVy$A.__coverage__;
-if (!__cov_TiN9HNN6t2y85VOYEOVy$A['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\controllers\\index.js']) {
-   __cov_TiN9HNN6t2y85VOYEOVy$A['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\controllers\\index.js'] = { "path": 'C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\controllers\\index.js', "s": { "1": 0, "2": 0 }, "b": {}, "f": { "1": 0 }, "fnMap": { "1": { "name": "(anonymous_1)", "line": 3, "loc": { "start": { "line": 3, "column": 17 }, "end": { "line": 3, "column": 31 } } } }, "statementMap": { "1": { "start": { "line": 3, "column": 0 }, "end": { "line": 3, "column": 0 } }, "2": { "start": { "line": 5, "column": 4 }, "end": { "line": 5, "column": 4 } } }, "branchMap": {} };
-}
-__cov_TiN9HNN6t2y85VOYEOVy$A = __cov_TiN9HNN6t2y85VOYEOVy$A['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\controllers\\index.js'];
-__cov_TiN9HNN6t2y85VOYEOVy$A.s['1']++;module.exports = function (app) {
-   __cov_TiN9HNN6t2y85VOYEOVy$A.f['1']++;__cov_TiN9HNN6t2y85VOYEOVy$A.s['2']++;require('./pokemonInfo')(app);
+module.exports = function (app) {
+    // inject:start
+    require('./pokemonInfo')(app);
+    // inject:end
 };
 
 },{"./pokemonInfo":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\controllers\\pokemonInfo.js"}],"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\controllers\\pokemonInfo.js":[function(require,module,exports){
-"use strict";
+'use strict';
 
-var __cov_Zn$33jMUjyw4oVj2yJir7g = Function('return this')();
-if (!__cov_Zn$33jMUjyw4oVj2yJir7g.__coverage__) {
-   __cov_Zn$33jMUjyw4oVj2yJir7g.__coverage__ = {};
-}
-__cov_Zn$33jMUjyw4oVj2yJir7g = __cov_Zn$33jMUjyw4oVj2yJir7g.__coverage__;
-if (!__cov_Zn$33jMUjyw4oVj2yJir7g['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\controllers\\pokemonInfo.js']) {
-   __cov_Zn$33jMUjyw4oVj2yJir7g['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\controllers\\pokemonInfo.js'] = { "path": 'C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\controllers\\pokemonInfo.js', "s": { "1": 0, "2": 0, "3": 0, "4": 0, "5": 1, "6": 0, "7": 0, "8": 0, "9": 0, "10": 0, "11": 0 }, "b": {}, "f": { "1": 0, "2": 0, "3": 0 }, "fnMap": { "1": { "name": "(anonymous_1)", "line": 5, "loc": { "start": { "line": 4, "column": 17 }, "end": { "line": 4, "column": 31 } } }, "2": { "name": "controller", "line": 11, "loc": { "start": { "line": 10, "column": 4 }, "end": { "line": 10, "column": 26 } } }, "3": { "name": "(anonymous_3)", "line": 15, "loc": { "start": { "line": 14, "column": 23 }, "end": { "line": 14, "column": 34 } } } }, "statementMap": { "1": { "start": { "line": 2, "column": 0 }, "end": { "line": 2, "column": 0 } }, "2": { "start": { "line": 4, "column": 0 }, "end": { "line": 4, "column": 0 } }, "3": { "start": { "line": 5, "column": 4 }, "end": { "line": 5, "column": 4 } }, "4": { "start": { "line": 8, "column": 4 }, "end": { "line": 8, "column": 4 } }, "5": { "start": { "line": 10, "column": 4 }, "end": { "line": 18, "column": 5 } }, "6": { "start": { "line": 11, "column": 8 }, "end": { "line": 11, "column": 8 } }, "7": { "start": { "line": 12, "column": 8 }, "end": { "line": 12, "column": 8 } }, "8": { "start": { "line": 14, "column": 8 }, "end": { "line": 14, "column": 8 } }, "9": { "start": { "line": 17, "column": 8 }, "end": { "line": 17, "column": 8 } }, "10": { "start": { "line": 20, "column": 4 }, "end": { "line": 20, "column": 4 } }, "11": { "start": { "line": 21, "column": 4 }, "end": { "line": 21, "column": 4 } } }, "branchMap": {} };
-}
-__cov_Zn$33jMUjyw4oVj2yJir7g = __cov_Zn$33jMUjyw4oVj2yJir7g['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\controllers\\pokemonInfo.js'];
-__cov_Zn$33jMUjyw4oVj2yJir7g.s['1']++;var controllername = 'pokemonInfo';__cov_Zn$33jMUjyw4oVj2yJir7g.s['2']++;module.exports = function (app) {
-   __cov_Zn$33jMUjyw4oVj2yJir7g.f['1']++;__cov_Zn$33jMUjyw4oVj2yJir7g.s['3']++;var fullname = app.name + '.' + controllername;__cov_Zn$33jMUjyw4oVj2yJir7g.s['4']++;var deps = [];function controller() {
-      __cov_Zn$33jMUjyw4oVj2yJir7g.f['2']++;__cov_Zn$33jMUjyw4oVj2yJir7g.s['6']++;var vm = this;__cov_Zn$33jMUjyw4oVj2yJir7g.s['7']++;vm.controllername = fullname;__cov_Zn$33jMUjyw4oVj2yJir7g.s['8']++;var activate = function activate() {
-         __cov_Zn$33jMUjyw4oVj2yJir7g.f['3']++;
-      };__cov_Zn$33jMUjyw4oVj2yJir7g.s['9']++;activate();
-   }__cov_Zn$33jMUjyw4oVj2yJir7g.s['10']++;controller.$inject = deps;__cov_Zn$33jMUjyw4oVj2yJir7g.s['11']++;app.controller(fullname, controller);
+var controllername = 'pokemonInfo';
+
+module.exports = function (app) {
+    var fullname = app.name + '.' + controllername;
+    /*jshint validthis: true */
+
+    var deps = [];
+
+    function controller() {
+        var vm = this;
+        vm.controllername = fullname;
+
+        var activate = function activate() {};
+        activate();
+    }
+
+    controller.$inject = deps;
+    app.controller(fullname, controller);
 };
 
 },{}],"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\index.js":[function(require,module,exports){
-"use strict";
+'use strict';
 
-var __cov_jkVp5SQmPrHKlmt1qU4Lkw = Function('return this')();
-if (!__cov_jkVp5SQmPrHKlmt1qU4Lkw.__coverage__) {
-   __cov_jkVp5SQmPrHKlmt1qU4Lkw.__coverage__ = {};
-}
-__cov_jkVp5SQmPrHKlmt1qU4Lkw = __cov_jkVp5SQmPrHKlmt1qU4Lkw.__coverage__;
-if (!__cov_jkVp5SQmPrHKlmt1qU4Lkw['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\index.js']) {
-   __cov_jkVp5SQmPrHKlmt1qU4Lkw['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\index.js'] = { "path": 'C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\index.js', "s": { "1": 0, "2": 0, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0, "9": 0, "10": 0, "11": 0, "12": 0, "13": 0, "14": 0, "15": 0, "16": 0, "17": 0 }, "b": { "1": [0, 0] }, "f": { "1": 0, "2": 0 }, "fnMap": { "1": { "name": "(anonymous_1)", "line": 9, "loc": { "start": { "line": 8, "column": 17 }, "end": { "line": 8, "column": 38 } } }, "2": { "name": "(anonymous_2)", "line": 21, "loc": { "start": { "line": 20, "column": 23 }, "end": { "line": 20, "column": 69 } } } }, "statementMap": { "1": { "start": { "line": 2, "column": 0 }, "end": { "line": 2, "column": 0 } }, "2": { "start": { "line": 3, "column": 0 }, "end": { "line": 3, "column": 0 } }, "3": { "start": { "line": 4, "column": 0 }, "end": { "line": 4, "column": 0 } }, "4": { "start": { "line": 6, "column": 0 }, "end": { "line": 6, "column": 0 } }, "5": { "start": { "line": 8, "column": 0 }, "end": { "line": 8, "column": 0 } }, "6": { "start": { "line": 10, "column": 4 }, "end": { "line": 10, "column": 4 } }, "7": { "start": { "line": 12, "column": 4 }, "end": { "line": 12, "column": 4 } }, "8": { "start": { "line": 14, "column": 4 }, "end": { "line": 14, "column": 4 } }, "9": { "start": { "line": 15, "column": 4 }, "end": { "line": 15, "column": 4 } }, "10": { "start": { "line": 17, "column": 4 }, "end": { "line": 17, "column": 4 } }, "11": { "start": { "line": 19, "column": 4 }, "end": { "line": 19, "column": 4 } }, "12": { "start": { "line": 20, "column": 4 }, "end": { "line": 20, "column": 4 } }, "13": { "start": { "line": 21, "column": 8 }, "end": { "line": 21, "column": 8 } }, "14": { "start": { "line": 22, "column": 8 }, "end": { "line": 22, "column": 8 } }, "15": { "start": { "line": 27, "column": 4 }, "end": { "line": 27, "column": 4 } }, "16": { "start": { "line": 28, "column": 4 }, "end": { "line": 28, "column": 4 } }, "17": { "start": { "line": 30, "column": 4 }, "end": { "line": 30, "column": 4 } } }, "branchMap": { "1": { "line": 18, "type": "binary-expr", "locations": [{ "start": { "line": 17, "column": 20 }, "end": { "line": 17, "column": 20 } }, { "start": { "line": 17, "column": 37 }, "end": { "line": 17, "column": 4 } }] } } };
-}
-__cov_jkVp5SQmPrHKlmt1qU4Lkw = __cov_jkVp5SQmPrHKlmt1qU4Lkw['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\index.js'];
-__cov_jkVp5SQmPrHKlmt1qU4Lkw.s['1']++;var angular = require('angular');__cov_jkVp5SQmPrHKlmt1qU4Lkw.s['2']++;require('angular-ui-router');__cov_jkVp5SQmPrHKlmt1qU4Lkw.s['3']++;require('angular-ui-bootstrap');__cov_jkVp5SQmPrHKlmt1qU4Lkw.s['4']++;var modulename = 'pokemon';__cov_jkVp5SQmPrHKlmt1qU4Lkw.s['5']++;module.exports = function (namespace) {
-   __cov_jkVp5SQmPrHKlmt1qU4Lkw.f['1']++;__cov_jkVp5SQmPrHKlmt1qU4Lkw.s['6']++;var fullname = namespace + '.' + modulename;__cov_jkVp5SQmPrHKlmt1qU4Lkw.s['7']++;var app = angular.module(fullname, ['ui.router']);__cov_jkVp5SQmPrHKlmt1qU4Lkw.s['8']++;require('./controllers')(app);__cov_jkVp5SQmPrHKlmt1qU4Lkw.s['9']++;require('./services')(app);__cov_jkVp5SQmPrHKlmt1qU4Lkw.s['10']++;app.namespace = (__cov_jkVp5SQmPrHKlmt1qU4Lkw.b['1'][0]++, app.namespace) || (__cov_jkVp5SQmPrHKlmt1qU4Lkw.b['1'][1]++, {});__cov_jkVp5SQmPrHKlmt1qU4Lkw.s['11']++;var configRoutesDeps = ['$stateProvider', '$urlRouterProvider'];__cov_jkVp5SQmPrHKlmt1qU4Lkw.s['12']++;var configRoutes = function configRoutes($stateProvider, $urlRouterProvider) {
-      __cov_jkVp5SQmPrHKlmt1qU4Lkw.f['2']++;__cov_jkVp5SQmPrHKlmt1qU4Lkw.s['13']++;$urlRouterProvider.otherwise('/');__cov_jkVp5SQmPrHKlmt1qU4Lkw.s['14']++;$stateProvider.state('home', { url: '/', template: require('./views/home.html') });
-   };__cov_jkVp5SQmPrHKlmt1qU4Lkw.s['15']++;configRoutes.$inject = configRoutesDeps;__cov_jkVp5SQmPrHKlmt1qU4Lkw.s['16']++;app.config(configRoutes);__cov_jkVp5SQmPrHKlmt1qU4Lkw.s['17']++;return app;
+var angular = require('angular');
+require('angular-ui-router');
+require('angular-ui-bootstrap');
+
+var modulename = 'pokemon';
+
+module.exports = function (namespace) {
+
+    var fullname = namespace + '.' + modulename;
+
+    var app = angular.module(fullname, ['ui.router']);
+    // inject:folders start
+    require('./controllers')(app);
+    require('./services')(app);
+    // inject:folders end
+    app.namespace = app.namespace || {};
+
+    var configRoutesDeps = ['$stateProvider', '$urlRouterProvider'];
+    var configRoutes = function configRoutes($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise('/');
+        $stateProvider.state('home', {
+            url: '/',
+            template: require('./views/home.html')
+        });
+    };
+    configRoutes.$inject = configRoutesDeps;
+    app.config(configRoutes);
+
+    return app;
 };
 
 },{"./controllers":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\controllers\\index.js","./services":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\services\\index.js","./views/home.html":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\views\\home.html","angular":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\node_modules\\angular\\index.js","angular-ui-bootstrap":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\node_modules\\angular-ui-bootstrap\\index.js","angular-ui-router":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\node_modules\\angular-ui-router\\release\\angular-ui-router.js"}],"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\services\\datapokemonservice.js":[function(require,module,exports){
-"use strict";
+'use strict';
 
-var __cov_k5Mdp7bFp$uNaFcXdiZj0w = Function('return this')();
-if (!__cov_k5Mdp7bFp$uNaFcXdiZj0w.__coverage__) {
-   __cov_k5Mdp7bFp$uNaFcXdiZj0w.__coverage__ = {};
-}
-__cov_k5Mdp7bFp$uNaFcXdiZj0w = __cov_k5Mdp7bFp$uNaFcXdiZj0w.__coverage__;
-if (!__cov_k5Mdp7bFp$uNaFcXdiZj0w['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\services\\datapokemonservice.js']) {
-   __cov_k5Mdp7bFp$uNaFcXdiZj0w['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\services\\datapokemonservice.js'] = { "path": 'C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\services\\datapokemonservice.js', "s": { "1": 0, "2": 0, "3": 0, "4": 0, "5": 1, "6": 0, "7": 0, "8": 1, "9": 0, "10": 0, "11": 0, "12": 0, "13": 0 }, "b": {}, "f": { "1": 0, "2": 0, "3": 0, "4": 0, "5": 0, "6": 0 }, "fnMap": { "1": { "name": "(anonymous_1)", "line": 5, "loc": { "start": { "line": 4, "column": 17 }, "end": { "line": 4, "column": 32 } } }, "2": { "name": "service", "line": 9, "loc": { "start": { "line": 8, "column": 36 }, "end": { "line": 8, "column": 60 } } }, "3": { "name": "getPokemonIcons", "line": 11, "loc": { "start": { "line": 10, "column": 8 }, "end": { "line": 10, "column": 35 } } }, "4": { "name": "(anonymous_4)", "line": 22, "loc": { "start": { "line": 21, "column": 20 }, "end": { "line": 21, "column": 40 } } }, "5": { "name": "getPokemon", "line": 27, "loc": { "start": { "line": 26, "column": 8 }, "end": { "line": 26, "column": 38 } } }, "6": { "name": "(anonymous_6)", "line": 38, "loc": { "start": { "line": 37, "column": 20 }, "end": { "line": 37, "column": 40 } } } }, "statementMap": { "1": { "start": { "line": 2, "column": 0 }, "end": { "line": 2, "column": 0 } }, "2": { "start": { "line": 4, "column": 0 }, "end": { "line": 4, "column": 0 } }, "3": { "start": { "line": 6, "column": 4 }, "end": { "line": 6, "column": 4 } }, "4": { "start": { "line": 8, "column": 4 }, "end": { "line": 8, "column": 4 } }, "5": { "start": { "line": 10, "column": 8 }, "end": { "line": 24, "column": 9 } }, "6": { "start": { "line": 11, "column": 12 }, "end": { "line": 11, "column": 12 } }, "7": { "start": { "line": 22, "column": 16 }, "end": { "line": 22, "column": 16 } }, "8": { "start": { "line": 26, "column": 8 }, "end": { "line": 47, "column": 9 } }, "9": { "start": { "line": 27, "column": 12 }, "end": { "line": 27, "column": 12 } }, "10": { "start": { "line": 38, "column": 16 }, "end": { "line": 38, "column": 16 } }, "11": { "start": { "line": 39, "column": 16 }, "end": { "line": 39, "column": 16 } }, "12": { "start": { "line": 49, "column": 8 }, "end": { "line": 49, "column": 8 } }, "13": { "start": { "line": 54, "column": 8 }, "end": { "line": 54, "column": 8 } } }, "branchMap": {} };
-}
-__cov_k5Mdp7bFp$uNaFcXdiZj0w = __cov_k5Mdp7bFp$uNaFcXdiZj0w['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\services\\datapokemonservice.js'];
-__cov_k5Mdp7bFp$uNaFcXdiZj0w.s['1']++;var servicename = 'datapokemonservice';__cov_k5Mdp7bFp$uNaFcXdiZj0w.s['2']++;module.exports = function (app) {
-   __cov_k5Mdp7bFp$uNaFcXdiZj0w.f['1']++;__cov_k5Mdp7bFp$uNaFcXdiZj0w.s['3']++;var fullname = app.name + '.' + servicename;__cov_k5Mdp7bFp$uNaFcXdiZj0w.s['4']++;app.factory(fullname, ['$http', function service($http) {
-      __cov_k5Mdp7bFp$uNaFcXdiZj0w.f['2']++;function getPokemonIcons() {
-         __cov_k5Mdp7bFp$uNaFcXdiZj0w.f['3']++;__cov_k5Mdp7bFp$uNaFcXdiZj0w.s['6']++;return $http({ url: 'http://jsonstub.com/icons', method: 'GET', dataType: 'json', data: '', headers: { 'Content-Type': 'application/json', 'JsonStub-User-Key': 'e593d8da-8b04-4ed2-9976-aaf8e1343e5f', 'JsonStub-Project-Key': '7a3005e5-72c7-4ea1-bd70-ccc0d737106c' } }).then(function (response) {
-            __cov_k5Mdp7bFp$uNaFcXdiZj0w.f['4']++;__cov_k5Mdp7bFp$uNaFcXdiZj0w.s['7']++;return response.data[0];
-         });
-      }function getPokemon(pokeName) {
-         __cov_k5Mdp7bFp$uNaFcXdiZj0w.f['5']++;__cov_k5Mdp7bFp$uNaFcXdiZj0w.s['9']++;return $http({ url: 'http://jsonstub.com/pokemon/' + pokeName, method: 'GET', dataType: 'json', data: '', headers: { 'Content-Type': 'application/json', 'JsonStub-User-Key': 'e593d8da-8b04-4ed2-9976-aaf8e1343e5f', 'JsonStub-Project-Key': '7a3005e5-72c7-4ea1-bd70-ccc0d737106c' } }).then(function (response) {
-            __cov_k5Mdp7bFp$uNaFcXdiZj0w.f['6']++;__cov_k5Mdp7bFp$uNaFcXdiZj0w.s['10']++;var pokemonData = response.data;__cov_k5Mdp7bFp$uNaFcXdiZj0w.s['11']++;return { info: '<b>' + pokemonData.name.toUpperCase() + '</b>' + '<br/>' + 'Height: ' + '<b>' + pokemonData.height + '</b>' + '<br/>' + 'Weight: ' + '<b>' + pokemonData.weight + '</b>' };
-         });
-      }__cov_k5Mdp7bFp$uNaFcXdiZj0w.s['12']++;var service = { getPokemon: getPokemon, getPokemonIcons: getPokemonIcons };__cov_k5Mdp7bFp$uNaFcXdiZj0w.s['13']++;return service;
-   }]);
+var servicename = 'datapokemonservice';
+
+module.exports = function (app) {
+
+    var fullname = app.name + '.' + servicename;
+
+    app.factory(fullname, ['$http', function service($http) {
+
+        function getPokemonIcons() {
+            return $http({
+                url: 'https://jsonstub.com/icons',
+                method: 'GET',
+                dataType: 'json',
+                data: '',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'JsonStub-User-Key': 'e593d8da-8b04-4ed2-9976-aaf8e1343e5f',
+                    'JsonStub-Project-Key': '7a3005e5-72c7-4ea1-bd70-ccc0d737106c'
+                }
+            }).then(function (response) {
+                return response.data[0];
+            });
+        }
+
+        function getPokemon(pokeName) {
+            return $http({
+                url: 'https://jsonstub.com/pokemon/' + pokeName,
+                method: 'GET',
+                dataType: 'json',
+                data: '',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'JsonStub-User-Key': 'e593d8da-8b04-4ed2-9976-aaf8e1343e5f',
+                    'JsonStub-Project-Key': '7a3005e5-72c7-4ea1-bd70-ccc0d737106c'
+                }
+            }).then(function (response) {
+                var pokemonData = response.data;
+                return {
+                    info: '<b>' + pokemonData.name.toUpperCase() + '</b>' + '<br/>' + 'Height: ' + '<b>' + pokemonData.height + '</b>' + '<br/>' + 'Weight: ' + '<b>' + pokemonData.weight + '</b>'
+                };
+            });
+        }
+
+        var service = {
+            getPokemon: getPokemon,
+            getPokemonIcons: getPokemonIcons
+        };
+
+        return service;
+    }]);
 };
 
 },{}],"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\services\\index.js":[function(require,module,exports){
-"use strict";
+'use strict';
 
-var __cov_3w$vqC7Jk1DI0gWjZHPZ4Q = Function('return this')();
-if (!__cov_3w$vqC7Jk1DI0gWjZHPZ4Q.__coverage__) {
-   __cov_3w$vqC7Jk1DI0gWjZHPZ4Q.__coverage__ = {};
-}
-__cov_3w$vqC7Jk1DI0gWjZHPZ4Q = __cov_3w$vqC7Jk1DI0gWjZHPZ4Q.__coverage__;
-if (!__cov_3w$vqC7Jk1DI0gWjZHPZ4Q['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\services\\index.js']) {
-   __cov_3w$vqC7Jk1DI0gWjZHPZ4Q['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\services\\index.js'] = { "path": 'C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\services\\index.js', "s": { "1": 0, "2": 0 }, "b": {}, "f": { "1": 0 }, "fnMap": { "1": { "name": "(anonymous_1)", "line": 3, "loc": { "start": { "line": 3, "column": 17 }, "end": { "line": 3, "column": 31 } } } }, "statementMap": { "1": { "start": { "line": 3, "column": 0 }, "end": { "line": 3, "column": 0 } }, "2": { "start": { "line": 5, "column": 4 }, "end": { "line": 5, "column": 4 } } }, "branchMap": {} };
-}
-__cov_3w$vqC7Jk1DI0gWjZHPZ4Q = __cov_3w$vqC7Jk1DI0gWjZHPZ4Q['C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\services\\index.js'];
-__cov_3w$vqC7Jk1DI0gWjZHPZ4Q.s['1']++;module.exports = function (app) {
-   __cov_3w$vqC7Jk1DI0gWjZHPZ4Q.f['1']++;__cov_3w$vqC7Jk1DI0gWjZHPZ4Q.s['2']++;require('./datapokemonservice')(app);
+module.exports = function (app) {
+    // inject:start
+    require('./datapokemonservice')(app);
+    // inject:end
 };
 
 },{"./datapokemonservice":"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\services\\datapokemonservice.js"}],"C:\\Users\\PAUL\\WebstormProjects\\PokeMap-1\\client\\scripts\\pokemon\\views\\home.html":[function(require,module,exports){
