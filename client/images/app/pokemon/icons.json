@@ -1,0 +1,26 @@
+[
+  {
+    "pikachu": {
+      "iconUrl": "images/app/pokemon/pikachu.gif",
+      "iconSize": [
+        43,
+        38
+      ],
+      "popupAnchor": [
+        -7,
+        -20
+      ]
+    },
+    "bulbasaur": {
+      "iconUrl": "images/app/pokemon/bulbasaur.gif",
+      "iconSize": [
+        43,
+        38
+      ],
+      "popupAnchor": [
+        -7,
+        -20
+      ]
+    }
+  }
+]

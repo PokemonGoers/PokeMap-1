@@ -9,20 +9,10 @@ module.exports = function (app) {
         function controller($scope, datalocationservice) {
             var vm = this;
             vm.controllername = fullname;
-            $scope.markers1 = datalocationservice.getPokemonLocations();
 
             var activate = function () {
             };
             activate();
 
-            $scope.addMarkers = function () {
-                datalocationservice.getPokemonLocations();
-            };
-
-            $scope.removeMarkers = function () {
-                datalocationservice.resetPokemonLocations();
-            };
-
         }]);
-
 };

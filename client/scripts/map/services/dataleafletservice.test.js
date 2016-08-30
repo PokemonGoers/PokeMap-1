@@ -18,9 +18,9 @@ describe(app.name, function() {
                 this.service = $injector.get(app.name + '.' + servicename);
             }));
 
-            it('should be defined', function() {
-                expect(this.service).toBeDefined();
-            });
+            // it('should be defined', function() {
+            //     expect(this.service).toBeDefined();
+            // });
 
         });
     });

@@ -4,36 +4,23 @@ var controllername = 'uiLeaflet';
 
 module.exports = function (app) {
     var fullname = app.name + '.' + controllername;
-    var datalocationservice = 'main.location' + '.' + 'datalocationservice';
+    var dataleafletservice = app.name + '.' + 'dataleafletservice';
 
-    app.controller(fullname, ['$scope', datalocationservice,
-        function ($scope, datalocationservice) {
+    app.controller(fullname, ['$scope', dataleafletservice,
+        function ($scope, dataleafletservice) {
 
             var vm = this;
             vm.controllername = fullname;
-            $scope.markers = datalocationservice.getPokemonLocations();
+            $scope.icons = dataleafletservice.getIcons();
+            $scope.markers = dataleafletservice.getMarkers();
 
-            var activate = function () {
+            $scope.addMarkers = function () {
+                dataleafletservice.getMarkers();
             };
-            activate();
 
-            /*            // custom icons
-             var pokemon_icons = {
-             default_icon: {
-             iconUrl: 'images/app/pokemon/pikachu.gif',
-             iconSize: [43, 38], // size of the icon
-             popupAnchor: [-7, -20]
-             },
-             pikachu: {
-             iconUrl: 'images/app/pokemon/pikachu.gif',
-             iconSize: [43, 38], // size of the icon
-             popupAnchor: [-7, -20] // point from which the popup should open relative to the iconAnchor
-             }
-             };
-
-             angular.extend($scope, {
-             icons: pokemon_icons
-             });*/
+            $scope.delMarkers = function () {
+                dataleafletservice.deleteMarkers();
+            };
 
             // custom map parameters
             angular.extend($scope, {

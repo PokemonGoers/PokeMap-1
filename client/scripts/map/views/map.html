@@ -1,9 +1,12 @@
 <div ng-controller="main.map.uiLeaflet as uiLeafletCtrl">
-    {{markers}}
-    <leaflet id="map"
-             defaults="defaults"
-             lf-center="center"
-             markers="markers"
-    ></leaflet>
+    <button ng-click="addMarkers()">Add markers</button>
+    <button ng-click="delMarkers()">Remove markers</button>
+    <leaflet
+            id="map"
+            defaults="defaults"
+            lf-center="center"
+            markers="markers"
+    >
+    </leaflet>
 </div>
 

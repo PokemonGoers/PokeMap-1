@@ -1,10 +1,14 @@
 [
   {
+    "pokemon": "pikachu",
     "lat": 48.262299,
-    "lng": 11.669776
+    "lng": 11.669776,
+    "icon": {}
   },
   {
+    "pokemon": "bulbasaur",
     "lat": 48.264684,
-    "lng": 11.671938
+    "lng": 11.671938,
+    "icon": {}
   }
 ]
