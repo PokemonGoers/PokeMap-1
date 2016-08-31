@@ -5,16 +5,15 @@ require('angular-ui-bootstrap');
 require('angular-simple-logger');
 require('leaflet');
 require('ui-leaflet');
+require('angularjs-slider');
 
 var modulename = 'map';
 
 module.exports = function (namespace) {
-
     var fullname = namespace + '.' + modulename;
-    var locationmodule = namespace + '.' + 'location';
 
     var app = angular.module(fullname,
-        ['ui.router', 'nemLogging', 'ui-leaflet', locationmodule]);
+        ['ui.router', 'nemLogging', 'ui-leaflet', 'rzModule']);
     // inject:folders start
     require('./controllers')(app);
     require('./services')(app);
@@ -27,8 +26,7 @@ module.exports = function (namespace) {
         $stateProvider.state('index', {
             url: '/',
             views: {
-                'viewA': {template: require('../location/views/location.html')},
-                'viewB': {template: require('./views/map.html')}
+                'viewA': {template: require('./views/map.html')}
             }
         });
     };

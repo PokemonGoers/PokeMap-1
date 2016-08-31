@@ -9,14 +9,14 @@ module.exports = function (app) {
 
         function getPokemonLocations() {
             return $http({
-                url: 'http://jsonstub.com/locations',
+                url: 'https://jsonstub.com/pokemon/sighting/',
                 method: 'GET',
                 dataType: 'json',
                 data: '',
                 headers: {
                     'Content-Type': 'application/json',
                     'JsonStub-User-Key': 'e593d8da-8b04-4ed2-9976-aaf8e1343e5f',
-                    'JsonStub-Project-Key': '7a3005e5-72c7-4ea1-bd70-ccc0d737106c'
+                    'JsonStub-Project-Key': '727e404b-e885-420f-bee5-6fb48bfe3854'
                 }
             }).then(function (response) {
                 return response.data;

@@ -11,18 +11,15 @@ module.exports = function (app) {
 
             var vm = this;
             vm.controllername = fullname;
-            $scope.icons = dataleafletservice.getIcons();
-            $scope.markers = dataleafletservice.getMarkers();
 
-            $scope.addMarkers = function () {
-                dataleafletservice.getMarkers();
+            var activate = function () {
+                dataleafletservice.prepareMarkers();
             };
+            activate();
 
-            $scope.delMarkers = function () {
-                dataleafletservice.deleteMarkers();
-            };
+            $scope.markersDate = '';
+            $scope.markers = dataleafletservice.getMarkers($scope.markersDate);
 
-            // custom map parameters
             angular.extend($scope, {
                 center: {
                     lat: 48.262299,
@@ -50,7 +47,92 @@ module.exports = function (app) {
 
             });
 
-        }]);
+            function updateMarkersDate() {
+                switch ($scope.slider.value) {
+                    case -5:
+                        $scope.markersDate = '2016-08-26';
+                        break;
+                    case -4:
+                        $scope.markersDate = '2016-08-27';
+                        break;
+                    case -3:
+                        $scope.markersDate = '2016-08-28';
+                        break;
+                    case -2:
+                        $scope.markersDate = '2016-08-29';
+                        break;
+                    case -1:
+                        $scope.markersDate = '2016-08-30';
+                        break;
+                    case 0:
+                        $scope.markersDate = '2016-08-31 15:00';
+                        break;
+                    case 1:
+                        $scope.markersDate = '2016-08-31 15:30';
+                        break;
+                    case 2:
+                        $scope.markersDate = '2016-09-01';
+                        break;
+                    default:
+                        $scope.markersDate = '2016-08-31';
+                        break;
+                }
+            }
 
+            $scope.slider = {
+                value: 0,
+                options: {
+                    floor: -6,
+                    ceil: 3,
+                    minLimit: -5,
+                    maxLimit: 2,
+                    onStart: function () {
+                        updateMarkersDate();
+                    },
+                    onChange: function () {
+                        updateMarkersDate();
+                    },
+                    onEnd: function () {
+                        updateMarkersDate();
+                        dataleafletservice.getMarkers($scope.markersDate);
+                    },
+                    getPointerColor: function (value) {
+                        if (value < 0) {
+                            return '#669999';
+                        }
+                        if (value > 0) {
+                            return '#66ff33';
+                        }
+                        return '#0db9f0';
+                    },
+                    translate: function (value) {
+                        switch (value) {
+                            case -6:
+                                return 'past';
+                            case -5:
+                                return '-5 days';
+                            case -4:
+                                return '-4 days';
+                            case -3:
+                                return '-3 days';
+                            case -2:
+                                return '-2 days';
+                            case -1:
+                                return 'yesterday';
+                            case 0:
+                                return 'now!';
+                            case 1:
+                                return 'predict +30 min';
+                            case 2:
+                                return 'predict tomorrow';
+                            case 3:
+                                return 'future';
+                            default:
+                                return 'time';
+                        }
+                    }
+                }
+            };
+        }]);
 };
 
