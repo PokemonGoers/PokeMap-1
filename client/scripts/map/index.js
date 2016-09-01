@@ -4,6 +4,7 @@ require('angular-ui-router');
 require('angular-ui-bootstrap');
 require('angular-simple-logger');
 require('leaflet');
+require('leaflet.markercluster');
 require('ui-leaflet');
 require('angularjs-slider');
 
@@ -16,6 +17,7 @@ module.exports = function (namespace) {
         ['ui.router', 'nemLogging', 'ui-leaflet', 'rzModule']);
     // inject:folders start
     require('./controllers')(app);
+    require('./directives')(app);
     require('./services')(app);
     // inject:folders end
     app.namespace = app.namespace || {};
