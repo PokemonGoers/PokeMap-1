@@ -1,8 +1,16 @@
-<div ng-controller="main.map.uiLeaflet as uiLeafletCtrl">
-    <leaflet id="map"
+<div class="container-fluid fill" ng-controller="main.map.uiLeaflet as uiLeafletCtrl">
+    <leaflet id="map" class="row"
              defaults="defaults"
              lf-center="center"
              markers="markers"
-    ></leaflet>
+    >
+    </leaflet>
+    <div id="map-control" class="row">
+        <b>{{markersDate}}</b>
+        <rzslider rz-slider-model="slider.value"
+                  rz-slider-options="slider.options"
+        >
+        </rzslider>
+    </div>
 </div>
 

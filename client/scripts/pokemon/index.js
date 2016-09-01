@@ -2,22 +2,16 @@
 var angular = require('angular');
 require('angular-ui-router');
 require('angular-ui-bootstrap');
-require('angular-simple-logger');
-require('leaflet');
-require('leaflet.markercluster');
-require('ui-leaflet');
-require('angularjs-slider');
 
-var modulename = 'map';
+var modulename = 'pokemon';
 
 module.exports = function (namespace) {
+
     var fullname = namespace + '.' + modulename;
 
-    var app = angular.module(fullname,
-        ['ui.router', 'nemLogging', 'ui-leaflet', 'rzModule']);
+    var app = angular.module(fullname, ['ui.router']);
     // inject:folders start
     require('./controllers')(app);
-    require('./directives')(app);
     require('./services')(app);
     // inject:folders end
     app.namespace = app.namespace || {};
@@ -25,11 +19,9 @@ module.exports = function (namespace) {
     var configRoutesDeps = ['$stateProvider', '$urlRouterProvider'];
     var configRoutes = function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/');
-        $stateProvider.state('index', {
+        $stateProvider.state('home', {
             url: '/',
-            views: {
-                'viewA': {template: require('./views/map.html')}
-            }
+            template: require('./views/home.html')
         });
     };
     configRoutes.$inject = configRoutesDeps;
