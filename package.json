@@ -1,0 +1,8 @@
+{
+  "name": "pokemon-map",
+  "version": "",
+  "repository": "https://github.com",
+  "dependencies": {
+    "leaflet": "^0.7.7"
+  }
+}
