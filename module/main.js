@@ -138,6 +138,67 @@
 
         }
 
+        var PokemonIcon = L.Icon.extend({
+            options: {
+                iconSize:     [38, 95],
+                shadowSize:   [50, 64],
+                iconAnchor:   [22, 94],
+                shadowAnchor: [4, 62],
+                popupAnchor:  [-3, -76]
+            }
+        });
+
+        function addPokemonIcon(pokemonName) {
+
+            var rootUrl = 'pokemonIcons/';
+
+            return (new PokemonIcon({iconUrl: rootUrl + pokemonName + '.gif'})).addTo(mymap);
+
+        }
+
+    }
+
+    function dataService() {
+
+        var self = this;
+
+        self.getData = function() {
+
+            var mockPokemons = [
+                {
+                    name: 'abra',
+                    coordinates: {
+                        lat: 48.1361,
+                        lng: 11.5810
+                    }
+                },
+                {
+                    name: 'diglett',
+                    coordinates: {
+                        lat: 48.1471,
+                        lng: 11.5820
+                    }
+                },
+                {
+                    name: 'clefairy',
+                    coordinates: {
+                        lat: 48.1441,
+                        lng: 11.5870
+                    }
+                },
+                {
+                    name: 'dugtrio',
+                    coordinates: {
+                        lat: 48.1411,
+                        lng: 11.5715
+                    }
+                }
+            ];
+
+            return mockPokemons;
+
+        };
+
     }
 
     if (typeof define === 'function' && define.amd) {
