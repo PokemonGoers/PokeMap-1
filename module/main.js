@@ -184,6 +184,41 @@
 
             var mockPokemons = [
                 {
+                    name: 'Rattata',
+                    coordinates: {
+                        lat: 48.262457,
+                        lng: 11.669183
+                    }
+                },
+                {
+                    name: 'Pikachu',
+                    coordinates: {
+                        lat: 45.245842,
+                        lng: 14.674122
+                    }
+                },
+                {
+                    name: 'Metapod',
+                    coordinates: {
+                        lat: 47.463472,
+                        lng: 12.169228
+                    }
+                },
+                {
+                    name: 'Kakuna',
+                    coordinates: {
+                        lat: 46.162539,
+                        lng: 13.666696
+                    }
+                },
+                {
+                    name: 'Arbok',
+                    coordinates: {
+                        lat: 44.467508,
+                        lng: 14.371981
+                    }
+                },
+                {
                     name:        'abra',
                     coordinates: {
                         lat: 48.1361,
