@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Rattata",
+    "latitude": 48.262457,
+    "longitude": 11.669183
+  },
+  {
+    "name": "Pikachu",
+    "latitude": 45.245842,
+    "longitude": 14.674122
+  },
+  {
+    "name": "Metapod",
+    "latitude": 47.463472,
+    "longitude": 12.169228
+  },
+  {
+    "name": "Kakuna",
+    "latitude": 46.162539,
+    "longitude": 13.666696
+  },
+  {
+    "name": "Arbok",
+    "latitude": 44.467508,
+    "longitude": 14.371981
+  }
+]
