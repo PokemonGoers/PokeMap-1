@@ -181,6 +181,49 @@
 
         self.getData = function () {
 
+            if (timeRange.start < 0 && timeRange.end < 0){
+
+                //get past data from database
+                var pokemons = dbService.getPastData();
+                return pokemons;
+
+            } else {
+
+                if (timeRange.start < 0 && timeRange.end < 0){
+
+                    //get predictions from database
+                    var pokemons = dbService.getPredictedData();
+                    return pokemons;
+
+                } else {
+
+                    //get data from database
+                    //get data from twitter via sockets
+                    var pokemons = dbService.getPastData();
+                    pokemons.push(twitterService.getTwitterData());
+                    pokemons.push(dbService.getPredictedData());
+                    return pokemons;
+
+
+                }
+            }
+            function dbService() {
+
+                function getPastData() {
+
+                }
+
+                function getPredictedData() {
+
+                }
+            }
+
+            function twitterService(){
+                function getTwitterData(){
+                    
+                }
+            }
+
             var mockPokemons = [
                 {
                     name: 'Rattata',
