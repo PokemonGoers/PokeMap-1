@@ -4,7 +4,7 @@
 // zoomLevel - Number
 // timeRange - { start: Number, end: Number }
 
-(function() {
+(function () {
 
     function PokeMap(coordinates, zoomLevel, timeRange, tileLayer, tileLayerOptions) {
 
@@ -21,15 +21,15 @@
             };
         }
 
-        if(!coordinates) {
+        if (!coordinates) {
             throw new Error('coordinates is not defined');
         }
 
-        if(!zoomLevel) {
+        if (!zoomLevel) {
             throw new Error('zoomLevel is not defined');
         }
 
-        if(!timeRange) {
+        if (!timeRange) {
             throw new Error('timeRange is not defined');
         }
 
@@ -43,6 +43,7 @@
         // { eventName: [eventHandlers]
         var eventHandlers = {};
         var mymap = null;
+        var dataService = new DataService();
 
         initMap();
 
@@ -52,7 +53,7 @@
             L.tileLayer(tileLayer, tileLayerOptions).addTo(mymap);
             self.goto(coordinates, zoomLevel);
 
-            mymap.on('moveend', function(event) {
+            mymap.on('moveend', function (event) {
 
 
                 var latlng = event.target.getCenter();
@@ -61,7 +62,7 @@
                 fireEvent('moveend', {
 
                     latlng: latlng,
-                    zoom: zoom
+                    zoom:   zoom
 
                 });
             });
@@ -71,11 +72,11 @@
         function fireEvent(eventName, args) {
 
             var handlers = eventHandlers[eventName];
-            if(Array.isArray(handlers)) {
+            if (Array.isArray(handlers)) {
 
-                handlers.map(function(handler) {
+                handlers.map(function (handler) {
 
-                    if(typeof(handler) === 'function') {
+                    if (typeof(handler) === 'function') {
 
                         handler(args);
 
@@ -89,7 +90,7 @@
 
         function on(eventName, callback) {
 
-            if(!Array.isArray(eventHandlers[eventName])) {
+            if (!Array.isArray(eventHandlers[eventName])) {
                 eventHandlers[eventName] = [];
             }
 
@@ -99,19 +100,19 @@
 
         function off(eventName, callback) {
 
-            if(!Array.isArray(eventHandlers[eventName])) {
+            if (!Array.isArray(eventHandlers[eventName])) {
                 return;
             }
 
             var handlers = eventHandlers[eventName];
 
-            var handlersToRemove = handlers.filter(function(handler) {
+            var handlersToRemove = handlers.filter(function (handler) {
 
                 return callback === handler;
 
             });
 
-            handlersToRemove.map(function(handler) {
+            handlersToRemove.map(function (handler) {
 
                 var index = handlers.indexOf(handler);
                 handlers.splice(index, 1);
@@ -121,6 +122,14 @@
         }
 
         function updatePoints() {
+
+            var pokemons = dataService.getData();
+
+            pokemons.map(function (pokemon) {
+
+                addPokemonMarker(pokemon.coordinates, pokemon.name);
+
+            });
 
         }
 
@@ -140,7 +149,7 @@
 
         var PokemonIcon = L.Icon.extend({
             options: {
-                iconSize:     [38, 95],
+                iconSize:     [30, 30],
                 shadowSize:   [50, 64],
                 iconAnchor:   [22, 94],
                 shadowAnchor: [4, 62],
@@ -148,46 +157,55 @@
             }
         });
 
-        function addPokemonIcon(pokemonName) {
+        function addPokemonMarker(position, name) {
 
-            var rootUrl = 'pokemonIcons/';
+            var rootIconUrl = 'pokemonIcons/';
+            var icon = new PokemonIcon({iconUrl: rootIconUrl + name + '.gif'});
+            var marker = L.marker(position, {
+                icon: icon
+            });
 
-            return (new PokemonIcon({iconUrl: rootUrl + pokemonName + '.gif'})).addTo(mymap);
+            marker.addTo(mymap);
+
+            return marker;
 
         }
 
+        // to be removed
+        updatePoints();
+
     }
 
-    function dataService() {
+    function DataService() {
 
         var self = this;
 
-        self.getData = function() {
+        self.getData = function () {
 
             var mockPokemons = [
                 {
-                    name: 'abra',
+                    name:        'abra',
                     coordinates: {
                         lat: 48.1361,
                         lng: 11.5810
                     }
                 },
                 {
-                    name: 'diglett',
+                    name:        'diglett',
                     coordinates: {
                         lat: 48.1471,
                         lng: 11.5820
                     }
                 },
                 {
-                    name: 'clefairy',
+                    name:        'clefairy',
                     coordinates: {
                         lat: 48.1441,
                         lng: 11.5870
                     }
                 },
                 {
-                    name: 'dugtrio',
+                    name:        'dugtrio',
                     coordinates: {
                         lat: 48.1411,
                         lng: 11.5715
