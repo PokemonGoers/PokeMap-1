@@ -181,11 +181,19 @@
                 icon: icon
             });
 
-            marker.addTo(mymap);//.on('mouseover', displayBasicPokeData);
-            //
-            // function displayBasicPokeData(event) {
-            //
-            // }
+            marker.addTo(mymap);
+            //marker.addTo(mymap).on('click', displayBasicPokeData);
+
+            function displayBasicPokeData(event) {
+
+                //TODO: check if the pokemonId of the clicked pokemon can be taken like that or not (probably not :))
+                getPokemonDetailsById(pokemon.pokemonId, function(response){
+
+
+
+                });
+
+             };
 
             return marker;
 
@@ -224,11 +232,84 @@
 
             },
 
-            getPredictedData: function () {
+
+            //supposing that we could get the predicted data through the same api
+            getPredictedData: function (location, callback) {
+
+                var locationFrom = location.from.lng + ',' + location.from.lat;
+                var locationTo = location.to.lng + ',' + location.to.lat;
+
+                var xhr = new XMLHttpRequest();
+                var url = 'http://pokedata.c4e3f8c7.svc.dockerapp.io:65014/api/pokemon/sighting/coordinates/from/' + locationFrom + '/to/' + locationTo;
+                xhr.open("GET", url, true);
+                xhr.onreadystatechange = function() {
+
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+
+                        var json = JSON.parse(xhr.responseText);
+
+                        callback(json);
+
+                    } else {
+
+                    }
+                };
+
+                xhr.send();
 
             },
 
-            getPokemonDetailsById: function (id) {
+            getPokemonDetailsById: function (id, callback) {
+
+                var xhr = new XMLHttpRequest();
+                var url = 'http://pokedata.c4e3f8c7.svc.dockerapp.io:65014/api/pokemon/id/' + id;
+                xhr.open("GET", url, true);
+                xhr.onreadystatechange = function() {
+
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+
+                        var json = JSON.parse(xhr.responseText);
+
+                        callback(json);
+
+                    } else {
+
+                    }
+                };
+
+                xhr.send();
+
+            },
+
+            getPokemonDataByTimeRange: function(from, to, callback){
+
+                //The way the URL is requested is a bit different from what Catch em All group was thinking. Maybe we
+                //need to talk to the Data team to change this API is requested (just in seconds or minutes before and after.
+
+                //TODO: To be rechecked. the range is not clear how should it be specified. Currently not working.
+
+                var currentTime = new Date();
+                var startTimeStamp = new Date(currentTime .getTime() + 1000*from);
+                var startTimeStampString = startTimeStamp.toUTCString();
+                var range = to - from + 's';
+
+                var xhr = new XMLHttpRequest();
+                var url = 'http://pokedata.c4e3f8c7.svc.dockerapp.io:65014/api/pokemon/sighting/ts/' + startTimeStampString + '/range/' + range;
+                xhr.open("GET", url, true);
+                xhr.onreadystatechange = function() {
+
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+
+                        var json = JSON.parse(xhr.responseText);
+
+                        callback(json);
+
+                    } else {
+
+                    }
+                };
+
+                xhr.send();
 
             }
         };
@@ -256,7 +337,7 @@
                 if (timeRange.start > 0 && timeRange.end > 0) {
 
                     //get predictions from database
-                    var pokemons = dbService.getPredictedData();
+                    var pokemons = dbService.getPredictedData(from, to, updateCallback);
                     return pokemons;
 
                 } else {
@@ -265,7 +346,7 @@
                     //get data from twitter via sockets
                     var pokemons = dbService.getPastData(bounds, updateCallback);
 
-                    pokemons.push(dbService.getPredictedData());
+                    pokemons.push(dbService.getPredictedData(bounds, updateCallback));
                     return pokemons;
 
 
