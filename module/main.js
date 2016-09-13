@@ -164,7 +164,11 @@
                 icon: icon
             });
 
-            marker.addTo(mymap);
+            marker.addTo(mymap).on('mouseover', displayBasicPokeData);
+
+            function displayBasicPokeData(event){
+
+            }
 
             return marker;
 
@@ -189,7 +193,7 @@
 
             } else {
 
-                if (timeRange.start < 0 && timeRange.end < 0){
+                if (timeRange.start > 0 && timeRange.end > 0){
 
                     //get predictions from database
                     var pokemons = dbService.getPredictedData();
@@ -200,27 +204,47 @@
                     //get data from database
                     //get data from twitter via sockets
                     var pokemons = dbService.getPastData();
-                    pokemons.push(twitterService.getTwitterData());
+                    //pokemons.push(twitterService.getTwitterData());
                     pokemons.push(dbService.getPredictedData());
                     return pokemons;
 
 
                 }
             }
-            function dbService() {
 
-                function getPastData() {
+            var dbService = {
+
+                getPastData: function (location, callback) {
+
+                    var oReq = new XMLHttpRequest();
+
+                    oReq.addEventListener("load", transferComplete);
+                    oReq.addEventListener("error", transferFailed);
+
+                    oReq.open();
+
+                    function transferComplete(event) {
+
+                    }
+
+                    function transferFailed(event) {
+
+                    }
+
+                },
+
+                getPredictedData: function() {
+
+                },
+
+                getPokemonDetailsById: function(id) {
 
                 }
-
-                function getPredictedData() {
-
-                }
-            }
+            };
 
             function twitterService(){
                 function getTwitterData(){
-                    
+
                 }
             }
 
