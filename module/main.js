@@ -125,11 +125,7 @@
 
             var pokemons = dataService.getData();
 
-            pokemons.map(function (pokemon) {
-
-                addPokemonMarker(pokemon.coordinates, pokemon.name);
-
-            });
+            pokemons.map(addPokemonMarker);
 
         }
 
@@ -156,11 +152,12 @@
             }
         });
 
-        function addPokemonMarker(position, name) {
+        function addPokemonMarker(pokemon) {
 
-            var rootIconUrl = 'pokemonIcons/';
-            var icon = new PokemonIcon({iconUrl: rootIconUrl + name + '.gif'});
-            var marker = L.marker(position, {
+            var rootIconUrl = 'http://pokedata.c4e3f8c7.svc.dockerapp.io:65014/api/pokemon/id/' + pokemon.id + '/icon';
+
+            var icon = new PokemonIcon({iconUrl: rootIconUrl});
+            var marker = L.marker(pokemon.coordinates, {
                 icon: icon
             });
 
@@ -183,6 +180,7 @@
 
             var mockPokemons = [
                 {
+                    id: 1,
                     name: 'Rattata',
                     coordinates: {
                         lat: 48.262457,
@@ -190,6 +188,7 @@
                     }
                 },
                 {
+                    id: 2,
                     name: 'Pikachu',
                     coordinates: {
                         lat: 45.245842,
@@ -197,6 +196,7 @@
                     }
                 },
                 {
+                    id: 3,
                     name: 'Metapod',
                     coordinates: {
                         lat: 47.463472,
@@ -204,6 +204,7 @@
                     }
                 },
                 {
+                    id: 4,
                     name: 'Kakuna',
                     coordinates: {
                         lat: 46.162539,
@@ -211,6 +212,7 @@
                     }
                 },
                 {
+                    id: 5,
                     name: 'Arbok',
                     coordinates: {
                         lat: 44.467508,
@@ -218,6 +220,7 @@
                     }
                 },
                 {
+                    id: 6,
                     name:        'abra',
                     coordinates: {
                         lat: 48.1361,
@@ -225,6 +228,7 @@
                     }
                 },
                 {
+                    id: 7,
                     name:        'diglett',
                     coordinates: {
                         lat: 48.1471,
@@ -232,6 +236,7 @@
                     }
                 },
                 {
+                    id: 8,
                     name:        'clefairy',
                     coordinates: {
                         lat: 48.1441,
@@ -239,6 +244,7 @@
                     }
                 },
                 {
+                    id: 9,
                     name:        'dugtrio',
                     coordinates: {
                         lat: 48.1411,
