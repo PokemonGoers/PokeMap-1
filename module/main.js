@@ -59,6 +59,8 @@
                 var latlng = event.target.getCenter();
                 var zoom = event.target.getZoom();
 
+                updatePoints();
+
                 fireEvent('moveend', {
 
                     latlng: latlng,
@@ -66,6 +68,8 @@
 
                 });
             });
+
+            updatePoints();
 
         }
 
@@ -123,9 +127,24 @@
 
         function updatePoints() {
 
-            var pokemons = dataService.getData();
+            // mymap.clearLayers();
 
-            pokemons.map(addPokemonMarker);
+            var bounds = {
+                from: mymap.getBounds().getNorthWest(),
+                to: mymap.getBounds().getSouthEast()
+            };
+
+            dataService.getData(bounds, function(response) {
+
+                // TODO: clear the map here
+
+                if(response.data && response.data.length) {
+
+                    response.data.map(addPokemonMarker);
+
+                }
+
+            });
 
         }
 
@@ -154,25 +173,23 @@
 
         function addPokemonMarker(pokemon) {
 
-            var rootIconUrl = 'http://pokedata.c4e3f8c7.svc.dockerapp.io:65014/api/pokemon/id/' + pokemon.id + '/icon';
+            var rootIconUrl = 'http://pokedata.c4e3f8c7.svc.dockerapp.io:65014/api/pokemon/id/' + pokemon.pokemonId + '/icon';
 
             var icon = new PokemonIcon({iconUrl: rootIconUrl});
-            var marker = L.marker(pokemon.coordinates, {
+            var coordinates = L.latLng(pokemon.location.coordinates[1], pokemon.location.coordinates[0]);
+            var marker = L.marker(coordinates, {
                 icon: icon
             });
 
-            marker.addTo(mymap).on('mouseover', displayBasicPokeData);
-
-            function displayBasicPokeData(event){
-
-            }
+            marker.addTo(mymap);//.on('mouseover', displayBasicPokeData);
+            //
+            // function displayBasicPokeData(event) {
+            //
+            // }
 
             return marker;
 
         }
-
-        // to be removed
-        updatePoints();
 
     }
 
@@ -180,17 +197,63 @@
 
         var self = this;
 
-        self.getData = function () {
+        var dbService = {
 
-            if (timeRange.start < 0 && timeRange.end < 0){
+            getPastData: function (location, callback) {
+
+                var locationFrom = location.from.lng + ',' + location.from.lat;
+                var locationTo = location.to.lng + ',' + location.to.lat;
+
+                var xhr = new XMLHttpRequest();
+                var url = 'http://pokedata.c4e3f8c7.svc.dockerapp.io:65014/api/pokemon/sighting/coordinates/from/' + locationFrom + '/to/' + locationTo;
+                xhr.open("GET", url, true);
+                xhr.onreadystatechange = function() {
+
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+
+                        var json = JSON.parse(xhr.responseText);
+
+                        callback(json);
+
+                    } else {
+
+                    }
+                };
+
+                xhr.send();
+
+            },
+
+            getPredictedData: function () {
+
+            },
+
+            getPokemonDetailsById: function (id) {
+
+            }
+        };
+
+        function twitterService() {
+            function getTwitterData() {
+
+            }
+        }
+
+        self.getData = function (bounds, updateCallback) {
+
+            dbService.getPastData(bounds, updateCallback);
+            return;
+
+
+            if (timeRange.start < 0 && timeRange.end < 0) {
 
                 //get past data from database
-                var pokemons = dbService.getPastData();
+                var pokemons = dbService.getPastData(bounds, updateCallback);
                 return pokemons;
 
             } else {
 
-                if (timeRange.start > 0 && timeRange.end > 0){
+                if (timeRange.start > 0 && timeRange.end > 0) {
 
                     //get predictions from database
                     var pokemons = dbService.getPredictedData();
@@ -200,8 +263,8 @@
 
                     //get data from database
                     //get data from twitter via sockets
-                    var pokemons = dbService.getPastData();
-                    //pokemons.push(twitterService.getTwitterData());
+                    var pokemons = dbService.getPastData(bounds, updateCallback);
+
                     pokemons.push(dbService.getPredictedData());
                     return pokemons;
 
@@ -209,85 +272,49 @@
                 }
             }
 
-            var dbService = {
-
-                getPastData: function (location, callback) {
-
-                    var oReq = new XMLHttpRequest();
-
-                    oReq.addEventListener("load", transferComplete);
-                    oReq.addEventListener("error", transferFailed);
-
-                    oReq.open();
-
-                    function transferComplete(event) {
-
-                    }
-
-                    function transferFailed(event) {
-
-                    }
-
-                },
-
-                getPredictedData: function() {
-
-                },
-
-                getPokemonDetailsById: function(id) {
-
-                }
-            };
-
-            function twitterService(){
-                function getTwitterData(){
-
-                }
-            }
-
             var mockPokemons = [
                 {
-                    id: 1,
-                    name: 'Rattata',
+                    id:          1,
+                    name:        'Rattata',
                     coordinates: {
                         lat: 48.262457,
                         lng: 11.669183
                     }
                 },
                 {
-                    id: 2,
-                    name: 'Pikachu',
+                    id:          2,
+                    name:        'Pikachu',
                     coordinates: {
                         lat: 45.245842,
                         lng: 14.674122
                     }
                 },
                 {
-                    id: 3,
-                    name: 'Metapod',
+                    id:          3,
+                    name:        'Metapod',
                     coordinates: {
                         lat: 47.463472,
                         lng: 12.169228
                     }
                 },
                 {
-                    id: 4,
-                    name: 'Kakuna',
+                    id:          4,
+                    name:        'Kakuna',
                     coordinates: {
                         lat: 46.162539,
                         lng: 13.666696
                     }
                 },
                 {
-                    id: 5,
-                    name: 'Arbok',
+                    id:          5,
+                    name:        'Arbok',
                     coordinates: {
                         lat: 44.467508,
                         lng: 14.371981
                     }
                 },
                 {
-                    id: 6,
+                    id:          6,
                     name:        'abra',
                     coordinates: {
                         lat: 48.1361,
@@ -295,7 +322,7 @@
                     }
                 },
                 {
-                    id: 7,
+                    id:          7,
                     name:        'diglett',
                     coordinates: {
                         lat: 48.1471,
@@ -303,7 +330,7 @@
                     }
                 },
                 {
-                    id: 8,
+                    id:          8,
                     name:        'clefairy',
                     coordinates: {
                         lat: 48.1441,
@@ -311,7 +338,7 @@
                     }
                 },
                 {
-                    id: 9,
+                    id:          9,
                     name:        'dugtrio',
                     coordinates: {
                         lat: 48.1411,

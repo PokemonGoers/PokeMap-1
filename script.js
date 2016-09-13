@@ -7,6 +7,6 @@ var pokemap = new PokeMap(munichCoords, 10, 1);
 
 pokemap.on('moveend', function(event) {
 
-    console.log(event.latlng.lat + ' ' + event.latlng.lng  + ' ' + event.zoom);
+    // console.log(event.latlng.lat + ' ' + event.latlng.lng  + ' ' + event.zoom);
 
 });
