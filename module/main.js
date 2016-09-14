@@ -43,6 +43,7 @@
         // { eventName: [eventHandlers]
         var eventHandlers = {};
         var mymap = null;
+        var pokemonLayer = null;
         var dataService = new DataService();
 
         initMap();
@@ -52,6 +53,8 @@
             mymap = L.map('mapid');
             L.tileLayer(tileLayer, tileLayerOptions).addTo(mymap);
             self.goto(coordinates, zoomLevel);
+
+            pokemonLayer = L.layerGroup([]).addTo(mymap);
 
             mymap.on('moveend', function (event) {
 
@@ -127,8 +130,6 @@
 
         function updatePoints() {
 
-            // mymap.clearLayers();
-
             var bounds = {
                 from: mymap.getBounds().getNorthWest(),
                 to: mymap.getBounds().getSouthEast()
@@ -136,9 +137,9 @@
 
             dataService.getData(bounds, function(response) {
 
-                // TODO: clear the map here
-
                 if(response.data && response.data.length) {
+
+                    pokemonLayer.clearLayers();
 
                     response.data.map(addPokemonMarker);
 
@@ -181,7 +182,7 @@
                 icon: icon
             });
 
-            marker.addTo(mymap);
+            marker.addTo(pokemonLayer);
             //marker.addTo(mymap).on('click', displayBasicPokeData);
 
             function displayBasicPokeData(event) {
