@@ -2,6 +2,23 @@
   "name": "pokemon-map",
   "version": "",
   "repository": "https://github.com",
+  "name": "pokemap-1",
+  "version": "0.1.0",
+  "description": "Project D Group 7, JavaScript Seminar WS16, Rostlab",
+  "main": "app.js",
+  "keywords": [
+    "pokemap"
+  ],
+  "author": "Group 7: Oleksandr Fedotov <email@tum.de>, Paul Gualotuna <paul.gualotuna@tum.de>, Gani Qinami <email@tum.de>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/PokemonGoers/PokeMap-1/issues"
+  },
+  "homepage": "https://github.com/PokemonGoers/PokeMap-1#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PokemonGoers/PokeMap-1.git"
+  },
   "dependencies": {
     "leaflet": "^0.7.7"
   }
