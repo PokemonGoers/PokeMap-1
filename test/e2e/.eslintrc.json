@@ -1,9 +1,0 @@
-{
-  "globals": {
-    "element": true,
-    "$": true
-  },
-  "rules": {
-    "no-console": 0
-  }
-}

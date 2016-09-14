@@ -77,5 +77,6 @@ CHANGELOG.md
 # Optional REPL history
 .node_repl_history
 
+node_modules
 # Optional Idea IDE
 .idea

@@ -19,15 +19,3 @@ Update node dependencies
 ```shell
 npm update 
 ```
- 
-## Browserify angular app
-Bundle angular modules for the browser
-```shell
-gulp
-```
-
-## Run browserif'ied' angular app 
-Serves dist/app/dev app http://localhost:5000
-```shell
-gulp browsersync 
-```
