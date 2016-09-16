@@ -5,7 +5,7 @@
   "name": "pokemap-1",
   "version": "0.1.0",
   "description": "Project D Group 7, JavaScript Seminar WS16, Rostlab",
-  "main": "app.js",
+  "main": "module/main.js",
   "keywords": [
     "pokemap"
   ],
