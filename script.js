@@ -3,7 +3,9 @@ var munichCoords = {
     lng: 11.5820
 };
 
-var pokemap = new PokeMap(munichCoords, 10, 1);
+var htmlElement = 'mapid'
+
+var pokemap = new PokeMap(htmlElement, munichCoords, 10, 1);
 
 pokemap.on('moveend', function(event) {
 

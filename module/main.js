@@ -6,7 +6,7 @@
 
 (function () {
 
-    function PokeMap(coordinates, zoomLevel, timeRange, tileLayer, tileLayerOptions) {
+    function PokeMap(htmlElement, coordinates, zoomLevel, timeRange, tileLayer, tileLayerOptions) {
 
         if (!tileLayer) {
             tileLayer = 'http://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png';
@@ -50,7 +50,7 @@
 
         function initMap() {
 
-            mymap = L.map('mapid');
+            mymap = L.map(htmlElement);
             L.tileLayer(tileLayer, tileLayerOptions).addTo(mymap);
             self.goto(coordinates, zoomLevel);
 
