@@ -157,7 +157,7 @@
             var styles = '<style>' +
                          '#mapid .pokemon-details-popup {' +
                          'text-align: center;' +
-                         'width: 250px; }' +
+                         'width: 300px; }' +
                          '#mapid .pokemon-details-popup .pokemon-image {' +
                          'vertical-align: top;' +
                          'float: left;}' +
@@ -256,9 +256,30 @@
             var nextEvolutions = pokemon.nextEvolutions.map(function(evol) { return evol.name; });
             var evolution = previousEvolutions.concat([pokemonName], nextEvolutions).join(' &rarr; ');
             var pokemonEvolution = evolution ? generateDetailsBlock('Evolution', evolution) : '';
+            
+            // Type
+            var type = pokemon.types;
+            var pokemonType = generateDetailsBlock('Types', type);
+            
+            // Classification
+            var classification = pokemon.classification;
+            var pokemonClassification = generateDetailsBlock('Classification', classification);
+            
+            // Special Attacks
+            var specialAttacks = pokemon.specialAttacks.map(function(spAttack) { return spAttack.name; });
+            var pokemonSpecialAttacks = generateDetailsBlock('Special Attacks', specialAttacks);
+
+            // Fast Attacks
+            var fastAttacks = pokemon.fastAttacks.map(function(fastAttack) { return fastAttack.name; });
+            var pokemonFastAttacks = generateDetailsBlock('Fast Attacks', fastAttacks);
+
+            // Weakness
+            var weakness = pokemon.weakness;
+            var pokemonWeakness = generateDetailsBlock('Weakness', weakness);
 
 
-            popupContent = popupContent + popupHeader + pokemonEvolution;
+            popupContent = popupContent + popupHeader + pokemonEvolution + pokemonType + pokemonClassification +
+                            pokemonFastAttacks + pokemonSpecialAttacks + pokemonWeakness;
 
             popupContent += '</div>';
 
@@ -294,7 +315,11 @@
                         offset: new L.Point(0, 100)
                     }).setContent(createDetailsPopupContent(response.data[0]));
 
-                    marker.bindPopup(popup).openPopup();
+                    var customOptions = {
+                        'maxWidth': '500'
+                    }
+
+                    marker.bindPopup(popup, customOptions).openPopup();
 
                 });
 
