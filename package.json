@@ -1,15 +1,12 @@
 {
-  "name": "pokemon-map",
-  "version": "",
-  "repository": "https://github.com",
   "name": "pokemap-1",
   "version": "0.1.0",
   "description": "Project D Group 7, JavaScript Seminar WS16, Rostlab",
-  "main": "app.js",
+  "main": "module/main.js",
   "keywords": [
     "pokemap"
   ],
-  "author": "Group 7: Oleksandr Fedotov <email@tum.de>, Paul Gualotuna <paul.gualotuna@tum.de>, Gani Qinami <email@tum.de>",
+  "author": "Group 7: Oleksandr Fedotov <ga47jiz@mytum.de>, Paul Gualotuna <paul.gualotuna@tum.de>, Gani Qinami <ga47qaz@mytum.de>",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/PokemonGoers/PokeMap-1/issues"
