@@ -1,9 +1,11 @@
 'use strict';
 
+var L = require('leaflet');
+
 // options - {
 //     coordinates: {       // optional
-//         latitud: 48.1351,    // optional
-//         longitud: 11.5820     // optional
+//         latitude: 48.1351,    // optional
+//         longitude: 11.5820     // optional
 //     },
 //     zoomLevel: 10,       // optional
 //     timeRange: 1,        // optional
@@ -18,18 +20,20 @@
         var zoomLevel = options.zoomLevel;
         var timeRange = options.timeRange;
         var apiEndpoint = options.apiEndpoint;
-        var tileLayer;
+        var tileLayer = options.tileLayer;
         var tileLayerOptions;
 
         if (!coordinates) {
+
             coordinates = {
-                latitud: 0,
-                longitud: 0
-            }
+                latitude: 48.1351,
+                longitude: 11.5820
+            };
+
         }
 
         if (!zoomLevel) {
-            zoomLevel = 3;
+            zoomLevel = 10;
         }
 
         if (!timeRange) {
@@ -37,7 +41,7 @@
         }
 
         if (!apiEndpoint) {
-            throw new Error('Fatal: apiEnpoint not defined');
+            throw new Error('Fatal: apiEndpoint not defined');
         }
 
         if (!tileLayer) {
@@ -56,7 +60,7 @@
         var self = this;
 
         this.goTo = goTo;
-        this.updatePoint = updatePoints;
+        this.updatePoints = updatePoints;
         this.on = on;
         self.timeRange = JSON.parse(JSON.stringify(timeRange));
 
@@ -168,15 +172,15 @@
 
         }
 
-        function goTo(place) {
+        function goTo(location) {
             
-            var coordinate = place.coordinates;
-            var zoomLevel = place.zoomLevel;
+            var coordinates = location.coordinates;
+            var zoomLevel = location.zoomLevel;
 
             if (!zoomLevel) {
                 zoomLevel = mymap.getZoom();
             }
-            mymap.setView([coordinates.latitud, coordinates.longitud], zoomLevel);
+            mymap.setView([coordinates.latitude, coordinates.longitude], zoomLevel);
         }
 
         function updateTimeRange(timeRange) {
@@ -197,7 +201,7 @@
 
         function addPokemonMarker(pokemon) {
 
-            var rootIconUrl = dataService.getApiEndpointURL() + 'api/pokemon/id/' + pokemon.pokemonId + '/icon';
+            var rootIconUrl = dataService.getApiEndpointURL() + '/api/pokemon/id/' + pokemon.pokemonId + '/icon';
 
             var icon = new PokemonIcon({iconUrl: rootIconUrl});
             var coordinates = L.latLng(pokemon.location.coordinates[1], pokemon.location.coordinates[0]);
@@ -236,7 +240,7 @@
                 var locationTo = location.to.lng + ',' + location.to.lat;
 
                 var xhr = new XMLHttpRequest();
-                var url = apiEndpoint + 'api/pokemon/sighting/coordinates/from/' + locationFrom + '/to/' + locationTo;
+                var url = apiEndpoint + '/api/pokemon/sighting/coordinates/from/' + locationFrom + '/to/' + locationTo;
                 xhr.open("GET", url, true);
                 xhr.onreadystatechange = function () {
 
