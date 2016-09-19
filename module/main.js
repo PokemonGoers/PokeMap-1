@@ -1,6 +1,6 @@
 'use strict';
 
-var L = require('leaflet');
+// var L = require('leaflet');
 
 // options - {
 //     coordinates: {       // optional
@@ -26,7 +26,7 @@ var L = require('leaflet');
         if (!coordinates) {
 
             coordinates = {
-                latitude: 48.1351,
+                latitude:  48.1351,
                 longitude: 11.5820
             };
 
@@ -48,12 +48,12 @@ var L = require('leaflet');
             tileLayer = 'http://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png';
             tileLayerOptions = {
                 attribution: '' +
-                'JS16 <a href="https://github.com/PokemonGoers/PokeMap-1">PokeMap</a>, ' +
-                'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> ' +
-                'contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-                'Imagery © <a href="http://thunderforest.com">Thunderforest/OpenCycleMap</a>, ' +
-                'Pokemon Images © <a href="http://pokemondb.net/">Pokémon Database</a>',
-                maxZoom: 18
+                             'JS16 <a href="https://github.com/PokemonGoers/PokeMap-1">PokeMap</a>, ' +
+                             'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> ' +
+                             'contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                             'Imagery © <a href="http://thunderforest.com">Thunderforest/OpenCycleMap</a>, ' +
+                             'Pokemon Images © <a href="http://pokemondb.net/">Pokémon Database</a>',
+                maxZoom:     18
             };
         }
 
@@ -75,6 +75,7 @@ var L = require('leaflet');
         function initMap() {
 
             mymap = L.map(htmlElement);
+            initStyles(htmlElement);
             L.tileLayer(tileLayer, tileLayerOptions).addTo(mymap);
             self.goTo({coordinates: coordinates, zoomLevel: zoomLevel});
             pokemonLayer = L.layerGroup([]).addTo(mymap);
@@ -90,7 +91,7 @@ var L = require('leaflet');
                 fireEvent('moveend', {
 
                     latlng: latlng,
-                    zoom: zoom
+                    zoom:   zoom
 
                 });
             });
@@ -151,16 +152,47 @@ var L = require('leaflet');
 
         }
 
+        function initStyles(mapId) {
+
+            var styles = '<style>' +
+                         '#mapid .pokemon-details-popup {' +
+                         'text-align: center;' +
+                         'width: 300px; }' +
+                         '#mapid .pokemon-details-popup .pokemon-image {' +
+                         'vertical-align: top;' +
+                         'float: left;}' +
+                         '#mapid .pokemon-details-popup .pokemon-name {' +
+                         'display: inline-block;' +
+                         'margin-right: 15px;}' +
+                         '#mapid .pokemon-details-popup .details-block {' +
+                         'text-align: left;}' +
+                         '#mapid .pokemon-details-popup .details-attribute-name {' +
+                         'font-weight: bold;' +
+                         'padding-left: 5px;' +
+                         'padding-right: 10px;' +
+                         'font-size: 1.2em;}' +
+                         '#mapid .pokemon-details-popup .details-attribute-value {' +
+                         'float: right;' +
+                         'padding-top: 0.2em;}' +
+                         '</style>';
+
+            styles = styles.replace(new RegExp('mapid', 'g'), mapId);
+
+            document.write(styles);
+        }
+
         function updatePoints() {
 
             var bounds = {
                 from: mymap.getBounds().getNorthWest(),
-                to: mymap.getBounds().getSouthEast()
+                to:   mymap.getBounds().getSouthEast()
             };
 
             dataService.getData(bounds, function (response) {
 
                 if (response.data && response.data.length) {
+
+                    response.data = response.data.slice(0, 20);
 
                     pokemonLayer.clearLayers();
 
@@ -173,7 +205,7 @@ var L = require('leaflet');
         }
 
         function goTo(location) {
-            
+
             var coordinates = location.coordinates;
             var zoomLevel = location.zoomLevel;
 
@@ -192,16 +224,78 @@ var L = require('leaflet');
 
         var PokemonIcon = L.Icon.extend({
             options: {
-                iconSize: [30, 30],
-                shadowSize: [50, 64],
+                iconSize:     [30, 30],
+                shadowSize:   [50, 64],
                 shadowAnchor: [4, 62],
-                popupAnchor: [-3, -76]
+                popupAnchor:  [-3, -76]
             }
         });
 
+        function generateDetailsBlock(attributeName, attributeValue) {
+
+            return '<div class="details-block">' +
+            '<span class="details-attribute-name">' + attributeName + '</span>' +
+            '<span class="details-attribute-value">' + attributeValue + '</span>' +
+            '</div>';
+
+        }
+
+        function createDetailsPopupContent(pokemon) {
+
+            var pokemonImage = 'http://pokedata.c4e3f8c7.svc.dockerapp.io:65014/api/pokemon/id/' + pokemon.pokemonId + '/icon';
+            var pokemonName = pokemon.name;
+
+            var popupContent = '<div class="pokemon-details-popup">';
+
+            var popupHeader = '<img class="pokemon-image" src="' + pokemonImage + '" alt="" height="50">' +
+                   '<h2 class="pokemon-name">' + pokemonName + '</h2>' +
+                   '<hr/>';
+
+            // Evolution
+            var previousEvolutions = pokemon.previousEvolutions.map(function(evol) { return evol.name; });
+            var nextEvolutions = pokemon.nextEvolutions.map(function(evol) { return evol.name; });
+            var evolution = previousEvolutions.concat([pokemonName], nextEvolutions).join(' &rarr; ');
+            var pokemonEvolution = evolution ? generateDetailsBlock('Evolution', evolution) : '';
+            
+            // Type
+            var type = pokemon.types;
+            var pokemonType = generateDetailsBlock('Types', type);
+            
+            // Classification
+            var classification = pokemon.classification;
+            var pokemonClassification = generateDetailsBlock('Classification', classification);
+            
+            // Special Attacks
+            var specialAttacks = pokemon.specialAttacks.map(function(spAttack) { return spAttack.name; });
+            var pokemonSpecialAttacks = generateDetailsBlock('Special Attacks', specialAttacks);
+
+            // Fast Attacks
+            var fastAttacks = pokemon.fastAttacks.map(function(fastAttack) { return fastAttack.name; });
+            var pokemonFastAttacks = generateDetailsBlock('Fast Attacks', fastAttacks);
+
+            // Weakness
+            var weakness = pokemon.weakness;
+            var pokemonWeakness = generateDetailsBlock('Weakness', weakness);
+
+
+            popupContent = popupContent + popupHeader + pokemonEvolution + pokemonType + pokemonClassification +
+                            pokemonFastAttacks + pokemonSpecialAttacks + pokemonWeakness;
+
+            popupContent += '</div>';
+
+            return popupContent;
+
+        }
+
+        function contructIconUrl(pokemonId) {
+
+            return dataService.getApiEndpointURL() + '/api/pokemon/id/' + pokemonId + '/icon';
+
+        }
+
         function addPokemonMarker(pokemon) {
 
-            var rootIconUrl = dataService.getApiEndpointURL() + '/api/pokemon/id/' + pokemon.pokemonId + '/icon';
+            var rootIconUrl = contructIconUrl(pokemon.pokemonId);
 
             var icon = new PokemonIcon({iconUrl: rootIconUrl});
             var coordinates = L.latLng(pokemon.location.coordinates[1], pokemon.location.coordinates[0]);
@@ -209,18 +303,27 @@ var L = require('leaflet');
                 icon: icon
             });
 
-            marker.addTo(pokemonLayer);
-            //marker.addTo(mymap).on('click', displayBasicPokeData);
+            marker.addTo(pokemonLayer).on('click', displayBasicPokeData);
 
-            function displayBasicPokeData(event) {
+            function displayBasicPokeData() {
+
 
                 //TODO: check if the pokemonId of the clicked pokemon can be taken like that or not (probably not :))
-                getPokemonDetailsById(pokemon.pokemonId, function (response) {
+                dataService.getPokemonDetailsById(pokemon.pokemonId, function (response) {
 
+                    var popup = L.popup({
+                        offset: new L.Point(0, 100)
+                    }).setContent(createDetailsPopupContent(response.data[0]));
+
+                    var customOptions = {
+                        'maxWidth': '500'
+                    }
+
+                    marker.bindPopup(popup, customOptions).openPopup();
 
                 });
 
-            };
+            }
 
             return marker;
 
@@ -259,7 +362,6 @@ var L = require('leaflet');
 
             },
 
-
             //supposing that we could get the predicted data through the same api
             getPredictedData: function (location, callback) {
 
@@ -289,7 +391,7 @@ var L = require('leaflet');
             getPokemonDetailsById: function (id, callback) {
 
                 var xhr = new XMLHttpRequest();
-                var url = apiEndpoint + 'api/pokemon/id/' + id;
+                var url = apiEndpoint + '/api/pokemon/id/' + id;
                 xhr.open("GET", url, true);
                 xhr.onreadystatechange = function () {
 
@@ -383,6 +485,11 @@ var L = require('leaflet');
                 }
             }
 
+        };
+
+        self.getPokemonDetailsById = function (id, callback) {
+
+            dbService.getPokemonDetailsById(id, callback);
         };
 
     }
