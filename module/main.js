@@ -1,6 +1,6 @@
 'use strict';
 
-// var L = require('leaflet');
+var L = require('leaflet');
 
 // options - {
 //     coordinates: {       // optional
@@ -193,7 +193,7 @@
 
                 if (response.data && response.data.length) {
 
-                    response.data = response.data.slice(0, 20);
+                    // response.data = response.data.slice(0, 20);
 
                     pokemonLayer.clearLayers();
 
