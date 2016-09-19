@@ -165,7 +165,8 @@
                          'display: inline-block;' +
                          'margin-right: 15px;}' +
                          '#mapid .pokemon-details-popup .details-block {' +
-                         'text-align: left;}' +
+                         'text-align: left;' +
+                         'margin-top: 4px;}' +
                          '#mapid .pokemon-details-popup .details-attribute-name {' +
                          'font-weight: bold;' +
                          'padding-left: 5px;' +
@@ -258,7 +259,7 @@
             var pokemonEvolution = evolution ? generateDetailsBlock('Evolution', evolution) : '';
             
             // Type
-            var type = pokemon.types;
+            var type = pokemon.types.join(', ');
             var pokemonType = generateDetailsBlock('Types', type);
             
             // Classification
@@ -266,15 +267,15 @@
             var pokemonClassification = generateDetailsBlock('Classification', classification);
             
             // Special Attacks
-            var specialAttacks = pokemon.specialAttacks.map(function(spAttack) { return spAttack.name; });
+            var specialAttacks = pokemon.specialAttacks.map(function(spAttack) { return spAttack.name; }).join(', ');
             var pokemonSpecialAttacks = generateDetailsBlock('Special Attacks', specialAttacks);
 
             // Fast Attacks
-            var fastAttacks = pokemon.fastAttacks.map(function(fastAttack) { return fastAttack.name; });
+            var fastAttacks = pokemon.fastAttacks.map(function(fastAttack) { return fastAttack.name; }).join(', ');
             var pokemonFastAttacks = generateDetailsBlock('Fast Attacks', fastAttacks);
 
             // Weakness
-            var weakness = pokemon.weakness;
+            var weakness = pokemon.weakness.join(', ');
             var pokemonWeakness = generateDetailsBlock('Weakness', weakness);
 
 
