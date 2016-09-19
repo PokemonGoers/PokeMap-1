@@ -1,6 +1,6 @@
 'use strict';
 
-// var L = require('leaflet');
+var L = require('leaflet');
 
 // options - {
 //     coordinates: {       // optional
@@ -165,7 +165,8 @@
                          'display: inline-block;' +
                          'margin-right: 15px;}' +
                          '#mapid .pokemon-details-popup .details-block {' +
-                         'text-align: left;}' +
+                         'text-align: left;' +
+                         'margin-top: 5px;}' +
                          '#mapid .pokemon-details-popup .details-attribute-name {' +
                          'font-weight: bold;' +
                          'padding-left: 5px;' +
@@ -192,7 +193,7 @@
 
                 if (response.data && response.data.length) {
 
-                    response.data = response.data.slice(0, 20);
+                    // response.data = response.data.slice(0, 20);
 
                     pokemonLayer.clearLayers();
 
