@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-// var L = require('leaflet');
+var L = require('leaflet');
 
 // options - {
 //     coordinates: {       // optional
@@ -16,21 +16,13 @@
 
     function PokeMap(htmlElement, options) {
 
+        var fitWorld = !options.coordinates;
         var coordinates = options.coordinates;
         var zoomLevel = options.zoomLevel;
         var timeRange = options.timeRange;
         var apiEndpoint = options.apiEndpoint;
         var tileLayer = options.tileLayer;
         var tileLayerOptions;
-
-        if (!coordinates) {
-
-            coordinates = {
-                latitude:  48.1351,
-                longitude: 11.5820
-            };
-
-        }
 
         if (!zoomLevel) {
             zoomLevel = 10;
@@ -77,7 +69,17 @@
             mymap = L.map(htmlElement);
             initStyles(htmlElement);
             L.tileLayer(tileLayer, tileLayerOptions).addTo(mymap);
-            self.goTo({coordinates: coordinates, zoomLevel: zoomLevel});
+
+            if(fitWorld) {
+
+                mymap.fitWorld();
+
+            } else {
+
+                self.goTo({coordinates: coordinates, zoomLevel: zoomLevel});
+
+            }
+
             pokemonLayer = L.layerGroup([]).addTo(mymap);
 
             mymap.on('moveend', function (event) {
@@ -193,7 +195,7 @@
 
                 if (response.data && response.data.length) {
 
-                    // response.data = response.data.slice(0, 20);
+                    response.data = response.data.slice(0, 20);
 
                     pokemonLayer.clearLayers();
 
