@@ -6,3 +6,35 @@ html, body, #mapid {
     margin: 0;
     padding: 0;
 }
+
+.custom .leaflet-popup-content-wrapper .pokemon-details-popup {
+    text-align: center;
+    width: 300px;
+}
+
+.custom .leaflet-popup-content-wrapper .pokemon-details-popup .pokemon-image {
+    vertical-align: top;
+    float: left;
+}
+
+.custom .leaflet-popup-content-wrapper .pokemon-details-popup .pokemon-name {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.custom .leaflet-popup-content-wrapper .pokemon-details-popup .details-block {
+    text-align: left;
+    margin-top: 5px;
+}
+
+.custom .leaflet-popup-content-wrapper .pokemon-details-popup .details-attribute-name {
+    font-weight: bold;
+    padding-left: 5px;
+    padding-right: 10px;
+    font-size: 1.2em;
+}
+
+.custom .leaflet-popup-content-wrapper .pokemon-details-popup .details-attribute-value {
+    float: right;
+    padding-top: 0.2em;
+}

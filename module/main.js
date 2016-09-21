@@ -67,7 +67,6 @@ var L = require('leaflet');
         function initMap() {
 
             mymap = L.map(htmlElement);
-            initStyles(htmlElement);
             L.tileLayer(tileLayer, tileLayerOptions).addTo(mymap);
 
             if(fitWorld) {
@@ -152,36 +151,6 @@ var L = require('leaflet');
 
             });
 
-        }
-
-        function initStyles(mapId) {
-
-            var styles = '<style>' +
-                         '#mapid .pokemon-details-popup {' +
-                         'text-align: center;' +
-                         'width: 300px; }' +
-                         '#mapid .pokemon-details-popup .pokemon-image {' +
-                         'vertical-align: top;' +
-                         'float: left;}' +
-                         '#mapid .pokemon-details-popup .pokemon-name {' +
-                         'display: inline-block;' +
-                         'margin-right: 15px;}' +
-                         '#mapid .pokemon-details-popup .details-block {' +
-                         'text-align: left;' +
-                         'margin-top: 5px;}' +
-                         '#mapid .pokemon-details-popup .details-attribute-name {' +
-                         'font-weight: bold;' +
-                         'padding-left: 5px;' +
-                         'padding-right: 10px;' +
-                         'font-size: 1.2em;}' +
-                         '#mapid .pokemon-details-popup .details-attribute-value {' +
-                         'float: right;' +
-                         'padding-top: 0.2em;}' +
-                         '</style>';
-
-            styles = styles.replace(new RegExp('mapid', 'g'), mapId);
-
-            document.write(styles);
         }
 
         function updatePoints() {
@@ -319,7 +288,8 @@ var L = require('leaflet');
                     }).setContent(createDetailsPopupContent(response.data[0]));
 
                     var customOptions = {
-                        'maxWidth': '500'
+                        'maxWidth': '500',
+                        'className' : 'custom'
                     }
 
                     marker.bindPopup(popup, customOptions).openPopup();
