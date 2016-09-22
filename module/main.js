@@ -1,6 +1,7 @@
 "use strict";
 
 var L = require('leaflet');
+require('../style.css');
 
 // options - {
 //     coordinates: {       // optional
