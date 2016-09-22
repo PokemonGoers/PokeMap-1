@@ -7,6 +7,10 @@ var options = {
 
 var pokemap = new PokeMap(htmlElement, options);
 
-pokemap.on('moveend', function (event) {
-    // console.log(event.latlng.lat + ' ' + event.latlng.lng  + ' ' + event.zoom);
+pokemap.on('move', function (event) {
+    console.log(event.coordinates.latitude + ' ' + event.coordinates.longitude  + ' ' + event.zoomLevel);
+});
+
+pokemap.on('click', function (pokemonId) {
+    console.log('pokemon id - ' + pokemonId);
 });
