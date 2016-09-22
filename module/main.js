@@ -82,7 +82,7 @@ require('../style.css');
 
             pokemonLayer = L.layerGroup([]).addTo(mymap);
 
-            mymap.on('moveend', function (event) {
+            var moveCallback = function (event) {
 
 
                 var latlng = event.target.getCenter();
@@ -90,13 +90,19 @@ require('../style.css');
 
                 updatePoints();
 
-                fireEvent('moveend', {
+                fireEvent('move', {
 
-                    latlng: latlng,
-                    zoom:   zoom
+                    coordinates: {
+                        latitude: latlng.lat,
+                        longitude: latlng.lng
+                    },
+                    zoomLevel:   zoom
 
                 });
-            });
+            };
+
+            mymap.on('moveend', moveCallback);
+            mymap.on('dragend', moveCallback);
 
             updatePoints();
 
@@ -204,62 +210,6 @@ require('../style.css');
             }
         });
 
-        function generateDetailsBlock(attributeName, attributeValue) {
-
-            return '<div class="details-block">' +
-            '<span class="details-attribute-name">' + attributeName + '</span>' +
-            '<span class="details-attribute-value">' + attributeValue + '</span>' +
-            '</div>';
-
-        }
-
-        function createDetailsPopupContent(pokemon) {
-
-            var pokemonImage = 'http://pokedata.c4e3f8c7.svc.dockerapp.io:65014/api/pokemon/id/' + pokemon.pokemonId + '/icon';
-            var pokemonName = pokemon.name;
-
-            var popupContent = '<div class="pokemon-details-popup">';
-
-            var popupHeader = '<img class="pokemon-image" src="' + pokemonImage + '" alt="" height="50">' +
-                   '<h2 class="pokemon-name">' + pokemonName + '</h2>' +
-                   '<hr/>';
-
-            // Evolution
-            var previousEvolutions = pokemon.previousEvolutions.map(function(evol) { return evol.name; });
-            var nextEvolutions = pokemon.nextEvolutions.map(function(evol) { return evol.name; });
-            var evolution = previousEvolutions.concat([pokemonName], nextEvolutions).join(' &rarr; ');
-            var pokemonEvolution = evolution ? generateDetailsBlock('Evolution', evolution) : '';
-            
-            // Type
-            var type = pokemon.types;
-            var pokemonType = generateDetailsBlock('Types', type);
-            
-            // Classification
-            var classification = pokemon.classification;
-            var pokemonClassification = generateDetailsBlock('Classification', classification);
-            
-            // Special Attacks
-            var specialAttacks = pokemon.specialAttacks.map(function(spAttack) { return spAttack.name; });
-            var pokemonSpecialAttacks = generateDetailsBlock('Special Attacks', specialAttacks);
-
-            // Fast Attacks
-            var fastAttacks = pokemon.fastAttacks.map(function(fastAttack) { return fastAttack.name; });
-            var pokemonFastAttacks = generateDetailsBlock('Fast Attacks', fastAttacks);
-
-            // Weakness
-            var weakness = pokemon.weakness;
-            var pokemonWeakness = generateDetailsBlock('Weakness', weakness);
-
-
-            popupContent = popupContent + popupHeader + pokemonEvolution + pokemonType + pokemonClassification +
-                            pokemonFastAttacks + pokemonSpecialAttacks + pokemonWeakness;
-
-            popupContent += '</div>';
-
-            return popupContent;
-
-        }
-
         function contructIconUrl(pokemonId) {
 
             return dataService.getApiEndpointURL() + '/api/pokemon/id/' + pokemonId + '/icon';
@@ -276,28 +226,7 @@ require('../style.css');
                 icon: icon
             });
 
-            marker.addTo(pokemonLayer).on('click', displayBasicPokeData);
-
-            function displayBasicPokeData() {
-
-
-                //TODO: check if the pokemonId of the clicked pokemon can be taken like that or not (probably not :))
-                dataService.getPokemonDetailsById(pokemon.pokemonId, function (response) {
-
-                    var popup = L.popup({
-                        offset: new L.Point(0, 100)
-                    }).setContent(createDetailsPopupContent(response.data[0]));
-
-                    var customOptions = {
-                        'maxWidth': '500',
-                        'className' : 'custom'
-                    }
-
-                    marker.bindPopup(popup, customOptions).openPopup();
-
-                });
-
-            }
+            marker.addTo(pokemonLayer).on('click', fireEvent.bind({}, 'click', pokemon.pokemonId));
 
             return marker;
 
