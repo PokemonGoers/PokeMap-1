@@ -1,6 +1,7 @@
 "use strict";
 
 var L = require('leaflet');
+require('leaflet-routing-machine');
 require('../style.css');
 
 // options - {
@@ -54,6 +55,8 @@ require('../style.css');
 
         this.goTo = goTo;
         this.updatePoints = updatePoints;
+        this.navigate = navigate;
+        this.clearRoutes = clearRoutes;
         this.on = on;
         self.timeRange = JSON.parse(JSON.stringify(timeRange));
 
@@ -61,6 +64,7 @@ require('../style.css');
         var eventHandlers = {};
         var mymap = null;
         var pokemonLayer = null;
+        var routeLayer = null;
         var dataService = new DataService(apiEndpoint);
 
         initMap();
@@ -69,6 +73,17 @@ require('../style.css');
 
             mymap = L.map(htmlElement);
             L.tileLayer(tileLayer, tileLayerOptions).addTo(mymap);
+
+            var start = {
+                lat: 11,
+                lng: 11
+            };
+
+            var destination = {
+                lat: 44,
+                lng: 44
+            };
+
 
             if(fitWorld) {
 
@@ -81,6 +96,12 @@ require('../style.css');
             }
 
             pokemonLayer = L.layerGroup([]).addTo(mymap);
+            routeLayer = L.layerGroup([]).addTo(mymap);
+
+            navigate(start, destination);
+            //clearRoutes();
+
+
 
             var moveCallback = function (event) {
 
@@ -105,6 +126,7 @@ require('../style.css');
             mymap.on('dragend', moveCallback);
 
             updatePoints();
+
 
         }
 
@@ -192,6 +214,27 @@ require('../style.css');
                 zoomLevel = mymap.getZoom();
             }
             mymap.setView([coordinates.latitude, coordinates.longitude], zoomLevel);
+        }
+
+        function navigate(start, destination){
+
+            debugger;
+            var route = L.Routing.control({
+                waypoints: [
+                    L.latLng(start.lat, start.lng),
+                    L.latLng(destination.lat, destination.lng)
+                ]
+            });
+
+            route.addTo(routeLayer);
+
+        }
+
+        function clearRoutes(){
+
+            debugger;
+            routeLayer.clearLayers();
+
         }
 
         function updateTimeRange(timeRange) {
