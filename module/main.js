@@ -65,6 +65,7 @@ require('../style.css');
         var mymap = null;
         var pokemonLayer = null;
         var routeLayer = null;
+        var route;
         var dataService = new DataService(apiEndpoint);
 
         initMap();
@@ -73,6 +74,8 @@ require('../style.css');
 
             mymap = L.map(htmlElement);
             L.tileLayer(tileLayer, tileLayerOptions).addTo(mymap);
+            L.Icon.Default.imagePath = '/node_modules/leaflet/dist/images';
+
 
             var start = {
                 lat: 11,
@@ -82,6 +85,16 @@ require('../style.css');
             var destination = {
                 lat: 44,
                 lng: 44
+            };
+
+            var start1 = {
+                lat: 22,
+                lng: 22
+            };
+
+            var destination1 = {
+                lat: 55,
+                lng: 45
             };
 
 
@@ -99,7 +112,10 @@ require('../style.css');
             routeLayer = L.layerGroup([]).addTo(mymap);
 
             navigate(start, destination);
+            debugger;
+            setTimeout(function(){ console.log(123); navigate(start1, destination1); }, 3000);
             //clearRoutes();
+
 
 
 
@@ -218,22 +234,30 @@ require('../style.css');
 
         function navigate(start, destination){
 
-            debugger;
-            var route = L.Routing.control({
+            if(route && route.removeFrom) {
+
+                route.removeFrom(mymap);
+
+            }
+
+            route = L.Routing.control({
                 waypoints: [
                     L.latLng(start.lat, start.lng),
                     L.latLng(destination.lat, destination.lng)
                 ]
             });
 
-            route.addTo(routeLayer);
+            route.addTo(mymap);
 
         }
 
         function clearRoutes(){
 
-            debugger;
-            routeLayer.clearLayers();
+            if(route && route.removeFrom) {
+
+                route.removeFrom(mymap);
+
+            }
 
         }
 
