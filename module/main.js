@@ -113,7 +113,7 @@ require('../style.css');
 
             navigate(start, destination);
             debugger;
-            setTimeout(function(){ console.log(123); navigate(start1, destination1); }, 3000);
+            //setTimeout(function(){ console.log(123); navigate(start1, destination1); }, 3000);
             //clearRoutes();
 
 
@@ -279,7 +279,7 @@ require('../style.css');
 
         function contructIconUrl(pokemonId) {
 
-            return dataService.getApiEndpointURL() + '/api/pokemon/id/' + pokemonId + '/icon';
+            return dataService.getApiEndpointURL() + '/api/pokemon/id/' + pokemonId + '/icon/gif';
 
         }
 
