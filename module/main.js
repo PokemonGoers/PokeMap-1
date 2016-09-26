@@ -244,7 +244,8 @@ require('../style.css');
                 waypoints: [
                     L.latLng(start.lat, start.lng),
                     L.latLng(destination.lat, destination.lng)
-                ]
+                ],
+                createMarker: function() { return null; } //removes the marker (we will use only pokemon icons as markers
             });
 
             route.addTo(mymap);
