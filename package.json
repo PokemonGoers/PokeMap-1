@@ -4,7 +4,7 @@
   "description": "Project D Group 7, JavaScript Seminar WS16, Rostlab",
   "main": "pokemap.bundle.js",
   "scripts": {
-    "postinstall": "browserify module/main.js -o pokemap.bundle.js -t es6ify -t browserify-css --standalone PokeMap"
+    "postinstall": "browserify module/main.js -o pokemap.bundle.js -t es6ify -g browserify-css --standalone PokeMap"
   },
   "keywords": [
     "pokemap"
@@ -23,5 +23,8 @@
     "browserify": "^13.1.0",
     "browserify-css": "^0.9.2",
     "leaflet": "^0.7.7"
+  },
+  "devDependencies": {
+    "es6ify": "1.6.0"
   }
 }

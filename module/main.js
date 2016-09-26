@@ -1,6 +1,7 @@
 "use strict";
 
 var L = require('leaflet');
+require('../node_modules/leaflet/dist/leaflet.css')
 require('../style.css');
 
 // options - {
@@ -212,7 +213,7 @@ require('../style.css');
 
         function contructIconUrl(pokemonId) {
 
-            return dataService.getApiEndpointURL() + '/api/pokemon/id/' + pokemonId + '/icon';
+            return dataService.getApiEndpointURL() + '/api/pokemon/id/' + pokemonId + '/icon/gif';
 
         }
 
