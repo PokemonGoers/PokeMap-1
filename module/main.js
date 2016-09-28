@@ -227,7 +227,7 @@ require('../style.css');
                 icon: icon
             });
 
-            marker.addTo(pokemonLayer).on('click', fireEvent.bind({}, 'click', pokemon.pokemonId));
+            marker.addTo(pokemonLayer).on('click', fireEvent.bind({}, 'click', pokemon));
 
             return marker;
 
