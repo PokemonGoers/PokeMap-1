@@ -2,6 +2,7 @@
 
 var L = require('leaflet');
 require('leaflet-routing-machine');
+require('leaflet-control-geocoder');
 require('../style.css');
 
 // options - {
@@ -245,6 +246,8 @@ require('../style.css');
                     L.latLng(start.lat, start.lng),
                     L.latLng(destination.lat, destination.lng)
                 ],
+                collapsible: true,
+                geocoder: L.Control.Geocoder.nominatim(),
                 createMarker: function() { return null; } //removes the marker (we will use only pokemon icons as markers
             });
 
