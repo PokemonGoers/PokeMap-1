@@ -1,7 +1,7 @@
 "use strict";
 
 var L = require('leaflet');
-require('../node_modules/leaflet/dist/leaflet.css')
+require('leaflet/dist/leaflet.css');
 require('../style.css');
 
 // options - {
