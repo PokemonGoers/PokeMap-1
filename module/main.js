@@ -3,6 +3,7 @@
 var L = require('leaflet');
 require('leaflet-routing-machine');
 require('leaflet-control-geocoder');
+require('leaflet/dist/leaflet.css');
 require('../style.css');
 
 // options - {
@@ -297,7 +298,7 @@ require('../style.css');
                 icon: icon
             });
 
-            marker.addTo(pokemonLayer).on('click', fireEvent.bind({}, 'click', pokemon.pokemonId));
+            marker.addTo(pokemonLayer).on('click', fireEvent.bind({}, 'click', pokemon));
 
             return marker;
 
