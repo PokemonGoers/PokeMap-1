@@ -28,6 +28,13 @@ require('../style.css');
         var tileLayer = options.tileLayer;
         var tileLayerOptions;
 
+        if (!coordinates) {
+            coordinates = { // Oktoberfest
+                latitude: 48.132100,
+                longitude: 11.546914
+            };
+        }
+
         if (!zoomLevel) {
             zoomLevel = 10;
         }
@@ -44,12 +51,12 @@ require('../style.css');
             tileLayer = 'http://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png';
             tileLayerOptions = {
                 attribution: '' +
-                             'JS16 <a href="https://github.com/PokemonGoers/PokeMap-1">PokeMap</a>, ' +
-                             'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> ' +
-                             'contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-                             'Imagery © <a href="http://thunderforest.com">Thunderforest/OpenCycleMap</a>, ' +
-                             'Pokemon Images © <a href="http://pokemondb.net/">Pokémon Database</a>',
-                maxZoom:     18
+                'JS16 <a href="https://github.com/PokemonGoers/PokeMap-1">PokeMap</a>, ' +
+                'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> ' +
+                'contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                'Imagery © <a href="http://thunderforest.com">Thunderforest/OpenCycleMap</a>, ' +
+                'Pokemon Images © <a href="http://pokemondb.net/">Pokémon Database</a>',
+                maxZoom: 18
             };
         }
 
@@ -100,7 +107,7 @@ require('../style.css');
             };
 
 
-            if(fitWorld) {
+            if (fitWorld) {
 
                 mymap.fitWorld();
 
@@ -119,8 +126,6 @@ require('../style.css');
             //clearRoutes();
 
 
-
-
             var moveCallback = function (event) {
 
 
@@ -135,7 +140,7 @@ require('../style.css');
                         latitude: latlng.lat,
                         longitude: latlng.lng
                     },
-                    zoomLevel:   zoom
+                    zoomLevel: zoom
 
                 });
             };
@@ -204,7 +209,7 @@ require('../style.css');
 
             var bounds = {
                 from: mymap.getBounds().getNorthWest(),
-                to:   mymap.getBounds().getSouthEast()
+                to: mymap.getBounds().getSouthEast()
             };
 
             dataService.getData(bounds, function (response) {
@@ -234,9 +239,9 @@ require('../style.css');
             mymap.setView([coordinates.latitude, coordinates.longitude], zoomLevel);
         }
 
-        function navigate(start, destination){
+        function navigate(start, destination) {
 
-            if(route && route.removeFrom) {
+            if (route && route.removeFrom) {
 
                 route.removeFrom(mymap);
 
@@ -249,16 +254,18 @@ require('../style.css');
                 ],
                 collapsible: true,
                 geocoder: L.Control.Geocoder.nominatim(),
-                createMarker: function() { return null; } //removes the marker (we will use only pokemon icons as markers
+                createMarker: function () {
+                    return null;
+                } //removes the marker (we will use only pokemon icons as markers
             });
 
             route.addTo(mymap);
 
         }
 
-        function clearRoutes(){
+        function clearRoutes() {
 
-            if(route && route.removeFrom) {
+            if (route && route.removeFrom) {
 
                 route.removeFrom(mymap);
 
@@ -275,10 +282,10 @@ require('../style.css');
 
         var PokemonIcon = L.Icon.extend({
             options: {
-                iconSize:     [30, 30],
-                shadowSize:   [50, 64],
+                iconSize: [30, 30],
+                shadowSize: [50, 64],
                 shadowAnchor: [4, 62],
-                popupAnchor:  [-3, -76]
+                popupAnchor: [-3, -76]
             }
         });
 
