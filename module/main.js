@@ -18,8 +18,15 @@ require('../style.css');
 
     function PokeMap(htmlElement, options) {
 
-        var fitWorld = !options.coordinates;
         var coordinates = options.coordinates;
+
+        if (!coordinates) {
+            coordinates = {
+                latitude:  48.132100,
+                longitude: 11.546914
+            }
+        }
+
         var zoomLevel = options.zoomLevel;
         var timeRange = options.timeRange;
         var apiEndpoint = options.apiEndpoint;
@@ -27,7 +34,7 @@ require('../style.css');
         var tileLayerOptions;
 
         if (!zoomLevel) {
-            zoomLevel = 10;
+            zoomLevel = 15;
         }
 
         if (!timeRange) {
@@ -71,15 +78,7 @@ require('../style.css');
             mymap = L.map(htmlElement);
             L.tileLayer(tileLayer, tileLayerOptions).addTo(mymap);
 
-            if(fitWorld) {
-
-                mymap.fitWorld();
-
-            } else {
-
-                self.goTo({coordinates: coordinates, zoomLevel: zoomLevel});
-
-            }
+            self.goTo({coordinates: coordinates, zoomLevel: zoomLevel});
 
             pokemonLayer = L.layerGroup([]).addTo(mymap);
 
@@ -94,7 +93,7 @@ require('../style.css');
                 fireEvent('move', {
 
                     coordinates: {
-                        latitude: latlng.lat,
+                        latitude:  latlng.lat,
                         longitude: latlng.lng
                     },
                     zoomLevel:   zoom
