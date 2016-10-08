@@ -13,9 +13,15 @@ function DataService(apiEndpoint, socketEndPoint) {
             var locationTo = location.to.lng + ',' + location.to.lat;
 
             var xhr = new XMLHttpRequest();
+
             var url = apiEndpoint + '/api/pokemon/sighting/coordinates/from/' + locationFrom + '/to/' + locationTo;
             xhr.open("GET", url, true);
+
+            showLoader && showLoader();
+
             xhr.onreadystatechange = function () {
+
+                hideLoader && hideLoader();
 
                 if (xhr.readyState === 4 && xhr.status === 200) {
 
@@ -41,7 +47,12 @@ function DataService(apiEndpoint, socketEndPoint) {
             var xhr = new XMLHttpRequest();
             var url = apiEndpoint + 'api/pokemon/sighting/coordinates/from/' + locationFrom + '/to/' + locationTo;
             xhr.open("GET", url, true);
+
+            showLoader && showLoader();
+
             xhr.onreadystatechange = function () {
+
+                hideLoader && hideLoader();
 
                 if (xhr.readyState === 4 && xhr.status === 200) {
 

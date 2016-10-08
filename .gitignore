@@ -80,4 +80,5 @@ CHANGELOG.md
 node_modules
 # Optional Idea IDE
 .idea
-/pokemap.bundle.js
+
+pokemap.bundle.js
