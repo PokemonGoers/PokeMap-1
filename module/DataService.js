@@ -1,6 +1,6 @@
 var io = require('socket.io-client');
 
-function DataService(apiEndpoint, socketEndPoint) {
+function DataService(apiEndpoint, socketEndPoint, showLoader, hideLoader) {
 
     var self = this;
     var twitterData = new twitterService();
@@ -133,7 +133,7 @@ function DataService(apiEndpoint, socketEndPoint) {
         var socket = io.connect(socketEndPoint);
 
         socket.on('connection', function() {
-            console.log(arguments);
+            console.log('Socket connection is up');
         });
 
         socket.on('mobs', function() {
