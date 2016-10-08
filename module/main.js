@@ -46,7 +46,7 @@ require('../style.css');
         }
 
         if (!tileLayer) {
-            tileLayer = 'http://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png';
+            tileLayer = 'http://tile-c.openstreetmap.fr/hot/{z}/{x}/{y}.png';
             tileLayerOptions = {
                 attribution: '' +
                              'JS16 <a href="https://github.com/PokemonGoers/PokeMap-1">PokeMap</a>, ' +
