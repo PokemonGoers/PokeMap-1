@@ -8,34 +8,82 @@ html, body, #mapid {
     padding: 0;
 }
 
-/*.custom .leaflet-popup-content-wrapper .pokemon-details-popup {*/
-    /*text-align: center;*/
-    /*width: 300px;*/
-/*}*/
+#pickachu-data-loading {
 
-/*.custom .leaflet-popup-content-wrapper .pokemon-details-popup .pokemon-image {*/
-    /*vertical-align: top;*/
-    /*float: left;*/
-/*}*/
+    position: fixed;
+    width: 20vw;
+    top: 40vh;
+    bottom: 40vh;
+    left: 40vw;
+    right: 40vw;
+    opacity: 0.9;
 
-/*.custom .leaflet-popup-content-wrapper .pokemon-details-popup .pokemon-name {*/
-    /*display: inline-block;*/
-    /*margin-right: 15px;*/
-/*}*/
+    animation-name: pulse_animation;
+    animation-duration: 700ms;
+    transform-origin: 70% 70%;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    display: none;
 
-/*.custom .leaflet-popup-content-wrapper .pokemon-details-popup .details-block {*/
-    /*text-align: left;*/
-    /*margin-top: 5px;*/
-/*}*/
+}
 
-/*.custom .leaflet-popup-content-wrapper .pokemon-details-popup .details-attribute-name {*/
-    /*font-weight: bold;*/
-    /*padding-left: 5px;*/
-    /*padding-right: 10px;*/
-    /*font-size: 1.2em;*/
-/*}*/
+#pickachu-data-loading.visible {
+    display: inline;
+}
 
-/*.custom .leaflet-popup-content-wrapper .pokemon-details-popup .details-attribute-value {*/
-    /*float: right;*/
-    /*padding-top: 0.2em;*/
-/*}*/
+
+@-webkit-keyframes pulse_animation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@-moz-keyframes pulse_animation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@-o-keyframes pulse_animation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@-ms-keyframes pulse_animation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes pulse_animation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
