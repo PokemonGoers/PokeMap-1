@@ -20,8 +20,15 @@ require('../style.css');
 
     function PokeMap(htmlElement, options) {
 
-        var fitWorld = !options.coordinates;
         var coordinates = options.coordinates;
+
+        if (!coordinates) {
+            coordinates = {
+                latitude:  48.132100,
+                longitude: 11.546914
+            }
+        }
+
         var zoomLevel = options.zoomLevel;
         var timeRange = options.timeRange;
         var apiEndpoint = options.apiEndpoint;
@@ -29,7 +36,7 @@ require('../style.css');
         var tileLayerOptions;
 
         if (!zoomLevel) {
-            zoomLevel = 10;
+            zoomLevel = 15;
         }
 
         if (!timeRange) {
@@ -41,7 +48,7 @@ require('../style.css');
         }
 
         if (!tileLayer) {
-            tileLayer = 'http://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png';
+            tileLayer = 'http://tile-c.openstreetmap.fr/hot/{z}/{x}/{y}.png';
             tileLayerOptions = {
                 attribution: '' +
                              'JS16 <a href="https://github.com/PokemonGoers/PokeMap-1">PokeMap</a>, ' +
@@ -100,15 +107,7 @@ require('../style.css');
             };
 
 
-            if(fitWorld) {
-
-                mymap.fitWorld();
-
-            } else {
-
-                self.goTo({coordinates: coordinates, zoomLevel: zoomLevel});
-
-            }
+            self.goTo({coordinates: coordinates, zoomLevel: zoomLevel});
 
             pokemonLayer = L.layerGroup([]).addTo(mymap);
             routeLayer = L.layerGroup([]).addTo(mymap);
@@ -132,7 +131,7 @@ require('../style.css');
                 fireEvent('move', {
 
                     coordinates: {
-                        latitude: latlng.lat,
+                        latitude:  latlng.lat,
                         longitude: latlng.lng
                     },
                     zoomLevel:   zoom
