@@ -1,6 +1,8 @@
 "use strict";
 
 var L = require('leaflet');
+require('leaflet-routing-machine');
+require('leaflet-control-geocoder');
 require('leaflet/dist/leaflet.css');
 require('../style.css');
 
@@ -62,6 +64,8 @@ require('../style.css');
 
         this.goTo = goTo;
         this.updatePoints = updatePoints;
+        this.navigate = navigate;
+        this.clearRoutes = clearRoutes;
         this.on = on;
         self.timeRange = JSON.parse(JSON.stringify(timeRange));
 
@@ -69,6 +73,8 @@ require('../style.css');
         var eventHandlers = {};
         var mymap = null;
         var pokemonLayer = null;
+        var routeLayer = null;
+        var route;
         var dataService = new DataService(apiEndpoint);
 
         initMap();
@@ -77,10 +83,42 @@ require('../style.css');
 
             mymap = L.map(htmlElement);
             L.tileLayer(tileLayer, tileLayerOptions).addTo(mymap);
+            L.Icon.Default.imagePath = '/node_modules/leaflet/dist/images';
+
+
+            var start = {
+                lat: 11,
+                lng: 11
+            };
+
+            var destination = {
+                lat: 44,
+                lng: 44
+            };
+
+            var start1 = {
+                lat: 22,
+                lng: 22
+            };
+
+            var destination1 = {
+                lat: 55,
+                lng: 45
+            };
+
 
             self.goTo({coordinates: coordinates, zoomLevel: zoomLevel});
 
             pokemonLayer = L.layerGroup([]).addTo(mymap);
+            routeLayer = L.layerGroup([]).addTo(mymap);
+
+            navigate(start, destination);
+            debugger;
+            //setTimeout(function(){ console.log(123); navigate(start1, destination1); }, 3000);
+            //clearRoutes();
+
+
+
 
             var moveCallback = function (event) {
 
@@ -105,6 +143,7 @@ require('../style.css');
             mymap.on('dragend', moveCallback);
 
             updatePoints();
+
 
         }
 
@@ -192,6 +231,38 @@ require('../style.css');
                 zoomLevel = mymap.getZoom();
             }
             mymap.setView([coordinates.latitude, coordinates.longitude], zoomLevel);
+        }
+
+        function navigate(start, destination){
+
+            if(route && route.removeFrom) {
+
+                route.removeFrom(mymap);
+
+            }
+
+            route = L.Routing.control({
+                waypoints: [
+                    L.latLng(start.lat, start.lng),
+                    L.latLng(destination.lat, destination.lng)
+                ],
+                collapsible: true,
+                geocoder: L.Control.Geocoder.nominatim(),
+                createMarker: function() { return null; } //removes the marker (we will use only pokemon icons as markers
+            });
+
+            route.addTo(mymap);
+
+        }
+
+        function clearRoutes(){
+
+            if(route && route.removeFrom) {
+
+                route.removeFrom(mymap);
+
+            }
+
         }
 
         function updateTimeRange(timeRange) {
