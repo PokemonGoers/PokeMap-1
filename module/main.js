@@ -13,7 +13,8 @@ require('../style.css');
 //     },
 //     zoomLevel: 10,       // optional
 //     timeRange: 1,        // optional
-//     apiEndpoint: 'URI'   // mandatory
+//     apiEndpoint: 'URI',   // mandatory
+//     tileLayer: 'URI',   // mandatory
 // }
 
 (function () {
@@ -33,7 +34,7 @@ require('../style.css');
         var timeRange = options.timeRange;
         var apiEndpoint = options.apiEndpoint;
         var tileLayer = options.tileLayer;
-        var tileLayerOptions;
+        var tileLayerOptions = options.tileLayerOptions;
 
         if (!zoomLevel) {
             zoomLevel = 15;
@@ -48,15 +49,16 @@ require('../style.css');
         }
 
         if (!tileLayer) {
-            tileLayer = 'http://tile-c.openstreetmap.fr/hot/{z}/{x}/{y}.png';
+            tileLayer = 'https://api.mapbox.com/styles/v1/poulzinho/ciu2fc21400k32iqi2gkb7h7g/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicG91bHppbmhvIiwiYSI6ImNpdTJmMmlwMTAwMHAyeW55NmVpbXpoY3oifQ._S-9Yx6OXlnMMq_MgsodlA';
+        }
+
+        if (!tileLayerOptions) {
             tileLayerOptions = {
                 attribution: '' +
-                             'JS16 <a href="https://github.com/PokemonGoers/PokeMap-1">PokeMap</a>, ' +
-                             'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> ' +
-                             'contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-                             'Imagery © <a href="http://thunderforest.com">Thunderforest/OpenCycleMap</a>, ' +
-                             'Pokemon Images © <a href="http://pokemondb.net/">Pokémon Database</a>',
-                maxZoom:     18
+                'JS16 <a href="https://github.com/PokemonGoers/PokeMap-1">PokeMap</a>, ' +
+                'Mapping platform &copy; <a href="http://mapbox.com">Mapbox</a> ' +
+                'Pokemon Images © <a href="http://pokemondb.net/">Pokémon Database</a>',
+                maxZoom: 18
             };
         }
 
