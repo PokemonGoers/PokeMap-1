@@ -1,6 +1,7 @@
 "use strict";
 
 var L = require('leaflet');
+var _ = require('lodash');
 require('leaflet-routing-machine');
 require('leaflet-control-geocoder');
 require('leaflet/dist/leaflet.css');
@@ -100,13 +101,34 @@ var DataService = require('./DataService.js');
             pokemonLayer = L.layerGroup([]).addTo(mymap);
             routeLayer = L.layerGroup([]).addTo(mymap);
 
+            var previousMoveEnd = {
+                latlng: {},
+                zoom: null
+            };
+
             var moveCallback = function (event) {
 
 
                 var latlng = event.target.getCenter();
                 var zoom = event.target.getZoom();
 
-                updatePoints();
+                var coordsEqual = (previousMoveEnd.latlng.lat == latlng.lat) && (previousMoveEnd.latlng.lng == latlng.lng);
+                var zoomLevelEqual = previousMoveEnd.zoom == zoom;
+
+                // there was no actual movement
+                if(coordsEqual && zoomLevelEqual) {
+
+                    console.warn('coordinates are the same');
+                    return;
+
+                } else {
+
+                    previousMoveEnd.latlng = latlng;
+                    previousMoveEnd.zoom = zoom;
+
+                }
+
+                debouncedUpdatePoints();
 
                 fireEvent('move', {
 
@@ -120,7 +142,6 @@ var DataService = require('./DataService.js');
             };
 
             mymap.on('moveend', moveCallback);
-            mymap.on('dragend', moveCallback);
 
             updatePoints();
 
@@ -199,6 +220,8 @@ var DataService = require('./DataService.js');
             });
 
         }
+
+        var debouncedUpdatePoints = _.debounce(updatePoints, 700);
 
         function goTo(location) {
 
