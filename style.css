@@ -8,27 +8,12 @@ html, body, #mapid {
     padding: 0;
 }
 
-#pickachu-data-loading {
-
-    position: fixed;
-    width: 20vw;
-    top: 40vh;
-    bottom: 40vh;
-    left: 40vw;
-    right: 40vw;
-    opacity: 0.9;
-
+.mobMarker {
     animation-name: pulse_animation;
     animation-duration: 700ms;
     transform-origin: 70% 70%;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
-    display: none;
-
-}
-
-#pickachu-data-loading.visible {
-    display: inline;
 }
 
 

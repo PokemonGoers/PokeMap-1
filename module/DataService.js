@@ -1,9 +1,8 @@
 var io = require('socket.io-client');
 
-function DataService(apiEndpoint, socketEndPoint) {
+function DataService(apiEndpoint) {
 
     var self = this;
-    var twitterData = new twitterService();
 
     var dbService = {
 
@@ -116,27 +115,6 @@ function DataService(apiEndpoint, socketEndPoint) {
         }
     };
 
-    function twitterService() {
-        function getTwitterData() {
-
-        }
-
-        console.log(socketEndPoint);
-        var socket = io.connect(socketEndPoint);
-
-        socket.on('connection', function() {
-            console.log('Socket connection is up');
-        });
-
-        socket.on('mobs', function() {
-            console.log(arguments);
-        });
-
-        socket.on('sentiment', function() {
-            console.log(arguments);
-        });
-    }
-
     self.getApiEndpointURL = function () {
         return apiEndpoint;
     };
@@ -180,6 +158,58 @@ function DataService(apiEndpoint, socketEndPoint) {
         dbService.getPokemonDetailsById(id, callback);
     };
 
+    self.configureSocket = function(socketEndPoint, mapCenter, mobCallback) {
+
+        var twitterData = new twitterService(socketEndPoint, mapCenter, mobCallback);
+
+    }
+
+}
+
+function twitterService(socketEndPoint, mapCenter, mobCallback) {
+
+    console.log(socketEndPoint);
+    var socket = io.connect(socketEndPoint);
+
+    socket.on('connect', function() {
+        console.log('Socket connection is up');
+        socket.emit("settings", {mode: "geo", lat: mapCenter.latitude, lon: mapCenter.longitude, radius: 5000000});
+    });
+
+    socket.on('mob', mobCallback);
+
+    setInterval(function() {
+
+        var initLat = mapCenter.latitude;
+        var initLon = mapCenter.longitude;
+
+        initLat += (Math.random() / 1000);
+        initLon += (Math.random() / 1000);
+
+        var timestamp = (new Date() - Math.random() * 10000000) / 1000;
+
+        var ex = {
+            "tweets": [{
+                "id": "some_tweet_id",
+                "text": "I got a pikachu",
+                "coordinates": [initLat, initLon],
+                "timestamp": timestamp
+            },{
+                "id": "another_tweet_id",
+                "text": "i also got a pikachu!",
+                "coordinates": [initLat, initLon],
+                "timestamp": timestamp
+            }],
+            "coordinates": [initLat, initLon],  // this is a weighted moving average of the tweets in the cluster
+            "timestamp": timestamp, // timestamp of last tweet in cluster
+            "isMob": true,
+            "clusterId": 1
+
+        };
+
+        mobCallback(ex);
+
+    }, 5000);
 }
 
 module.exports = DataService;

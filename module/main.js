@@ -83,9 +83,9 @@ var DataService = require('./DataService.js');
         var eventHandlers = {};
         var mymap = null;
         var pokemonLayer = null;
-        var routeLayer = null;
+        var mobsLayer = null;
         var route;
-        var dataService = new DataService(apiEndpoint, socketEndPoint);
+        var dataService = new DataService(apiEndpoint, socketEndPoint, coordinates);
 
         initMap();
 
@@ -99,7 +99,7 @@ var DataService = require('./DataService.js');
             self.goTo({coordinates: coordinates, zoomLevel: zoomLevel});
 
             pokemonLayer = L.layerGroup([]).addTo(mymap);
-            routeLayer = L.layerGroup([]).addTo(mymap);
+            mobsLayer = L.layerGroup([]).addTo(mymap);
 
             var previousMoveEnd = {
                 latlng: {},
@@ -145,6 +145,34 @@ var DataService = require('./DataService.js');
 
             updatePoints();
 
+            var mobCallback = function(mob) {
+
+                console.log('Mob received', mob);
+
+                // 2 hours ago not important, importance = 0
+                // now - super important, importance = 1
+                // 2 hours - 120 minutes - 7200 seconds
+                var importance = 1 - ((new Date() / 1000) - mob.timestamp) / 7200;
+
+                if(importance < 0) {
+                    return;
+                }
+
+                var mobMarker = L.circleMarker(mob.coordinates, {
+                    fillColor: '#ff0000',
+                    color: '#ff0000',
+                    opacity: importance,
+                    className: 'mobMarker'
+                }).addTo(mobsLayer);
+
+                mobMarker.setRadius(30 * importance);
+
+                mobMarker.bindPopup("PokeMob on " + new Date(mob.timestamp * 1000).toLocaleString());
+                mobMarker.on('click', function(e) { fireEvent.bind({}, 'click', mob) });
+
+            };
+
+            dataService.configureSocket(socketEndPoint, coordinates, mobCallback);
 
         }
 
@@ -210,6 +238,8 @@ var DataService = require('./DataService.js');
             dataService.getData(bounds, function (response) {
 
                 if (response.data && response.data.length) {
+
+                    response.data = response.data.slice(0, 20);
 
                     pokemonLayer.clearLayers();
 
