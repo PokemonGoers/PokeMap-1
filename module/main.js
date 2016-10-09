@@ -239,8 +239,8 @@ require('../style.css');
 
             route = L.Routing.control({
                 waypoints: [
-                    L.latLng(start.lat, start.lng),
-                    L.latLng(destination.lat, destination.lng)
+                    L.latLng(start.latitude, start.longitude),
+                    L.latLng(destination.latitude, destination.longitude)
                 ],
                 collapsible: true,
                 geocoder: L.Control.Geocoder.nominatim(),
