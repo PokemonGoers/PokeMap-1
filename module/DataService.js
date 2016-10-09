@@ -1,6 +1,6 @@
 var io = require('socket.io-client');
 
-function DataService(apiEndpoint, socketEndPoint, showLoader, hideLoader) {
+function DataService(apiEndpoint, socketEndPoint) {
 
     var self = this;
     var twitterData = new twitterService();
@@ -17,11 +17,7 @@ function DataService(apiEndpoint, socketEndPoint, showLoader, hideLoader) {
             var url = apiEndpoint + '/api/pokemon/sighting/coordinates/from/' + locationFrom + '/to/' + locationTo;
             xhr.open("GET", url, true);
 
-            showLoader && showLoader();
-
             xhr.onreadystatechange = function () {
-
-                hideLoader && hideLoader();
 
                 if (xhr.readyState === 4 && xhr.status === 200) {
 
@@ -48,11 +44,7 @@ function DataService(apiEndpoint, socketEndPoint, showLoader, hideLoader) {
             var url = apiEndpoint + 'api/pokemon/sighting/coordinates/from/' + locationFrom + '/to/' + locationTo;
             xhr.open("GET", url, true);
 
-            showLoader && showLoader();
-
             xhr.onreadystatechange = function () {
-
-                hideLoader && hideLoader();
 
                 if (xhr.readyState === 4 && xhr.status === 200) {
 
