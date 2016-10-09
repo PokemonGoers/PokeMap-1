@@ -165,7 +165,7 @@ var DataService = require('./DataService.js');
                     className: 'mobMarker'
                 }).addTo(mobsLayer);
 
-                mobMarker.setRadius(30 * importance);
+                mobMarker.setRadius(20 * importance);
 
                 mobMarker.bindPopup("PokeMob on " + new Date(mob.timestamp * 1000).toLocaleString());
                 mobMarker.on('click', function(e) { fireEvent.bind({}, 'click', mob) });

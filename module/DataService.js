@@ -183,8 +183,8 @@ function twitterService(socketEndPoint, mapCenter, mobCallback) {
         var initLat = mapCenter.latitude;
         var initLon = mapCenter.longitude;
 
-        initLat += (Math.random() / 1000);
-        initLon += (Math.random() / 1000);
+        initLat += (Math.random() / 100);
+        initLon += (Math.random() / 100);
 
         var timestamp = (new Date() - Math.random() * 10000000) / 1000;
 
