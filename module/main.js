@@ -1,8 +1,10 @@
 "use strict";
 
 var L = require('leaflet');
+var _ = require('lodash');
 require('leaflet-routing-machine');
 require('leaflet-control-geocoder');
+require('leaflet/dist/leaflet.css');
 require('../style.css');
 
 // options - {
@@ -12,23 +14,31 @@ require('../style.css');
 //     },
 //     zoomLevel: 10,       // optional
 //     timeRange: 1,        // optional
-//     apiEndpoint: 'URI'   // mandatory
+//     apiEndpoint: 'URI',   // mandatory
+//     tileLayer: 'URI',   // mandatory
 // }
 
 (function () {
 
     function PokeMap(htmlElement, options) {
 
-        var fitWorld = !options.coordinates;
         var coordinates = options.coordinates;
+
+        if (!coordinates) {
+            coordinates = {
+                latitude:  48.132100,
+                longitude: 11.546914
+            }
+        }
+
         var zoomLevel = options.zoomLevel;
         var timeRange = options.timeRange;
         var apiEndpoint = options.apiEndpoint;
         var tileLayer = options.tileLayer;
-        var tileLayerOptions;
+        var tileLayerOptions = options.tileLayerOptions;
 
         if (!zoomLevel) {
-            zoomLevel = 10;
+            zoomLevel = 15;
         }
 
         if (!timeRange) {
@@ -40,15 +50,16 @@ require('../style.css');
         }
 
         if (!tileLayer) {
-            tileLayer = 'http://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png';
+            tileLayer = 'https://api.mapbox.com/styles/v1/poulzinho/ciu2fc21400k32iqi2gkb7h7g/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicG91bHppbmhvIiwiYSI6ImNpdTJmMmlwMTAwMHAyeW55NmVpbXpoY3oifQ._S-9Yx6OXlnMMq_MgsodlA';
+        }
+
+        if (!tileLayerOptions) {
             tileLayerOptions = {
                 attribution: '' +
-                             'JS16 <a href="https://github.com/PokemonGoers/PokeMap-1">PokeMap</a>, ' +
-                             'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> ' +
-                             'contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-                             'Imagery © <a href="http://thunderforest.com">Thunderforest/OpenCycleMap</a>, ' +
-                             'Pokemon Images © <a href="http://pokemondb.net/">Pokémon Database</a>',
-                maxZoom:     18
+                'JS16 <a href="https://github.com/PokemonGoers/PokeMap-1">PokeMap</a>, ' +
+                'Mapping platform &copy; <a href="http://mapbox.com">Mapbox</a> ' +
+                'Pokemon Images © <a href="http://pokemondb.net/">Pokémon Database</a>',
+                maxZoom: 18
             };
         }
 
@@ -78,47 +89,15 @@ require('../style.css');
             L.Icon.Default.imagePath = '/node_modules/leaflet/dist/images';
 
 
-            var start = {
-                lat: 11,
-                lng: 11
-            };
-
-            var destination = {
-                lat: 44,
-                lng: 44
-            };
-
-            var start1 = {
-                lat: 22,
-                lng: 22
-            };
-
-            var destination1 = {
-                lat: 55,
-                lng: 45
-            };
-
-
-            if(fitWorld) {
-
-                mymap.fitWorld();
-
-            } else {
-
-                self.goTo({coordinates: coordinates, zoomLevel: zoomLevel});
-
-            }
+            self.goTo({coordinates: coordinates, zoomLevel: zoomLevel});
 
             pokemonLayer = L.layerGroup([]).addTo(mymap);
             routeLayer = L.layerGroup([]).addTo(mymap);
 
-            navigate(start, destination);
-            debugger;
-            //setTimeout(function(){ console.log(123); navigate(start1, destination1); }, 3000);
-            //clearRoutes();
-
-
-
+            var previousMoveEnd = {
+                latlng: {},
+                zoom: null
+            };
 
             var moveCallback = function (event) {
 
@@ -126,12 +105,28 @@ require('../style.css');
                 var latlng = event.target.getCenter();
                 var zoom = event.target.getZoom();
 
-                updatePoints();
+                var coordsEqual = (previousMoveEnd.latlng.lat == latlng.lat) && (previousMoveEnd.latlng.lng == latlng.lng);
+                var zoomLevelEqual = previousMoveEnd.zoom == zoom;
+
+                // there was no actual movement
+                if(coordsEqual && zoomLevelEqual) {
+
+                    console.warn('coordinates are the same');
+                    return;
+
+                } else {
+
+                    previousMoveEnd.latlng = latlng;
+                    previousMoveEnd.zoom = zoom;
+
+                }
+
+                debouncedUpdatePoints();
 
                 fireEvent('move', {
 
                     coordinates: {
-                        latitude: latlng.lat,
+                        latitude:  latlng.lat,
                         longitude: latlng.lng
                     },
                     zoomLevel:   zoom
@@ -140,7 +135,6 @@ require('../style.css');
             };
 
             mymap.on('moveend', moveCallback);
-            mymap.on('dragend', moveCallback);
 
             updatePoints();
 
@@ -222,6 +216,8 @@ require('../style.css');
 
         }
 
+        var debouncedUpdatePoints = _.debounce(updatePoints, 700);
+
         function goTo(location) {
 
             var coordinates = location.coordinates;
@@ -243,8 +239,8 @@ require('../style.css');
 
             route = L.Routing.control({
                 waypoints: [
-                    L.latLng(start.lat, start.lng),
-                    L.latLng(destination.lat, destination.lng)
+                    L.latLng(start.latitude, start.longitude),
+                    L.latLng(destination.latitude, destination.longitude)
                 ],
                 collapsible: true,
                 geocoder: L.Control.Geocoder.nominatim(),
@@ -297,7 +293,7 @@ require('../style.css');
                 icon: icon
             });
 
-            marker.addTo(pokemonLayer).on('click', fireEvent.bind({}, 'click', pokemon.pokemonId));
+            marker.addTo(pokemonLayer).on('click', fireEvent.bind({}, 'click', pokemon));
 
             return marker;
 
@@ -345,6 +341,7 @@ require('../style.css');
                 var xhr = new XMLHttpRequest();
                 var url = apiEndpoint + '/api/pokemon/sighting/coordinates/from/' + locationFrom + '/to/' + locationTo;
                 xhr.open("GET", url, true);
+
                 xhr.onreadystatechange = function () {
 
                     if (xhr.readyState === 4 && xhr.status === 200) {
