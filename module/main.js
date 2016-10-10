@@ -311,6 +311,32 @@ require('../style.css');
 
         var dbService = {
 
+            getPastDataByTime: function (sightingsSince, callback) {
+
+                var date = new Date();
+
+                var range = (date - sightingsSince)/1000;
+
+                var xhr = new XMLHttpRequest();
+                var url = apiEndpoint + '/api/pokemon/sighting/ts/' + sightingsSince + '/range/' + range + 's';
+                xhr.open("GET", url, true);
+                xhr.onreadystatechange = function () {
+
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+
+                        var json = JSON.parse(xhr.responseText);
+
+                        callback(json);
+
+                    } else {
+
+                    }
+                };
+
+                xhr.send();
+
+            },
+
             getPastData: function (location, callback) {
 
                 var locationFrom = location.from.lng + ',' + location.from.lat;
