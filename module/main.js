@@ -31,6 +31,9 @@ require('../style.css');
             }
         }
 
+        var sightingsSince = options.filter.sightingsSince;
+        var predictionsUntil = options.filter.predictionsUntil;
+        var pokemonIds = options.filter.pokemonIds;
         var zoomLevel = options.zoomLevel;
         var timeRange = options.timeRange;
         var apiEndpoint = options.apiEndpoint;
@@ -200,6 +203,35 @@ require('../style.css');
                 to:   mymap.getBounds().getSouthEast()
             };
 
+            dataService.fetchData(sightingsSince, predictionsUntil, function (response){
+
+                if (response.data && response.data.length) {
+
+                    response.data = response.data.slice(0, 20);
+
+                    var pokemons;
+                    var selectedPokemon;
+
+                    for (pokemons in response.data) {
+                        for (selectedPokemon in pokemonIds) {
+
+                            if (response.data.pokemonId != selectedPokemon){
+
+                                var index = response.data.indexOf(pokemons);
+                                response.data = response.data.slice(index, 1);
+
+                            }
+                        }
+                    }
+
+                    pokemonLayer.clearLayers();
+
+                    response.data.map(addPokemonMarker);
+
+                }
+
+            });
+
             dataService.getData(bounds, function (response) {
 
                 if (response.data && response.data.length) {
@@ -311,10 +343,10 @@ require('../style.css');
 
                 var date = new Date();
 
-                var range = (date - sightingsSince)/1000;
+                var range = Math.floor((date - sightingsSince)/1000);
 
                 var xhr = new XMLHttpRequest();
-                var url = apiEndpoint + '/api/pokemon/sighting/ts/' + sightingsSince + '/range/' + range + 's';
+                var url = apiEndpoint + '/api/pokemon/sighting/ts/' + sightingsSince.toUTCString() + '/range/' + range.toString() + 's';
                 xhr.open("GET", url, true);
                 xhr.onreadystatechange = function () {
 
@@ -448,6 +480,32 @@ require('../style.css');
 
         self.getApiEndpointURL = function () {
             return apiEndpoint;
+        };
+
+
+        self.fetchData = function(sightingsSince, predictionsUntil, updateCallback) {
+
+            if (sightingsSince == 0){
+                if (predictionsUntil == 0){
+                    console.log("Nothing to show");
+                    return;
+                }
+                //code to get prediction data
+            } else {
+                if (predictionsUntil == 0){
+                    //code to get sightings
+                    dbService.getPastDataByTime(sightingsSince, updateCallback);
+                } else {
+                    //code to get sightings
+                    dbService.getPastDataByTime(sightingsSince, updateCallback);
+                    //code to get predictions
+                }
+
+
+            }
+
+
+
         };
 
         self.getData = function (bounds, updateCallback) {
