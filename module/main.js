@@ -36,7 +36,7 @@ var DataService = require('./DataService.js');
         var zoomLevel = options.zoomLevel;
         var timeRange = options.timeRange;
         var apiEndpoint = options.apiEndpoint;
-        var socketEndPoint = options.websocketEndPoint;
+        var socketEndPoint = options.websocketEndpoint;
         var tileLayer = options.tileLayer;
         var tileLayerOptions = options.tileLayerOptions;
 
@@ -282,9 +282,9 @@ var DataService = require('./DataService.js');
 
         function filter(filterOptions) {
 
-            var sightingsSince = options.filter.sightingsSince;
-            var predictionsUntil = options.filter.predictionsUntil;
-            var pokemonIds = options.filter.pokemonIds;
+            var sightingsSince = filterOptions.sightingsSince;
+            var predictionsUntil = filterOptions.predictionsUntil;
+            var pokemonIds = filterOptions.pokemonIds;
 
             dataService.fetchData(sightingsSince, predictionsUntil, function (response) {
 
