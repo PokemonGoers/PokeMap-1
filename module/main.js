@@ -207,7 +207,7 @@ require('../style.css');
 
                 if (response.data && response.data.length) {
 
-                    response.data = response.data.slice(0, 20);
+                    //response.data = response.data.slice(0, 20);
 
                     var pokemons;
                     var selectedPokemon;
@@ -223,20 +223,6 @@ require('../style.css');
                             }
                         }
                     }
-
-                    pokemonLayer.clearLayers();
-
-                    response.data.map(addPokemonMarker);
-
-                }
-
-            });
-
-            dataService.getData(bounds, function (response) {
-
-                if (response.data && response.data.length) {
-
-                    response.data = response.data.slice(0, 20);
 
                     pokemonLayer.clearLayers();
 
@@ -343,10 +329,10 @@ require('../style.css');
 
                 var date = new Date();
 
-                var range = Math.floor((date - sightingsSince)/1000);
+                var range = Math.floor((date - sightingsSince)/1000 * 60);
 
                 var xhr = new XMLHttpRequest();
-                var url = apiEndpoint + '/api/pokemon/sighting/ts/' + sightingsSince.toUTCString() + '/range/' + range.toString() + 's';
+                var url = apiEndpoint + '/api/pokemon/sighting/ts/' + sightingsSince.toUTCString() + '/range/' + range.toString() + 'm';
                 xhr.open("GET", url, true);
                 xhr.onreadystatechange = function () {
 
