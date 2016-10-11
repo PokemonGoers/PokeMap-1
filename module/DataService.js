@@ -145,6 +145,32 @@ function DataService(apiEndpoint) {
         return apiEndpoint;
     };
 
+    self.fetchData = function(sightingsSince, predictionsUntil, updateCallback) {
+
+        if (sightingsSince == 0){
+            if (predictionsUntil == 0){
+                console.log("Nothing to show");
+                return;
+            }
+            //code to get prediction data
+        } else {
+            if (predictionsUntil == 0){
+                //code to get sightings
+                dbService.getPastDataByTime(sightingsSince, updateCallback);
+            } else {
+                //code to get sightings
+                dbService.getPastDataByTime(sightingsSince, updateCallback);
+                //code to get predictions
+            }
+
+
+        }
+
+
+
+    };
+
+
     self.getData = function (bounds, updateCallback) {
 
         dbService.getPastData(bounds, updateCallback);
