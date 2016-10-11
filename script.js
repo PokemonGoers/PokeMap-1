@@ -1,6 +1,9 @@
 var htmlElement = 'mapid';
 var options = {
 
+    filter : {
+        pokemonIds: [1, 2], sightingsSince: new Date(2016, 5, 20), predictionsUntil: 0
+    },
     apiEndpoint: 'http://pokedata.c4e3f8c7.svc.dockerapp.io:65014',
     webSocketEndPoint: 'pokedata.c4e3f8c7.svc.dockerapp.io:65024',
     tileLayer: 'https://api.mapbox.com/styles/v1/poulzinho/ciu2fc21400k32iqi2gkb7h7g/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicG91bHppbmhvIiwiYSI6ImNpdTJmMmlwMTAwMHAyeW55NmVpbXpoY3oifQ._S-9Yx6OXlnMMq_MgsodlA',

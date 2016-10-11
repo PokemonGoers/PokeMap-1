@@ -235,32 +235,45 @@ var DataService = require('./DataService.js');
 
             dataService.fetchData(sightingsSince, predictionsUntil, function (response) {
 
-                var filteredPokemons = response.data.filter(function (pokemon) {
+                if (pokemonIds){
 
-                    return pokemonIds.indexOf(pokemon.pokemonId) > -1;
+                    var filteredPokemons = response.data.filter(function (pokemon) {
 
-                });
+                        return pokemonIds.indexOf(pokemon.pokemonId) > -1;
 
-            });
+                    });
 
-            var bounds = {
-                from: mymap.getBounds().getNorthWest(),
-                to:   mymap.getBounds().getSouthEast()
-            };
+                } else {
 
-            dataService.getData(bounds, function (response) {
+                    var bounds = {
+                        from: mymap.getBounds().getNorthWest(),
+                        to:   mymap.getBounds().getSouthEast()
+                    };
 
-                if (response.data && response.data.length) {
+                    dataService.getData(bounds, function (response) {
 
-                    response.data = response.data.slice(0, 20);
+                        if (response.data && response.data.length) {
 
-                    pokemonLayer.clearLayers();
+                            response.data = response.data.slice(0, 20);
 
-                    response.data.map(addPokemonMarker);
+                            pokemonLayer.clearLayers();
+
+                            response.data.map(addPokemonMarker);
+
+                        }
+
+                    });
 
                 }
 
+
+
+                pokemonLayer.clearLayers();
+
+                filteredPokemons.map(addPokemonMarker);
+
             });
+
 
         }
 
