@@ -33,9 +33,9 @@ var DataService = require('./DataService.js');
             }
         }
 
-        var sightingsSince = options.filter.sightingsSince;
-        var predictionsUntil = options.filter.predictionsUntil;
-        var pokemonIds = options.filter.pokemonIds;
+        var sightingsSinceDate = options.filter.sightingsSince;
+        var predictionsUntilDate = options.filter.predictionsUntil;
+        var pokemonIdsArray = options.filter.pokemonIds;
         var zoomLevel = options.zoomLevel;
         var timeRange = options.timeRange;
         var apiEndpoint = options.apiEndpoint;
@@ -79,6 +79,7 @@ var DataService = require('./DataService.js');
         this.updatePoints = updatePoints;
         this.navigate = navigate;
         this.clearRoutes = clearRoutes;
+        this.filter = filter;
         this.on = on;
         self.timeRange = JSON.parse(JSON.stringify(timeRange));
 
@@ -233,47 +234,7 @@ var DataService = require('./DataService.js');
 
         function updatePoints() {
 
-            dataService.fetchData(sightingsSince, predictionsUntil, function (response) {
-
-                if (pokemonIds){
-
-                    var filteredPokemons = response.data.filter(function (pokemon) {
-
-                        return pokemonIds.indexOf(pokemon.pokemonId) > -1;
-
-                    });
-
-                } else {
-
-                    var bounds = {
-                        from: mymap.getBounds().getNorthWest(),
-                        to:   mymap.getBounds().getSouthEast()
-                    };
-
-                    dataService.getData(bounds, function (response) {
-
-                        if (response.data && response.data.length) {
-
-                            response.data = response.data.slice(0, 20);
-
-                            pokemonLayer.clearLayers();
-
-                            response.data.map(addPokemonMarker);
-
-                        }
-
-                    });
-
-                }
-
-
-
-                pokemonLayer.clearLayers();
-
-                filteredPokemons.map(addPokemonMarker);
-
-            });
-
+            filter(pokemonIdsArray, sightingsSinceDate, predictionsUntilDate);
 
         }
 
@@ -319,6 +280,52 @@ var DataService = require('./DataService.js');
                 route.removeFrom(mymap);
 
             }
+
+        }
+
+        function filter(pokemonIds, sightingsSince, predictionsUntil) {
+
+            dataService.fetchData(sightingsSince, predictionsUntil, function (response) {
+
+                if (pokemonIds){
+
+                    var filteredPokemons = response.data.filter(function (pokemon) {
+
+                        return pokemonIds.indexOf(pokemon.pokemonId) > -1;
+
+                    });
+
+                } else {
+
+                    var bounds = {
+                        from: mymap.getBounds().getNorthWest(),
+                        to:   mymap.getBounds().getSouthEast()
+                    };
+
+                    dataService.getData(bounds, function (response) {
+
+                        if (response.data && response.data.length) {
+
+                            response.data = response.data.slice(0, 20);
+
+                            pokemonLayer.clearLayers();
+
+                            response.data.map(addPokemonMarker);
+
+                        }
+
+                    });
+
+                }
+
+
+
+                pokemonLayer.clearLayers();
+
+                filteredPokemons.map(addPokemonMarker);
+
+            });
+
 
         }
 
