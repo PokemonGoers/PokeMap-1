@@ -33,13 +33,10 @@ var DataService = require('./DataService.js');
             }
         }
 
-        var sightingsSinceDate = options.filter.sightingsSince;
-        var predictionsUntilDate = options.filter.predictionsUntil;
-        var pokemonIdsArray = options.filter.pokemonIds;
         var zoomLevel = options.zoomLevel;
         var timeRange = options.timeRange;
         var apiEndpoint = options.apiEndpoint;
-        var socketEndPoint = options.webSocketEndPoint;
+        var socketEndPoint = options.websocketEndPoint;
         var tileLayer = options.tileLayer;
         var tileLayerOptions = options.tileLayerOptions;
 
@@ -234,7 +231,7 @@ var DataService = require('./DataService.js');
 
         function updatePoints() {
 
-            filter(pokemonIdsArray, sightingsSinceDate, predictionsUntilDate);
+            filter(options.filter);
 
         }
 
@@ -283,7 +280,11 @@ var DataService = require('./DataService.js');
 
         }
 
-        function filter(pokemonIds, sightingsSince, predictionsUntil) {
+        function filter(filterOptions) {
+
+            var sightingsSince = options.filter.sightingsSince;
+            var predictionsUntil = options.filter.predictionsUntil;
+            var pokemonIds = options.filter.pokemonIds;
 
             dataService.fetchData(sightingsSince, predictionsUntil, function (response) {
 
@@ -294,6 +295,10 @@ var DataService = require('./DataService.js');
                         return pokemonIds.indexOf(pokemon.pokemonId) > -1;
 
                     });
+
+                    pokemonLayer.clearLayers();
+
+                    filteredPokemons.map(addPokemonMarker);
 
                 } else {
 
@@ -312,17 +317,15 @@ var DataService = require('./DataService.js');
 
                             response.data.map(addPokemonMarker);
 
+                            pokemonLayer.clearLayers();
+
+                            response.data.map(addPokemonMarker);
+
                         }
 
                     });
 
                 }
-
-
-
-                pokemonLayer.clearLayers();
-
-                filteredPokemons.map(addPokemonMarker);
 
             });
 
