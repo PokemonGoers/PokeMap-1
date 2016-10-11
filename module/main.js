@@ -302,28 +302,9 @@ var DataService = require('./DataService.js');
 
                 } else {
 
-                    var bounds = {
-                        from: mymap.getBounds().getNorthWest(),
-                        to:   mymap.getBounds().getSouthEast()
-                    };
+                    pokemonLayer.clearLayers();
 
-                    dataService.getData(bounds, function (response) {
-
-                        if (response.data && response.data.length) {
-
-                            response.data = response.data.slice(0, 20);
-
-                            pokemonLayer.clearLayers();
-
-                            response.data.map(addPokemonMarker);
-
-                            pokemonLayer.clearLayers();
-
-                            response.data.map(addPokemonMarker);
-
-                        }
-
-                    });
+                    response.data.map(addPokemonMarker);
 
                 }
 

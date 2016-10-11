@@ -2,7 +2,7 @@ var htmlElement = 'mapid';
 var options = {
 
     filter : {
-        pokemonIds: [16], sightingsSince: new Date(2016, 8, 12), predictionsUntil: 0
+        pokemonIds: null, sightingsSince: new Date(2016, 8, 12), predictionsUntil: 0
     },
     apiEndpoint: 'http://pokedata.c4e3f8c7.svc.dockerapp.io:65014',
     websocketEndpoint: 'pokedata.c4e3f8c7.svc.dockerapp.io:65024',
