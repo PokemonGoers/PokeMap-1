@@ -33,6 +33,9 @@ var DataService = require('./DataService.js');
             }
         }
 
+        var sightingsSince = options.filter.sightingsSince;
+        var predictionsUntil = options.filter.predictionsUntil;
+        var pokemonIds = options.filter.pokemonIds;
         var zoomLevel = options.zoomLevel;
         var timeRange = options.timeRange;
         var apiEndpoint = options.apiEndpoint;
@@ -229,6 +232,16 @@ var DataService = require('./DataService.js');
         }
 
         function updatePoints() {
+
+            dataService.fetchData(sightingsSince, predictionsUntil, function (response) {
+
+                var filteredPokemons = response.data.filter(function (pokemon) {
+
+                    return pokemonIds.indexOf(pokemon.pokemonId) > -1;
+
+                });
+
+            });
 
             var bounds = {
                 from: mymap.getBounds().getNorthWest(),
