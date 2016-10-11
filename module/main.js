@@ -209,11 +209,8 @@ require('../style.css');
 
                     //response.data = response.data.slice(0, 20);
 
-                    var pokemons;
-                    var selectedPokemon;
-
-                    for (pokemons in response.data) {
-                        for (selectedPokemon in pokemonIds) {
+                    response.data.forEach(function(pokemons){
+                        pokemonIds.forEach(function(selectedPokemon){
 
                             if (response.data.pokemonId != selectedPokemon){
 
@@ -221,8 +218,8 @@ require('../style.css');
                                 response.data = response.data.slice(index, 1);
 
                             }
-                        }
-                    }
+                        });
+                    });
 
                     pokemonLayer.clearLayers();
 
