@@ -6,6 +6,7 @@ require('leaflet-routing-machine');
 require('leaflet-control-geocoder');
 require('leaflet/dist/leaflet.css');
 require('../style.css');
+var DataService = require('./DataService.js');
 
 // options - {
 //     coordinates: {       // optional
@@ -14,7 +15,8 @@ require('../style.css');
 //     },
 //     zoomLevel: 10,       // optional
 //     timeRange: 1,        // optional
-//     apiEndpoint: 'URI',   // mandatory
+//     apiEndpoint: 'URI'   // mandatory
+//     webSocketEndPoint: 'URI' //mandatory
 //     tileLayer: 'URI',   // mandatory
 // }
 
@@ -34,6 +36,7 @@ require('../style.css');
         var zoomLevel = options.zoomLevel;
         var timeRange = options.timeRange;
         var apiEndpoint = options.apiEndpoint;
+        var socketEndPoint = options.websocketEndpoint;
         var tileLayer = options.tileLayer;
         var tileLayerOptions = options.tileLayerOptions;
 
@@ -47,6 +50,10 @@ require('../style.css');
 
         if (!apiEndpoint) {
             throw new Error('Fatal: apiEndpoint not defined');
+        }
+
+        if (!socketEndPoint) {
+            throw new Error('Fatal: socketEndPoint not defined');
         }
 
         if (!tileLayer) {
@@ -69,6 +76,7 @@ require('../style.css');
         this.updatePoints = updatePoints;
         this.navigate = navigate;
         this.clearRoutes = clearRoutes;
+        this.filter = filter;
         this.on = on;
         self.timeRange = JSON.parse(JSON.stringify(timeRange));
 
@@ -76,9 +84,9 @@ require('../style.css');
         var eventHandlers = {};
         var mymap = null;
         var pokemonLayer = null;
-        var routeLayer = null;
+        var mobsLayer = null;
         var route;
-        var dataService = new DataService(apiEndpoint);
+        var dataService = new DataService(apiEndpoint, socketEndPoint, coordinates);
 
         initMap();
 
@@ -92,7 +100,7 @@ require('../style.css');
             self.goTo({coordinates: coordinates, zoomLevel: zoomLevel});
 
             pokemonLayer = L.layerGroup([]).addTo(mymap);
-            routeLayer = L.layerGroup([]).addTo(mymap);
+            mobsLayer = L.layerGroup([]).addTo(mymap);
 
             var previousMoveEnd = {
                 latlng: {},
@@ -138,6 +146,34 @@ require('../style.css');
 
             updatePoints();
 
+            var mobCallback = function(mob) {
+
+                console.log('Mob received', mob);
+
+                // 2 hours ago not important, importance = 0
+                // now - super important, importance = 1
+                // 2 hours - 120 minutes - 7200 seconds
+                var importance = 1 - ((new Date() / 1000) - mob.timestamp) / 7200;
+
+                if(importance < 0) {
+                    return;
+                }
+
+                var mobMarker = L.circleMarker(mob.coordinates, {
+                    fillColor: '#ff0000',
+                    color: '#ff0000',
+                    opacity: importance,
+                    className: 'mobMarker'
+                }).addTo(mobsLayer);
+
+                mobMarker.setRadius(20 * importance);
+
+                mobMarker.bindPopup("PokeMob on " + new Date(mob.timestamp * 1000).toLocaleString());
+                mobMarker.on('click', function(e) { fireEvent.bind({}, 'click', mob) });
+
+            };
+
+            dataService.configureSocket(socketEndPoint, coordinates, mobCallback);
 
         }
 
@@ -195,24 +231,7 @@ require('../style.css');
 
         function updatePoints() {
 
-            var bounds = {
-                from: mymap.getBounds().getNorthWest(),
-                to:   mymap.getBounds().getSouthEast()
-            };
-
-            dataService.getData(bounds, function (response) {
-
-                if (response.data && response.data.length) {
-
-                    response.data = response.data.slice(0, 20);
-
-                    pokemonLayer.clearLayers();
-
-                    response.data.map(addPokemonMarker);
-
-                }
-
-            });
+            filter(options.filter);
 
         }
 
@@ -229,9 +248,9 @@ require('../style.css');
             mymap.setView([coordinates.latitude, coordinates.longitude], zoomLevel);
         }
 
-        function navigate(start, destination){
+        function navigate(start, destination) {
 
-            if(route && route.removeFrom) {
+            if (route && route.removeFrom) {
 
                 route.removeFrom(mymap);
 
@@ -242,22 +261,55 @@ require('../style.css');
                     L.latLng(start.latitude, start.longitude),
                     L.latLng(destination.latitude, destination.longitude)
                 ],
-                collapsible: true,
-                geocoder: L.Control.Geocoder.nominatim(),
-                createMarker: function() { return null; } //removes the marker (we will use only pokemon icons as markers
+                collapsible:  true,
+                geocoder:     L.Control.Geocoder.nominatim(),
+                createMarker: function () { return null; } //removes the marker (we will use only pokemon icons as markers
             });
 
             route.addTo(mymap);
 
         }
 
-        function clearRoutes(){
+        function clearRoutes() {
 
-            if(route && route.removeFrom) {
+            if (route && route.removeFrom) {
 
                 route.removeFrom(mymap);
 
             }
+
+        }
+
+        function filter(filterOptions) {
+
+            var sightingsSince = filterOptions.sightingsSince;
+            var predictionsUntil = filterOptions.predictionsUntil;
+            var pokemonIds = filterOptions.pokemonIds;
+
+            dataService.fetchData(sightingsSince, predictionsUntil, function (response) {
+
+                if (pokemonIds){
+
+                    var filteredPokemons = response.data.filter(function (pokemon) {
+
+                        return pokemonIds.indexOf(pokemon.pokemonId) > -1;
+
+                    });
+
+                    pokemonLayer.clearLayers();
+
+                    filteredPokemons.map(addPokemonMarker);
+
+                } else {
+
+                    pokemonLayer.clearLayers();
+
+                    response.data.map(addPokemonMarker);
+
+                }
+
+            });
+
 
         }
 
@@ -298,170 +350,6 @@ require('../style.css');
             return marker;
 
         }
-
-    }
-
-    function DataService(apiEndpoint) {
-
-        var self = this;
-
-        var dbService = {
-
-            getPastData: function (location, callback) {
-
-                var locationFrom = location.from.lng + ',' + location.from.lat;
-                var locationTo = location.to.lng + ',' + location.to.lat;
-
-                var xhr = new XMLHttpRequest();
-                var url = apiEndpoint + '/api/pokemon/sighting/coordinates/from/' + locationFrom + '/to/' + locationTo;
-                xhr.open("GET", url, true);
-
-                xhr.onreadystatechange = function () {
-
-                    if (xhr.readyState === 4 && xhr.status === 200) {
-
-                        var json = JSON.parse(xhr.responseText);
-
-                        callback(json);
-
-                    } else {
-
-                    }
-                };
-
-                xhr.send();
-
-            },
-
-            //supposing that we could get the predicted data through the same api
-            getPredictedData: function (location, callback) {
-
-                var locationFrom = location.from.lng + ',' + location.from.lat;
-                var locationTo = location.to.lng + ',' + location.to.lat;
-
-                var xhr = new XMLHttpRequest();
-                var url = apiEndpoint + 'api/pokemon/sighting/coordinates/from/' + locationFrom + '/to/' + locationTo;
-                xhr.open("GET", url, true);
-                xhr.onreadystatechange = function () {
-
-                    if (xhr.readyState === 4 && xhr.status === 200) {
-
-                        var json = JSON.parse(xhr.responseText);
-
-                        callback(json);
-
-                    } else {
-
-                    }
-                };
-
-                xhr.send();
-
-            },
-
-            getPokemonDetailsById: function (id, callback) {
-
-                var xhr = new XMLHttpRequest();
-                var url = apiEndpoint + '/api/pokemon/id/' + id;
-                xhr.open("GET", url, true);
-                xhr.onreadystatechange = function () {
-
-                    if (xhr.readyState === 4 && xhr.status === 200) {
-
-                        var json = JSON.parse(xhr.responseText);
-
-                        callback(json);
-
-                    } else {
-
-                    }
-                };
-
-                xhr.send();
-
-            },
-
-            getPokemonDataByTimeRange: function (from, to, callback) {
-
-                //The way the URL is requested is a bit different from what Catch em All group was thinking. Maybe we
-                //need to talk to the Data team to change this API is requested (just in seconds or minutes before and after.
-
-                //TODO: To be rechecked. the range is not clear how should it be specified. Currently not working.
-
-                var currentTime = new Date();
-                var startTimeStamp = new Date(currentTime.getTime() + 1000 * from);
-                var startTimeStampString = startTimeStamp.toUTCString();
-                var range = to - from + 's';
-
-                var xhr = new XMLHttpRequest();
-                var url = apiEndpoint + 'api/pokemon/sighting/ts/' + startTimeStampString + '/range/' + range;
-                xhr.open("GET", url, true);
-                xhr.onreadystatechange = function () {
-
-                    if (xhr.readyState === 4 && xhr.status === 200) {
-
-                        var json = JSON.parse(xhr.responseText);
-
-                        callback(json);
-
-                    } else {
-
-                    }
-                };
-
-                xhr.send();
-
-            }
-        };
-
-        function twitterService() {
-            function getTwitterData() {
-
-            }
-        }
-
-        self.getApiEndpointURL = function () {
-            return apiEndpoint;
-        };
-
-        self.getData = function (bounds, updateCallback) {
-
-            dbService.getPastData(bounds, updateCallback);
-            return;
-
-
-            if (timeRange.start < 0 && timeRange.end < 0) {
-
-                //get past data from database
-                var pokemons = dbService.getPastData(bounds, updateCallback);
-                return pokemons;
-
-            } else {
-
-                if (timeRange.start > 0 && timeRange.end > 0) {
-
-                    //get predictions from database
-                    var pokemons = dbService.getPredictedData(from, to, updateCallback);
-                    return pokemons;
-
-                } else {
-
-                    //get data from database
-                    //get data from twitter via sockets
-                    var pokemons = dbService.getPastData(bounds, updateCallback);
-
-                    pokemons.push(dbService.getPredictedData(bounds, updateCallback));
-                    return pokemons;
-
-                }
-            }
-
-        };
-
-        self.getPokemonDetailsById = function (id, callback) {
-
-            dbService.getPokemonDetailsById(id, callback);
-        };
 
     }
 
