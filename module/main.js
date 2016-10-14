@@ -28,7 +28,7 @@ var DataService = require('./DataService.js');
 
         if (!coordinates) {
             coordinates = {
-                latitude:  48.132100,
+                latitude: 48.132100,
                 longitude: 11.546914
             }
         }
@@ -39,6 +39,7 @@ var DataService = require('./DataService.js');
         var socketEndPoint = options.websocketEndpoint;
         var tileLayer = options.tileLayer;
         var tileLayerOptions = options.tileLayerOptions;
+        var sponsors = options.sponsors;
 
         if (!zoomLevel) {
             zoomLevel = 15;
@@ -70,6 +71,68 @@ var DataService = require('./DataService.js');
             };
         }
 
+        if (!sponsors) {
+            var iteratecLogoBase64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAIAAABLixI0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAASJSURBVDjLlVVbbBVVFF3nzJmZO9N7KX3QllLkUaiQEAOEmlASigR8gHwAfmoUAxokihACigpqYvxsRKMBND7AR40CkfDhh1H4UAoIHzYttDRarqUtbdPb2/uaOY/tx70tmKrFNR+TOXPOzj577b0WAzCjslrKkAgAkH8RqPANi/FEKik8p8j3jTYo/KGxvUQEW4hbgwOsdGrZ0I1B+j2pQ01SmlyolDaB0aFEqIxUJXZ055GD8zbWP7dl2/BQQhulpNYylEqrINRayVDOmD59/v2LhVISNzPdvXETatLKZKU22gSklUSgSOmUG0tm08PDw/F4PJEY0VprZbQMldJKSq21kpIzppXiDJRPljFYjEfciMMFYwCBAQBY4UJjIACwhPAiHuecjZcF4PkjrhC+6wO4Gr8+mk17TsSxHfwTHMeJRNwgyHV2dQLkup7tOAQCIACCJYjwyruvf3H2VDaZBrCpcf2+jTuK3aJAZQu5ERHgOM5IMtl0qOmbUycBuJ63duWq7U9tE0IA4ACD7x46/kEwzVq7eg2AhoaG+s2NOw7vl0oyxizObc4NEefcaLPv1ZdrF9StamwEcN+iRTW1sz869qkf8QASAJAJNj2wYenDy//EwPnLF3cf2Lu5Yf3iVA0ZcoTTM9T/Q/v5g1sfJUPGmD07dz207pGff23pePyJj499MnNa9YnPm9PZDMDYlGhs5FJvTzyeS2S9aKS6blZf2x8DN/qFY+tcrtiJvnm8SdUVvX3graHBPhlqBpZKpmJTorPnzr3W2jowMGhbVmVF5Yp1awQDA5jUGq6VSaevnrtCIOE5MpQl/pRzV375quP7y0dasum0MSAirZTl2MnkyKWWFqON7Tg6DAs8jhPEAG5x4drM5kQkuBXzok++t/vDQ4fLS6dlc1lW6BEGgHNu206hJ8YgJpCeHxBaWFO77Nk1T2/f+tiGTZ1dXWAck2FiLBChYmr5O98evhJvv/x+W1d7BytkMwn4xKwcyx4aGWo6ebS9va2/p9cwAhjh/8cCocjzTvx0ZsmKZffOX0BEjrA5v6tgE2IxaG2qK6ouXrhw4vRJqZUbifi+zzhuixKNj+B/1osBo7nUg/WrmcbOLTt6En0Antm6bf+el7SShSLYQsKEOpy89gAS6ZHGJQ0dy8/6keLTP353tPsMtyzOueu6XnHkt9ZWJWVVRZWc5I757IglM+nrvd2dN651D92MRWPl5WXRaGxwcODLr5tf2LOro7PTniAk4t8KyRgDYxZnvuc3f9bc0dqWHE3dutW/cMHC3c+/WL9kaRgGdxtrHGEYNq5c+cbe17yIZ3FmWQLE0qlRLeVEHmlMN+nvAlpYMsaUlJTWzavzi3zGeBiE6XRGa13o3jsYFXldJSIiEMEQEZEBERmA8o9WKhvktJJaa1NYp7GdGLMmErawcU/RHFOLQEOGOie1VEaSCUITyKjlVZaUFVvFs+bMySRHwlyotNZ5H5JKhgUfqqmqFpbNANxTPTMIgtvTSLfNj4MFYZCmoGxqqdb6Tm8EwYAYgUCO7fT29/0FezmKdr4G1l0AAAAASUVORK5CYII=",
+                sponsors = [
+                    {
+                        name: "iteratec1",
+                        iconUrl: iteratecLogoBase64,
+                        coordinates: {
+                            latitude: 48.055150,
+                            longitude: 11.60758
+                        }
+                    },
+                    {
+                        name: "iteratec2",
+                        iconUrl: iteratecLogoBase64,
+                        coordinates: {
+                            latitude: 47.383853,
+                            longitude: 8.539520
+                        }
+                    },
+                    {
+                        name: "iteratec3",
+                        iconUrl: iteratecLogoBase64,
+                        coordinates: {
+                            latitude: 48.249937,
+                            longitude: 16.365375
+                        }
+                    },
+                    {
+                        name: "iteratec4",
+                        iconUrl: iteratecLogoBase64,
+                        coordinates: {
+                            latitude: 48.708602,
+                            longitude: 9.171533
+                        }
+                    },
+                    {
+                        name: "iteratec5",
+                        iconUrl: iteratecLogoBase64,
+                        coordinates: {
+                            latitude: 53.542532,
+                            longitude: 9.985469
+                        }
+                    },
+                    {
+                        name: "iteratec6",
+                        iconUrl: iteratecLogoBase64,
+                        coordinates: {
+                            latitude: 50.105696,
+                            longitude: 8.763236
+                        }
+                    },
+                    {
+                        name: "iteratec7",
+                        iconUrl: iteratecLogoBase64,
+                        coordinates: {
+                            latitude: 51.225672,
+                            longitude: 6.779803 
+                        }
+                    }
+                ]
+        }
+
         var self = this;
 
         this.goTo = goTo;
@@ -85,6 +148,7 @@ var DataService = require('./DataService.js');
         var mymap = null;
         var pokemonLayer = null;
         var mobsLayer = null;
+        var sponsorLayer = null;
         var route;
         var dataService = new DataService(apiEndpoint, socketEndPoint, coordinates);
 
@@ -101,6 +165,7 @@ var DataService = require('./DataService.js');
 
             pokemonLayer = L.layerGroup([]).addTo(mymap);
             mobsLayer = L.layerGroup([]).addTo(mymap);
+            sponsorLayer = L.layerGroup([]).addTo(mymap);
 
             var previousMoveEnd = {
                 latlng: {},
@@ -109,7 +174,6 @@ var DataService = require('./DataService.js');
 
             var moveCallback = function (event) {
 
-
                 var latlng = event.target.getCenter();
                 var zoom = event.target.getZoom();
 
@@ -117,7 +181,7 @@ var DataService = require('./DataService.js');
                 var zoomLevelEqual = previousMoveEnd.zoom == zoom;
 
                 // there was no actual movement
-                if(coordsEqual && zoomLevelEqual) {
+                if (coordsEqual && zoomLevelEqual) {
 
                     console.warn('coordinates are the same');
                     return;
@@ -134,10 +198,10 @@ var DataService = require('./DataService.js');
                 fireEvent('move', {
 
                     coordinates: {
-                        latitude:  latlng.lat,
+                        latitude: latlng.lat,
                         longitude: latlng.lng
                     },
-                    zoomLevel:   zoom
+                    zoomLevel: zoom
 
                 });
             };
@@ -146,7 +210,7 @@ var DataService = require('./DataService.js');
 
             updatePoints();
 
-            var mobCallback = function(mob) {
+            var mobCallback = function (mob) {
 
                 console.log('Mob received', mob);
 
@@ -155,7 +219,7 @@ var DataService = require('./DataService.js');
                 // 2 hours - 120 minutes - 7200 seconds
                 var importance = 1 - ((new Date() / 1000) - mob.timestamp) / 7200;
 
-                if(importance < 0) {
+                if (importance < 0) {
                     return;
                 }
 
@@ -169,11 +233,15 @@ var DataService = require('./DataService.js');
                 mobMarker.setRadius(20 * importance);
 
                 mobMarker.bindPopup("PokeMob on " + new Date(mob.timestamp * 1000).toLocaleString());
-                mobMarker.on('click', function(e) { fireEvent.bind({}, 'click', mob) });
+                mobMarker.on('click', function (e) {
+                    fireEvent.bind({}, 'click', mob)
+                });
 
             };
 
             dataService.configureSocket(socketEndPoint, coordinates, mobCallback);
+
+            promoteSponsors(sponsors);
 
         }
 
@@ -261,9 +329,11 @@ var DataService = require('./DataService.js');
                     L.latLng(start.latitude, start.longitude),
                     L.latLng(destination.latitude, destination.longitude)
                 ],
-                collapsible:  true,
-                geocoder:     L.Control.Geocoder.nominatim(),
-                createMarker: function () { return null; } //removes the marker (we will use only pokemon icons as markers
+                collapsible: true,
+                geocoder: L.Control.Geocoder.nominatim(),
+                createMarker: function () {
+                    return null;
+                } //removes the marker (we will use only pokemon icons as markers
             });
 
             route.addTo(mymap);
@@ -288,7 +358,7 @@ var DataService = require('./DataService.js');
 
             dataService.fetchData(sightingsSince, predictionsUntil, function (response) {
 
-                if (pokemonIds){
+                if (pokemonIds) {
 
                     var filteredPokemons = response.data.filter(function (pokemon) {
 
@@ -313,6 +383,10 @@ var DataService = require('./DataService.js');
 
         }
 
+        function promoteSponsors(sponsors) {
+            sponsors.map(addSponsorMarker);
+        }
+
         function updateTimeRange(timeRange) {
 
             self.timeRange = timeRange;
@@ -322,10 +396,10 @@ var DataService = require('./DataService.js');
 
         var PokemonIcon = L.Icon.extend({
             options: {
-                iconSize:     [30, 30],
-                shadowSize:   [50, 64],
+                iconSize: [30, 30],
+                shadowSize: [50, 64],
                 shadowAnchor: [4, 62],
-                popupAnchor:  [-3, -76]
+                popupAnchor: [-3, -76]
             }
         });
 
@@ -349,6 +423,27 @@ var DataService = require('./DataService.js');
 
             return marker;
 
+        }
+
+        function addSponsorMarker(sponsor) {
+
+            var rootIconUrl = sponsor.iconUrl;
+            console.log(rootIconUrl);
+
+            var icon = new L.Icon({
+                iconUrl: rootIconUrl
+            });
+
+            var coordinates = L.latLng(sponsor.coordinates.latitude, sponsor.coordinates.longitude);
+            var marker = L.marker(
+                coordinates, {
+                    icon: icon
+                }
+            );
+
+            marker.addTo(sponsorLayer);
+
+            return marker;
         }
 
     }
