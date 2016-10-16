@@ -28,7 +28,7 @@ var DataService = require('./DataService.js');
 
         if (!coordinates) {
             coordinates = {
-                latitude: 48.132100,
+                latitude:  48.132100,
                 longitude: 11.546914
             }
         }
@@ -64,10 +64,10 @@ var DataService = require('./DataService.js');
         if (!tileLayerOptions) {
             tileLayerOptions = {
                 attribution: '' +
-                'JS16 <a href="https://github.com/PokemonGoers/PokeMap-1">PokeMap</a>, ' +
-                'Mapping platform &copy; <a href="http://mapbox.com">Mapbox</a> ' +
-                'Pokemon Images © <a href="http://pokemondb.net/">Pokémon Database</a>',
-                maxZoom: 18
+                             'JS16 <a href="https://github.com/PokemonGoers/PokeMap-1">PokeMap</a>, ' +
+                             'Mapping platform &copy; <a href="http://mapbox.com">Mapbox</a> ' +
+                             'Pokemon Images © <a href="http://pokemondb.net/">Pokémon Database</a>',
+                maxZoom:     18
             };
         }
 
@@ -75,59 +75,59 @@ var DataService = require('./DataService.js');
             var iteratecLogoBase64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAIAAABLixI0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAASJSURBVDjLlVVbbBVVFF3nzJmZO9N7KX3QllLkUaiQEAOEmlASigR8gHwAfmoUAxokihACigpqYvxsRKMBND7AR40CkfDhh1H4UAoIHzYttDRarqUtbdPb2/uaOY/tx70tmKrFNR+TOXPOzj577b0WAzCjslrKkAgAkH8RqPANi/FEKik8p8j3jTYo/KGxvUQEW4hbgwOsdGrZ0I1B+j2pQ01SmlyolDaB0aFEqIxUJXZ055GD8zbWP7dl2/BQQhulpNYylEqrINRayVDOmD59/v2LhVISNzPdvXETatLKZKU22gSklUSgSOmUG0tm08PDw/F4PJEY0VprZbQMldJKSq21kpIzppXiDJRPljFYjEfciMMFYwCBAQBY4UJjIACwhPAiHuecjZcF4PkjrhC+6wO4Gr8+mk17TsSxHfwTHMeJRNwgyHV2dQLkup7tOAQCIACCJYjwyruvf3H2VDaZBrCpcf2+jTuK3aJAZQu5ERHgOM5IMtl0qOmbUycBuJ63duWq7U9tE0IA4ACD7x46/kEwzVq7eg2AhoaG+s2NOw7vl0oyxizObc4NEefcaLPv1ZdrF9StamwEcN+iRTW1sz869qkf8QASAJAJNj2wYenDy//EwPnLF3cf2Lu5Yf3iVA0ZcoTTM9T/Q/v5g1sfJUPGmD07dz207pGff23pePyJj499MnNa9YnPm9PZDMDYlGhs5FJvTzyeS2S9aKS6blZf2x8DN/qFY+tcrtiJvnm8SdUVvX3graHBPhlqBpZKpmJTorPnzr3W2jowMGhbVmVF5Yp1awQDA5jUGq6VSaevnrtCIOE5MpQl/pRzV375quP7y0dasum0MSAirZTl2MnkyKWWFqON7Tg6DAs8jhPEAG5x4drM5kQkuBXzok++t/vDQ4fLS6dlc1lW6BEGgHNu206hJ8YgJpCeHxBaWFO77Nk1T2/f+tiGTZ1dXWAck2FiLBChYmr5O98evhJvv/x+W1d7BytkMwn4xKwcyx4aGWo6ebS9va2/p9cwAhjh/8cCocjzTvx0ZsmKZffOX0BEjrA5v6tgE2IxaG2qK6ouXrhw4vRJqZUbifi+zzhuixKNj+B/1osBo7nUg/WrmcbOLTt6En0Antm6bf+el7SShSLYQsKEOpy89gAS6ZHGJQ0dy8/6keLTP353tPsMtyzOueu6XnHkt9ZWJWVVRZWc5I757IglM+nrvd2dN651D92MRWPl5WXRaGxwcODLr5tf2LOro7PTniAk4t8KyRgDYxZnvuc3f9bc0dqWHE3dutW/cMHC3c+/WL9kaRgGdxtrHGEYNq5c+cbe17yIZ3FmWQLE0qlRLeVEHmlMN+nvAlpYMsaUlJTWzavzi3zGeBiE6XRGa13o3jsYFXldJSIiEMEQEZEBERmA8o9WKhvktJJaa1NYp7GdGLMmErawcU/RHFOLQEOGOie1VEaSCUITyKjlVZaUFVvFs+bMySRHwlyotNZ5H5JKhgUfqqmqFpbNANxTPTMIgtvTSLfNj4MFYZCmoGxqqdb6Tm8EwYAYgUCO7fT29/0FezmKdr4G1l0AAAAASUVORK5CYII=",
                 sponsors = [
                     {
-                        name: "iteratec1",
-                        iconUrl: iteratecLogoBase64,
+                        name:        "iteratec1",
+                        iconUrl:     iteratecLogoBase64,
                         coordinates: {
-                            latitude: 48.055150,
+                            latitude:  48.055150,
                             longitude: 11.60758
                         }
                     },
                     {
-                        name: "iteratec2",
-                        iconUrl: iteratecLogoBase64,
+                        name:        "iteratec2",
+                        iconUrl:     iteratecLogoBase64,
                         coordinates: {
-                            latitude: 47.383853,
+                            latitude:  47.383853,
                             longitude: 8.539520
                         }
                     },
                     {
-                        name: "iteratec3",
-                        iconUrl: iteratecLogoBase64,
+                        name:        "iteratec3",
+                        iconUrl:     iteratecLogoBase64,
                         coordinates: {
-                            latitude: 48.249937,
+                            latitude:  48.249937,
                             longitude: 16.365375
                         }
                     },
                     {
-                        name: "iteratec4",
-                        iconUrl: iteratecLogoBase64,
+                        name:        "iteratec4",
+                        iconUrl:     iteratecLogoBase64,
                         coordinates: {
-                            latitude: 48.708602,
+                            latitude:  48.708602,
                             longitude: 9.171533
                         }
                     },
                     {
-                        name: "iteratec5",
-                        iconUrl: iteratecLogoBase64,
+                        name:        "iteratec5",
+                        iconUrl:     iteratecLogoBase64,
                         coordinates: {
-                            latitude: 53.542532,
+                            latitude:  53.542532,
                             longitude: 9.985469
                         }
                     },
                     {
-                        name: "iteratec6",
-                        iconUrl: iteratecLogoBase64,
+                        name:        "iteratec6",
+                        iconUrl:     iteratecLogoBase64,
                         coordinates: {
-                            latitude: 50.105696,
+                            latitude:  50.105696,
                             longitude: 8.763236
                         }
                     },
                     {
-                        name: "iteratec7",
-                        iconUrl: iteratecLogoBase64,
+                        name:        "iteratec7",
+                        iconUrl:     iteratecLogoBase64,
                         coordinates: {
-                            latitude: 51.225672,
-                            longitude: 6.779803 
+                            latitude:  51.225672,
+                            longitude: 6.779803
                         }
                     }
                 ]
@@ -152,7 +152,15 @@ var DataService = require('./DataService.js');
         var route;
         var dataService = new DataService(apiEndpoint, socketEndPoint, coordinates);
 
-        initMap();
+        var debouncedUpdatePoints = _.debounce(updatePoints, 700);
+        var PokemonIcon = L.Icon.extend({
+            options: {
+                iconSize:     [30, 30],
+                shadowSize:   [50, 64],
+                shadowAnchor: [4, 62],
+                popupAnchor:  [-3, -76]
+            }
+        });
 
         function initMap() {
 
@@ -169,7 +177,7 @@ var DataService = require('./DataService.js');
 
             var previousMoveEnd = {
                 latlng: {},
-                zoom: null
+                zoom:   null
             };
 
             var moveCallback = function (event) {
@@ -198,10 +206,10 @@ var DataService = require('./DataService.js');
                 fireEvent('move', {
 
                     coordinates: {
-                        latitude: latlng.lat,
+                        latitude:  latlng.lat,
                         longitude: latlng.lng
                     },
-                    zoomLevel: zoom
+                    zoomLevel:   zoom
 
                 });
             };
@@ -225,8 +233,8 @@ var DataService = require('./DataService.js');
 
                 var mobMarker = L.circleMarker(mob.coordinates, {
                     fillColor: '#ff0000',
-                    color: '#ff0000',
-                    opacity: importance,
+                    color:     '#ff0000',
+                    opacity:   importance,
                     className: 'mobMarker'
                 }).addTo(mobsLayer);
 
@@ -303,8 +311,6 @@ var DataService = require('./DataService.js');
 
         }
 
-        var debouncedUpdatePoints = _.debounce(updatePoints, 700);
-
         function goTo(location) {
 
             var coordinates = location.coordinates;
@@ -325,12 +331,12 @@ var DataService = require('./DataService.js');
             }
 
             route = L.Routing.control({
-                waypoints: [
+                waypoints:    [
                     L.latLng(start.latitude, start.longitude),
                     L.latLng(destination.latitude, destination.longitude)
                 ],
-                collapsible: true,
-                geocoder: L.Control.Geocoder.nominatim(),
+                collapsible:  true,
+                geocoder:     L.Control.Geocoder.nominatim(),
                 createMarker: function () {
                     return null;
                 } //removes the marker (we will use only pokemon icons as markers
@@ -358,25 +364,25 @@ var DataService = require('./DataService.js');
 
             dataService.fetchData(sightingsSince, predictionsUntil, function (response) {
 
-                if (pokemonIds) {
+                var filteredPokemons = [];
 
-                    var filteredPokemons = response.data.filter(function (pokemon) {
+                if (pokemonIds && pokemonIds.length) {
+
+                    filteredPokemons = response.data.filter(function (pokemon) {
 
                         return pokemonIds.indexOf(pokemon.pokemonId) > -1;
 
                     });
 
-                    pokemonLayer.clearLayers();
-
-                    filteredPokemons.map(addPokemonMarker);
-
                 } else {
 
-                    pokemonLayer.clearLayers();
-
-                    response.data.map(addPokemonMarker);
+                    filteredPokemons = response.data;
 
                 }
+
+                pokemonLayer.clearLayers();
+
+                filteredPokemons.map(addPokemonMarker);
 
             });
 
@@ -394,15 +400,6 @@ var DataService = require('./DataService.js');
 
         }
 
-        var PokemonIcon = L.Icon.extend({
-            options: {
-                iconSize: [30, 30],
-                shadowSize: [50, 64],
-                shadowAnchor: [4, 62],
-                popupAnchor: [-3, -76]
-            }
-        });
-
         function contructIconUrl(pokemonId) {
 
             return dataService.getApiEndpointURL() + '/api/pokemon/id/' + pokemonId + '/icon/gif';
@@ -411,9 +408,10 @@ var DataService = require('./DataService.js');
 
         function addPokemonMarker(pokemon) {
 
-            var rootIconUrl = contructIconUrl(pokemon.pokemonId);
+            var iconUrl = contructIconUrl(pokemon.pokemonId);
 
-            var icon = new PokemonIcon({iconUrl: rootIconUrl});
+            debugger;
+            var icon = new PokemonIcon({iconUrl: iconUrl});
             var coordinates = L.latLng(pokemon.location.coordinates[1], pokemon.location.coordinates[0]);
             var marker = L.marker(coordinates, {
                 icon: icon
@@ -445,6 +443,8 @@ var DataService = require('./DataService.js');
 
             return marker;
         }
+
+        initMap();
 
     }
 
