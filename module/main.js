@@ -351,6 +351,7 @@ var DataService = require('./DataService.js');
             if (route && route.removeFrom) {
 
                 route.removeFrom(mymap);
+                route = null;
 
             }
 
@@ -409,8 +410,6 @@ var DataService = require('./DataService.js');
         function addPokemonMarker(pokemon) {
 
             var iconUrl = contructIconUrl(pokemon.pokemonId);
-
-            debugger;
             var icon = new PokemonIcon({iconUrl: iconUrl});
             var coordinates = L.latLng(pokemon.location.coordinates[1], pokemon.location.coordinates[0]);
             var marker = L.marker(coordinates, {

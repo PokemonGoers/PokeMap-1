@@ -9,11 +9,12 @@ function DataService(apiEndpoint) {
         getPastDataByTime: function (sightingsSince, callback) {
 
             var date = new Date();
+            var sightingsSinceDate = (new Date(new Date().getTime()-sightingsSince*1000))
 
-            var range = Math.floor((date - sightingsSince)/1000 * 60);
+            var range = Math.floor(sightingsSince / 60);
 
             var xhr = new XMLHttpRequest();
-            var url = apiEndpoint + '/api/pokemon/sighting/ts/' + sightingsSince.toUTCString() + '/range/' + range.toString() + 'm';
+            var url = apiEndpoint + '/api/pokemon/sighting/ts/' + sightingsSinceDate.toUTCString() + '/range/' + range.toString() + 'm';
             xhr.open("GET", url, true);
             xhr.onreadystatechange = function () {
 
