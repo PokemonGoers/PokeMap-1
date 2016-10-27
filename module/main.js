@@ -1,7 +1,6 @@
 "use strict";
 
 var L = require('leaflet');
-var _ = require('lodash');
 require('leaflet-routing-machine');
 require('leaflet-control-geocoder');
 require('leaflet/dist/leaflet.css');
@@ -88,7 +87,6 @@ var DataService = require('./DataService.js');
         var route;
         var dataService = new DataService(apiEndpoint, socketEndPoint, coordinates);
 
-        var debouncedUpdatePoints = _.debounce(updatePoints, 700);
         var PokemonIcon = L.Icon.extend({
             options: {
                 iconSize:     [30, 30],
@@ -136,7 +134,7 @@ var DataService = require('./DataService.js');
 
                 }
 
-                debouncedUpdatePoints();
+                updatePoints();
 
                 fireEvent('move', {
 
