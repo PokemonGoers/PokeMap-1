@@ -262,7 +262,7 @@ function twitterService(socketEndPoint, mapCenter, mobCallback) {
 
         mobCallback(ex);
 
-    }, 5000);
+    }, 10000);
 }
 
 module.exports = DataService;

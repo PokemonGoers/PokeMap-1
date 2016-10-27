@@ -23,6 +23,6 @@ pokemap.on('move', function (event) {
     console.log(event.coordinates.latitude + ' ' + event.coordinates.longitude + ' ' + event.zoomLevel);
 });
 
-pokemap.on('click', function (pokemonId) {
-    console.log('pokemon id - ' + pokemonId);
+pokemap.on('click', function (data) {
+    console.log('clicked object - ' + data);
 });
