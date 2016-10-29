@@ -171,7 +171,6 @@ function DataService(apiEndpoint) {
 
     };
 
-
     self.getData = function (bounds, updateCallback) {
 
         dbService.getPastData(bounds, updateCallback);
