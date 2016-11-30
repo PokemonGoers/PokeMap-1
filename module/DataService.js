@@ -230,38 +230,38 @@ function twitterService(socketEndPoint, mapCenter, mobCallback) {
 
     socket.on('mob', mobCallback);
 
-    setInterval(function() {
-
-        var initLat = mapCenter.latitude;
-        var initLon = mapCenter.longitude;
-
-        initLat += (Math.random() / 100);
-        initLon += (Math.random() / 100);
-
-        var timestamp = (new Date() - Math.random() * 10000000) / 1000;
-
-        var ex = {
-            "tweets": [{
-                "id": "some_tweet_id",
-                "text": "I got a pikachu",
-                "coordinates": [initLat, initLon],
-                "timestamp": timestamp
-            },{
-                "id": "another_tweet_id",
-                "text": "i also got a pikachu!",
-                "coordinates": [initLat, initLon],
-                "timestamp": timestamp
-            }],
-            "coordinates": [initLat, initLon],  // this is a weighted moving average of the tweets in the cluster
-            "timestamp": timestamp, // timestamp of last tweet in cluster
-            "isMob": true,
-            "clusterId": 1
-
-        };
-
-        mobCallback(ex);
-
-    }, 10000);
+    // setInterval(function() {
+    //
+    //     var initLat = mapCenter.latitude;
+    //     var initLon = mapCenter.longitude;
+    //
+    //     initLat += (Math.random() / 100);
+    //     initLon += (Math.random() / 100);
+    //
+    //     var timestamp = (new Date() - Math.random() * 10000000) / 1000;
+    //
+    //     var ex = {
+    //         "tweets": [{
+    //             "id": "some_tweet_id",
+    //             "text": "I got a pikachu",
+    //             "coordinates": [initLat, initLon],
+    //             "timestamp": timestamp
+    //         },{
+    //             "id": "another_tweet_id",
+    //             "text": "i also got a pikachu!",
+    //             "coordinates": [initLat, initLon],
+    //             "timestamp": timestamp
+    //         }],
+    //         "coordinates": [initLat, initLon],  // this is a weighted moving average of the tweets in the cluster
+    //         "timestamp": timestamp, // timestamp of last tweet in cluster
+    //         "isMob": true,
+    //         "clusterId": 1
+    //
+    //     };
+    //
+    //     mobCallback(ex);
+    //
+    // }, 10000);
 }
 
 module.exports = DataService;
