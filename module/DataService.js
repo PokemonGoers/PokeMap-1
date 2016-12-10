@@ -60,14 +60,13 @@ function DataService(apiEndpoint) {
 
         },
 
-        //supposing that we could get the predicted data through the same api
-        getPredictedData: function (location, callback) {
+        getPredictedData: function (location, timestamp, callback) {
 
             var locationFrom = location.from.lng + ',' + location.from.lat;
             var locationTo = location.to.lng + ',' + location.to.lat;
 
             var xhr = new XMLHttpRequest();
-            var url = apiEndpoint + 'api/pokemon/sighting/coordinates/from/' + locationFrom + '/to/' + locationTo;
+            var url = apiEndpoint + 'api/pokemon/prediction/coordinates/' + locationFrom + ',' + locationTo + '/ts/' + timestamp;
             xhr.open("GET", url, true);
 
             xhr.onreadystatechange = function () {

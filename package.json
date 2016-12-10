@@ -1,6 +1,6 @@
 {
   "name": "pokemap-1",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Project D Group 7, JavaScript Seminar WS16, Rostlab",
   "main": "pokemap.bundle.js",
   "scripts": {
