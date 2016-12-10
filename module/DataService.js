@@ -60,13 +60,15 @@ function DataService(apiEndpoint) {
 
         },
 
-        getPredictedData: function (location, timestamp, callback) {
+        getPredictedData: function (coordinates, timestamp, callback) {
 
-            var locationFrom = location.from.lng + ',' + location.from.lat;
-            var locationTo = location.to.lng + ',' + location.to.lat;
+            var longitude = coordinates.longitude;
+            var latitude = coordinates.latitude;
+            var date = new Date();
+            var predictionsUntilDate = (new Date(new Date().getTime()-sightingsSince*1000))
 
             var xhr = new XMLHttpRequest();
-            var url = apiEndpoint + 'api/pokemon/prediction/coordinates/' + locationFrom + ',' + locationTo + '/ts/' + timestamp;
+            var url = apiEndpoint + 'api/pokemon/prediction/coordinates/' + longitude + ',' + latitude + '/ts/' + predictionsUntilDate.toUTCString();
             xhr.open("GET", url, true);
 
             xhr.onreadystatechange = function () {
@@ -145,14 +147,16 @@ function DataService(apiEndpoint) {
         return apiEndpoint;
     };
 
-    self.fetchData = function(sightingsSince, predictionsUntil, updateCallback) {
+    self.fetchData = function(sightingsSince, predictionsUntil, coordinates, updateCallback) {
+
+        debugger;
 
         if (sightingsSince == 0){
             if (predictionsUntil == 0){
                 console.log("Nothing to show");
                 return;
-            }
-            //code to get prediction data
+            } else
+            dbService.getPredictedData(coordinates, predictionsUntil, updateCallback);
         } else {
             if (predictionsUntil == 0){
                 //code to get sightings
@@ -161,6 +165,7 @@ function DataService(apiEndpoint) {
                 //code to get sightings
                 dbService.getPastDataByTime(sightingsSince, updateCallback);
                 //code to get predictions
+                dbService.getPredictedData(coordinates, predictionsUntil, updateCallback);
             }
 
 
