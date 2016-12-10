@@ -292,7 +292,7 @@ var DataService = require('./DataService.js');
             var predictionsUntil = filterOptions.predictionsUntil;
             var pokemonIds = filterOptions.pokemonIds;
 
-            dataService.fetchData(sightingsSince, predictionsUntil, function (response) {
+            dataService.fetchData(sightingsSince, predictionsUntil, coordinates, function (response) {
 
                 var filteredPokemons = [];
 
